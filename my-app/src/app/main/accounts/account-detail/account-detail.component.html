@@ -5,7 +5,7 @@
       <div class="panel">
         <div class="panel-heading">
           <div class="panel-title text-center">
-            <h3 style="text-transform: uppercase">User Information</h3>
+            <h3 style="text-transform: uppercase">Thông Tin Người Dùng</h3>
 
           </div>
         </div>
@@ -18,7 +18,7 @@
                 <span class="ui-float-label ">
                   <input id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
                     [(ngModel)]="name">
-                  <label for="float-input-name"> Name</label>
+                  <label for="float-input-name"> Họ Và Tên</label>
                 </span>
               </div>
             </div>
@@ -29,7 +29,7 @@
               <div class="ui-md-12">
                 <span class="ui-float-label">
                   <input name="staffID" id="float-input-staffID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-staffID">Staff ID</label>
+                  <label for="float-input-staffID">Mã Nhân Viên</label>
                 </span>
               </div>
             </div>
@@ -40,7 +40,7 @@
               <div class="ui-md-12">
                 <span class="ui-float-label">
                   <input type="password" id="float-input-password" autocomplete="new-password" name="password" pPassword class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-password">Password</label>
+                  <label for="float-input-password">Mật Khẩu</label>
                 </span>
               </div>
             </div>
@@ -51,7 +51,7 @@
               <div class="ui-md-12">
                 <span class="ui-float-label">
                   <input id="float-input-personal-email" name="personalEmail"  type="text"  pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" >
-                  <label for="float-input-personal-email">Personal Email</label>
+                  <label for="float-input-personal-email"> Email</label>
                 </span>
               </div>
             </div>
@@ -62,7 +62,7 @@
               <div class="ui-md-12">
                 <span class="ui-float-label">
                   <input id="float-input-other-email" type="text" name="otherEmail" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-other-email">Other Email</label>
+                  <label for="float-input-other-email"> Email Khác</label>
                 </span>
               </div>
             </div>
@@ -73,7 +73,7 @@
               <div class="ui-md-12">
                 <span class="ui-float-label">
                   <input id="float-input-personal-phone" type="text" name="personalPhone" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-personal-phone">Personal Phone</label>
+                  <label for="float-input-personal-phone"> Số Điện Thoại 1</label>
                 </span>
               </div>
             </div>
@@ -84,7 +84,7 @@
               <div class="ui-md-12">
                 <span class="ui-float-label">
                   <input id="float-input-other-phone" type="text" name="otherPhone" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-other-phone">Other Phone</label>
+                  <label for="float-input-other-phone">Số Điện Thoại 2 </label>
                 </span>
               </div>
             </div>
@@ -93,7 +93,7 @@
             <!-- Status -->
             <div class="ui-g ui-fluid one-row-field">
               <div class="ui-md-12">
-                <label>Status</label>
+                <label>Trạng Thái</label>
                 <div class="ui-inputgroup">
                   <p-inputSwitch onLabel="Active" offLabel="Deactive" name="status" [(ngModel)]="check1"></p-inputSwitch>
                 </div>
@@ -102,20 +102,20 @@
             <!-- /Status -->
 
             <!-- Role -->
-            <label>Role</label>
+            <label>Vai Trò</label>
             <div class="ui-g ui-fluid" style="margin-bottom:10px">
               <p-radioButton *ngFor="let i of options" name="{{i}}" value="{{i}}" label="jsaldjasjdlasl" [(ngModel)]="val1" inputId="opt{{i}}"></p-radioButton>
             </div>
             <!-- /Role -->
 
             <div class="panel-footer text-right">
-              <a *ngIf="id == 0" class="btn btn-bordered btn-primary mb5"> add account</a>
-              <a *ngIf="id != 0" [routerLink]="['/main/account']" class="btn btn-bordered btn-primary mb5"> edit account</a>
-              <a class="btn btn-default btn-bordered mb5"> clear</a>
+              <a *ngIf="id == 0" class="btn btn-bordered btn-primary mb5"> Thêm Mới</a>
+              <a *ngIf="id != 0" [routerLink]="['/main/account']" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
+              <a class="btn btn-default btn-bordered mb5"> Huỷ</a>
             </div>
 
             <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
-              <i class="fa fa-reply"></i> back
+              <i class="fa fa-reply"></i> Trở Về
             </a>
 
           </form>
