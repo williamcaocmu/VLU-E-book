@@ -1,0 +1,12 @@
+.one-row-field{
+    margin: 15px 0px;
+}
+
+#float-input{
+    height: 40px
+}
+
+p-radioButton{
+    display: block;
+    margin: .7em
+}

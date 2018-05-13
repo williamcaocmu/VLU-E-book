@@ -1,0 +1,37 @@
+<div class="row text-center">
+  <h3>ACCOUNT LIST</h3>
+</div>
+
+<p-dataTable class="ui-g-12" [value]="cars" [(selection)]="multipleSelected"  resizableColumns="true"
+  [headerCheckboxToggleAllPages]="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]" [responsive]="true"
+  [scrollable]="true" [globalFilter]="gb" columnResizeMode="fit" [resizableColumns]="true">
+  <p-header>
+    <div class="ui-helper-clearfix ">
+      <input style="float:left" #gb type="text" pInputText size="50" placeholder="Search All ...">
+      <i style="float:left" class="custome fa fa-search"></i>
+      <button *ngIf="multipleSelected.length > 1" class="ui-button-danger" style="float:right" type="button" pButton icon="fa-trash"
+        label="Delete All Selected" (click)="deleteMultiple()"></button>
+      <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/account',0]" label="Add"></button>
+    </div>
+  </p-header>
+  <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+  <p-column [sortable]="true" filterPlaceholder="Search" field="staffId" header="Staff ID"></p-column>
+  <p-column [sortable]="true" field="name" filterPlaceholder="Search" header="Name"></p-column>
+  <p-column [sortable]="true" field="role" filterPlaceholder="Search" header="Role"></p-column>
+  <p-column [sortable]="true" field="phone" filterPlaceholder="Search" header="Phone"></p-column>
+  <p-column [sortable]="true" field="companyPhone" filterPlaceholder="Search" header="Company Phone"></p-column>
+  <p-column [sortable]="true" field="personalEmail" filterPlaceholder="Search" header="Personal Email"></p-column>
+  <p-column [sortable]="true" field="companyEmail" filterPlaceholder="Search" header="Staff Email"></p-column>
+  <p-column [style]="{'width':'120px'}"  field="status" filterPlaceholder="Search" filterPlaceholder="Input True/False" header="Status">
+    <ng-template let-col let-status="rowData" pTemplate="body">
+      <p-button class="ui-button-success" disabled *ngIf="status[col.field]" icon="fa fa-fw fa-check" label="Active"></p-button>
+      <button pButton type="button" *ngIf="!status[col.field]" [disabled]="true" class="ui-button-secondary" label="Deactive" icon="fa fa-fw fa-close"></button>
+    </ng-template>
+  </p-column>
+  <p-column [style]="{'width':'80px'}"  field="id" header="Operator">
+    <ng-template let-col let-id="rowData" pTemplate="body">
+      <button pButton icon="fa-pencil" [routerLink]="['/main/account', id[col.field]]" type="button" class="ui-button-warning"></button>
+    </ng-template>
+  </p-column>
+
+</p-dataTable>

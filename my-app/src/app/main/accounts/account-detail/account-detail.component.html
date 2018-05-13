@@ -1,0 +1,127 @@
+<div class="chute chute-center" style="height: 726px;">
+  <div class="mw1000 center-block">
+
+    <div class="allcp-form theme-primary">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="panel-title text-center">
+            <h3 style="text-transform: uppercase">User Information</h3>
+
+          </div>
+        </div>
+        <div class="panel-body">
+          <form  method="post" action="" id="form-ui" autocomplete="off">
+
+            <!-- name -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label ">
+                  <input id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
+                    [(ngModel)]="name">
+                  <label for="float-input-name"> Name</label>
+                </span>
+              </div>
+            </div>
+            <!-- / name -->
+
+            <!-- Staff ID  -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input name="staffID" id="float-input-staffID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-staffID">Staff ID</label>
+                </span>
+              </div>
+            </div>
+            <!-- / Staff ID -->
+
+            <!-- Password  -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input type="password" id="float-input-password" autocomplete="new-password" name="password" pPassword class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-password">Password</label>
+                </span>
+              </div>
+            </div>
+            <!-- / Password -->
+
+            <!-- Personal Email -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input id="float-input-personal-email" name="personalEmail"  type="text"  pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" >
+                  <label for="float-input-personal-email">Personal Email</label>
+                </span>
+              </div>
+            </div>
+            <!--/ Personal Email -->
+
+            <!-- Other Email -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input id="float-input-other-email" type="text" name="otherEmail" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-other-email">Other Email</label>
+                </span>
+              </div>
+            </div>
+            <!--/ Other Email -->
+
+            <!-- Personal Email -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input id="float-input-personal-phone" type="text" name="personalPhone" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-personal-phone">Personal Phone</label>
+                </span>
+              </div>
+            </div>
+            <!--/ Personal Email -->
+
+            <!-- Company Email -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input id="float-input-other-phone" type="text" name="otherPhone" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-other-phone">Other Phone</label>
+                </span>
+              </div>
+            </div>
+            <!--/ Company Email -->
+
+            <!-- Status -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <label>Status</label>
+                <div class="ui-inputgroup">
+                  <p-inputSwitch onLabel="Active" offLabel="Deactive" name="status" [(ngModel)]="check1"></p-inputSwitch>
+                </div>
+              </div>
+            </div>
+            <!-- /Status -->
+
+            <!-- Role -->
+            <label>Role</label>
+            <div class="ui-g ui-fluid" style="margin-bottom:10px">
+              <p-radioButton *ngFor="let i of options" name="{{i}}" value="{{i}}" label="jsaldjasjdlasl" [(ngModel)]="val1" inputId="opt{{i}}"></p-radioButton>
+            </div>
+            <!-- /Role -->
+
+            <div class="panel-footer text-right">
+              <a *ngIf="id == 0" class="btn btn-bordered btn-primary mb5"> add account</a>
+              <a *ngIf="id != 0" [routerLink]="['/main/account']" class="btn btn-bordered btn-primary mb5"> edit account</a>
+              <a class="btn btn-default btn-bordered mb5"> clear</a>
+            </div>
+
+            <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
+              <i class="fa fa-reply"></i> back
+            </a>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
