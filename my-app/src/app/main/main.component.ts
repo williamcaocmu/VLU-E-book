@@ -24,7 +24,8 @@ export class MainComponent implements OnInit {
 		role: ''
 	}
 
-	constructor(private cookieService: CookieService, 
+	constructor(
+		private cookieService: CookieService, 
 		private location: Location, 
 		private router: Router, 
 		private activatedRoute: ActivatedRoute,

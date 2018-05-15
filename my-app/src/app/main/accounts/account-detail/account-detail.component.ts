@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../account.service';
 import { AlertService } from '../../../services/alert.service';
+import { MenuItem } from 'primeng/api';
 
 
 @Component({
@@ -10,17 +11,21 @@ import { AlertService } from '../../../services/alert.service';
     styleUrls: ['./account-detail.component.css']
 })
 export class AccountDetailComponent implements OnInit {
+    items: MenuItem[] = [
+        { label: 'Tài Khoản' },
+        { label: 'Thông Tin Tài Khoản' }
+    ];
 
     id: number;
     account = {
-        staffid: '',
-        role: '',
-        name: '',
-        email: '',
-        otheremail: '',
-        password: '',
-        phone1: '',
-        phone2: '',
+        StaffId: '',
+        Role: '',
+        Name: '',
+        Email: '',
+        OtherEmail: '',
+        Password: '',
+        Phone1: '',
+        Phone2: '',
 
     }
 
@@ -33,7 +38,7 @@ export class AccountDetailComponent implements OnInit {
         { shortNameRole: 'student/parent', fullNameRole: 'Student' },
         { shortNameRole: 'board', fullNameRole: 'Falcuty Board' },
     ]
-    
+
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private accountService: AccountService, private alertService: AlertService) {
     }
 
@@ -42,24 +47,27 @@ export class AccountDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe(
             params => {
                 this.id = +params['id'];
-                this.accountService.getAccount(this.id)
-                    .then(res => {
-                        console.log(res);
-                        this.account = res as any;
-                        this.selectedStatus = (res['status'] == 1) ? true : false;
+                if (this.id != 0) {
+                    // Lấy thông tin account nếu đã có id
+                    this.accountService.getAccount(this.id)
+                        .then(res => {
+                            console.log(res);
+                            this.account = res as any;
+                            this.selectedStatus = (res['Status'] == 1) ? true : false;
 
-                        console.log(this.selectedStatus);
+                            console.log(this.selectedStatus);
 
-                    })
-                    .catch(err => {
-                        this.alertService.error(err);
-                    })
+                        })
+                        .catch(err => {
+                            // this.alertService.error(err);
+                        })
+                }
             }
         );
     }
 
     updateAccount() {
-        this.account['status'] = this.selectedStatus;
+        this.account['Status'] = this.selectedStatus;
         this.accountService.updateAccount(this.account)
             .then(res => {
                 this.alertService.success('Updated Successfully !');

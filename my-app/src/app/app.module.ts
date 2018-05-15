@@ -33,6 +33,8 @@ import { HttpModule } from '@angular/http';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { AccountService } from './main/accounts/account.service';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+
 
 
 
@@ -68,7 +70,8 @@ import { AccountService } from './main/accounts/account.service';
     PasswordModule,
     HttpModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    BreadcrumbModule
   ],
   providers: [AlertService, LoadingService, ApiService, LoginService, CookieService, AccountService],
   bootstrap: [AppComponent]

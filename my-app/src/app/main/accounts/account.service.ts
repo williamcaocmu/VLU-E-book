@@ -12,7 +12,7 @@ export class AccountService {
 
 	getList() {
 		return new Promise((resolve, reject) => {
-			this.apiService.get("admin/getallaccounts")
+			this.apiService.get("admin/getAllAccounts")
 				.then(res => {
 					resolve(res);
 				})
@@ -24,7 +24,7 @@ export class AccountService {
 
 	add(data: any) {
 		return new Promise((resolve, reject) => {
-			this.apiService.post("admin/addaccount", data)
+			this.apiService.post("admin/addAccount", data)
 				.then(res => {
 					resolve(res);
 				})
@@ -38,7 +38,7 @@ export class AccountService {
 
 	getAccount(id: any) {
 		return new Promise((resolve, reject) => {
-			this.apiService.get(`admin/getaccount/${id}`)
+			this.apiService.get(`admin/getAccount/${id}`)
 				.then(res => {
 					resolve(res);
 				})
@@ -50,7 +50,7 @@ export class AccountService {
 
 	updateAccount(data: any) {
 		return new Promise((resolve, reject) => {
-			this.apiService.post('admin/updateaccount', data)
+			this.apiService.post('admin/updateAccount', data)
 				.then(res => {
 					resolve(res);
 				})

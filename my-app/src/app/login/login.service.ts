@@ -13,8 +13,8 @@ export class LoginService {
 	login(email: string, password: string) {
 		return new Promise((resolve, reject) => {
 			this.apiService.post('auth/login', {
-				email: email,
-				password: password
+				Email: email,
+				Password: password
 			}).then(res => {
 				console.log(res['access_token']);
 				this.apiService.access_token = res['access_token'];

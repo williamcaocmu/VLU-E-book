@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  isLogin
+  isLogin: boolean;
   email: string;
   password: string;
 
@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit {
     console.log('this emial', this.email, this.password);
     this.loginService.login(this.email, this.password)
       .then((res) => {
-        if (res['role'] == 'admin') {
           this.router.navigate(['/main/account']);
-        }
       }).catch(err => {
         this.hasError = true;
+        this.router.navigate(['/login']);
+        this.cookieService.deleteAll();
       })
 
   }
