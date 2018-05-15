@@ -2,33 +2,33 @@
   <h3>DANH SÁCH TÀI KHOẢN</h3>
 </div>
 
-<p-dataTable class="ui-g-12" [value]="cars" [(selection)]="multipleSelected"  resizableColumns="true"
-  [headerCheckboxToggleAllPages]="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]" [responsive]="true"
-  [scrollable]="true" [globalFilter]="gb" columnResizeMode="fit" [resizableColumns]="true">
+<p-dataTable class="ui-g-12" [value]="accounts" [(selection)]="multipleSelected" resizableColumns="true" [headerCheckboxToggleAllPages]="true"
+  [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]" [responsive]="true" [scrollable]="true" [globalFilter]="gb"
+   [resizableColumns]="true" emptyMessage="Không tìm thấy kết quả">
   <p-header>
     <div class="ui-helper-clearfix ">
       <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
       <i style="float:left" class="custome fa fa-search"></i>
       <button *ngIf="multipleSelected.length > 1" class="ui-button-danger" style="float:right" type="button" pButton icon="fa-trash"
-        label="Xoá Tài Khoản Được Chọn" (click)="deleteMultiple()"></button>
+        label="Xoá Tất Cả Tài Khoản Đã Chọn" (click)="deleteMultiple()"></button>
       <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/account',0]" label="Thêm "></button>
     </div>
   </p-header>
   <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-  <p-column [sortable]="true" filterPlaceholder="Search" field="staffId" header="Mã Nhân Viên"></p-column>
+  <p-column [sortable]="true" filterPlaceholder="Search" field="staffid" header="Mã Nhân Viên"></p-column>
   <p-column [sortable]="true" field="name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
   <p-column [sortable]="true" field="role" filterPlaceholder="Search" header="Vai Trò"></p-column>
-  <p-column [sortable]="true" field="phone" filterPlaceholder="Search" header="Số Điện Thoại 1"></p-column>
-  <p-column [sortable]="true" field="companyPhone" filterPlaceholder="Search" header="Số Điện Thoại 2"></p-column>
-  <p-column [sortable]="true" field="personalEmail" filterPlaceholder="Search" header=" Email"></p-column>
-  <p-column [sortable]="true" field="companyEmail" filterPlaceholder="Search" header=" Email Khác"></p-column>
-  <p-column [style]="{'width':'120px'}"  field="status" filterPlaceholder="Search" filterPlaceholder="Input True/False" header="Trạng Thái">
+  <p-column [sortable]="true" field="phone1" filterPlaceholder="Search" header="Số Điện Thoại 1"></p-column>
+  <p-column [sortable]="true" field="phone2" filterPlaceholder="Search" header="Số Điện Thoại 2"></p-column>
+  <p-column [sortable]="true" field="email" filterPlaceholder="Search" header=" Email"></p-column>
+  <p-column [sortable]="true" field="otheremail" filterPlaceholder="Search" header=" Email Khác"></p-column>
+  <p-column [style]="{'width':'120px'}" field="status" filterPlaceholder="Search" filterPlaceholder="Input True/False" header="Trạng Thái">
     <ng-template let-col let-status="rowData" pTemplate="body">
       <p-button class="ui-button-success" disabled *ngIf="status[col.field]" icon="fa fa-fw fa-check" label="Active"></p-button>
       <button pButton type="button" *ngIf="!status[col.field]" [disabled]="true" class="ui-button-secondary" label="Deactive" icon="fa fa-fw fa-close"></button>
     </ng-template>
   </p-column>
-  <p-column [style]="{'width':'45px'}"  field="id" header="Sửa">
+  <p-column [style]="{'width':'45px'}" field="id" header="Sửa">
     <ng-template let-col let-id="rowData" pTemplate="body">
       <button pButton icon="fa-pencil" [routerLink]="['/main/account', id[col.field]]" type="button" class="ui-button-warning"></button>
     </ng-template>

@@ -22,7 +22,7 @@ export class AlertService {
             type: 'error',
             title: message,
             showConfirmButton: false,
-            timer: 2000
+            timer: 10000000
         });
     }
 

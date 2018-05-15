@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
@@ -24,10 +22,19 @@ import { AccountDetailComponent } from './main/accounts/account-detail/account-d
 import { DropdownModule } from 'primeng/dropdown';
 import { AlertService } from './services/alert.service';
 import { LoadingService } from './services/loading.service';
-import {InputTextModule} from 'primeng/inputtext';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {PasswordModule} from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { PasswordModule } from 'primeng/password';
 import { StudentServiceOfficerComponent } from './main/student-service-officer/student-service-officer.component';
+import { ApiService } from './services/api.service';
+import { LoginService } from './login/login.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpModule } from '@angular/http';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { AccountService } from './main/accounts/account.service';
+
+
 
 
 @NgModule({
@@ -42,7 +49,7 @@ import { StudentServiceOfficerComponent } from './main/student-service-officer/s
     AcademyAssistantComponent,
     DeanComponent,
     StudentServiceOfficerComponent,
-    
+
 
   ],
   imports: [
@@ -58,9 +65,12 @@ import { StudentServiceOfficerComponent } from './main/student-service-officer/s
     DropdownModule,
     InputTextModule,
     RadioButtonModule,
-    PasswordModule
+    PasswordModule,
+    HttpModule,
+    MessagesModule,
+    MessageModule
   ],
-  providers: [AlertService, LoadingService],
+  providers: [AlertService, LoadingService, ApiService, LoginService, CookieService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

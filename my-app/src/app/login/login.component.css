@@ -1,8 +1,11 @@
-body.utility-page #main {
+.utility-page #main {
   background: url("../../assets/img/2.jpg");
-  background-position: center;
+  background-position: center center;
   background-size: cover;  
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: #999;
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
 }
+

@@ -6,6 +6,10 @@
   margin-left: 0px;
 }
 
-    .ui-datatable-thead {
-  background: red;
+.one-row-field{
+  margin: 15px 0px;
+}
+
+span.ui-float-label>input{
+  height: 40px;
 }
