@@ -11,7 +11,6 @@ export class MainService {
 			this.apiService.post('auth/me', {})
 				.then(res => {
 					resolve(res)
-					console.log(res);
 				})
 				.catch(err => {
 					reject(err);

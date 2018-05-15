@@ -3,20 +3,17 @@
   <h3>DANH SÁCH TÀI KHOẢN</h3>
 </div>
 
-<p-dataTable class="ui-g-12" [value]="accounts" [(selection)]="multipleSelected" resizableColumns="true" [headerCheckboxToggleAllPages]="true"
+<p-dataTable class="ui-g-12" [value]="accounts"  resizableColumns="true" 
   [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]" [responsive]="true" [scrollable]="true" [globalFilter]="gb"
    [resizableColumns]="true" emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true">
   <p-header>
     <div class="ui-helper-clearfix ">
       <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
       <i style="float:left" class="custome fa fa-search"></i>
-      <button *ngIf="multipleSelected.length > 1 " class="ui-button-danger" style="float:right" type="button" pButton icon="fa-trash"
-        label="Xoá Tất Cả Tài Khoản Đã Chọn" (click)="deleteMultiple()"></button>
       <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/account',0]" label="Thêm "></button>
     </div>
   </p-header>
   <p-footer class="footer" > Có tất cả {{accounts?.length || 0}} tài khoản  </p-footer>
-  <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
   <p-column [sortable]="true" filterPlaceholder="Search" field="StaffId" header="Mã Nhân Viên"></p-column>
   <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
   <p-column [sortable]="true" field="Role" filterPlaceholder="Search" header="Vai Trò"></p-column>
