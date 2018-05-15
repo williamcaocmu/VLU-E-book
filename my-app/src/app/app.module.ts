@@ -34,6 +34,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { AccountService } from './main/accounts/account.service';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { MainService } from './main/main.service';
 
 
 
@@ -71,9 +72,9 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     HttpModule,
     MessagesModule,
     MessageModule,
-    BreadcrumbModule
+    BreadcrumbModule,
   ],
-  providers: [AlertService, LoadingService, ApiService, LoginService, CookieService, AccountService],
+  providers: [AlertService, LoadingService, ApiService, LoginService, CookieService, AccountService, MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

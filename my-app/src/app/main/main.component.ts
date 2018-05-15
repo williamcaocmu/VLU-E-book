@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { LoginService } from '../login/login.service';
+import { MainService } from './main.service';
+
 
 @Component({
 	selector: 'app-main',
@@ -16,7 +18,7 @@ export class MainComponent implements OnInit {
 		id: '',
 		staffid: '',
 		email: '',
-		otheremail : '',
+		otheremail: '',
 		phone1: '',
 		phone2: '',
 		status: '',
@@ -25,24 +27,18 @@ export class MainComponent implements OnInit {
 	}
 
 	constructor(
-		private cookieService: CookieService, 
-		private location: Location, 
-		private router: Router, 
+		private cookieService: CookieService,
+		private location: Location,
+		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		private apiService : ApiService,
-		private loginService: LoginService
+		private apiService: ApiService,
+		private loginService: LoginService,
+		private mainService: MainService
+
 	) { }
 
 	ngOnInit() {
-		// this.loginService.getAuthorize()
-		// .then(res => {
-		// 	this.auth = res as any;
-		// 	console.log(res);
-		// })
-		// .catch(err=> {
-		// 	this.router.navigate(['/login']);
-		// })
-
+		this.getAuthor();
 		return new Promise((resolve, reject) => {
 			resolve();
 		}).then(res => {
@@ -61,7 +57,18 @@ export class MainComponent implements OnInit {
 	}
 
 
-	
+	getAuthor() {
+		this.mainService.getAuthorize()
+			.then(res => {
+				this.auth = res as any;
+			})
+			.catch(err => {
+				console.log(err);
+			})
+	}
+
+
+
 
 
 }
