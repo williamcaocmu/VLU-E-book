@@ -16,23 +16,38 @@ export class LoginComponent implements OnInit {
 
   hasError: boolean = false;
 
-  constructor(private loginService: LoginService,
-     private alertService: AlertService, 
-     private router: Router, private cookieService: CookieService) { }
+  constructor(
+    private loginService: LoginService,
+    private alertService: AlertService,
+    private router: Router,
+    private cookieService: CookieService) {
+      // if(this.cookieService.check('cookie') == true){
+      //   this.router.navigate(['/main']);
+      // }
+  }
 
   ngOnInit() {
+    if(this.cookieService.check('cookie')){
+      this.router.navigate(['/main']);
+    }
   }
 
   login() {
-    console.log('this emial', this.email, this.password);
     this.loginService.login(this.email, this.password)
       .then((res) => {
-          this.router.navigate(['/main/account']);
+        this.router.navigate(['/main']);
       }).catch(err => {
         this.hasError = true;
         this.router.navigate(['/login']);
         this.cookieService.deleteAll();
       })
+
+  }
+
+  keyDownFunction(event) {
+    if (event.keyCode == 13) {
+      this.login();
+    }
 
   }
 

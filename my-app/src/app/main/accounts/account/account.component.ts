@@ -18,11 +18,12 @@ export class AccountComponent implements OnInit {
 	accounts: any;
 	multipleSelected: any[] = [];
 	constructor(private alertService: AlertService, private loadingService: LoadingService, private accountService: AccountService) { }
+	
 	ngOnInit() {
 		this.accountService.getList()
 			.then(res => {
 				this.accounts = res;
-				console.log(this.accounts);
+				
 			})
 			.catch(err => {
 				console.log(err);

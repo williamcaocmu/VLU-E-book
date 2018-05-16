@@ -9,20 +9,56 @@ import { AccountDetailComponent } from './main/accounts/account-detail/account-d
 import { AcademyAssistantComponent } from './main/academy-assistant/academy-assistant.component';
 import { DeanComponent } from './main/dean/dean.component';
 import { StudentServiceOfficerComponent } from './main/student-service-officer/student-service-officer.component';
+import { GuardRoleService } from './services/guard-role.service';
+import { GuardLoginService } from './services/guard-login.service';
 
 export const routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent, pathMatch: 'full' },
     {
         path: 'main', component: MainComponent, children: [
-            { path: '', redirectTo: 'account', pathMatch: 'full' },
-            { path: 'account/:id', component: AccountDetailComponent },
-            { path: 'account', component: AccountComponent },
-            { path: 'lecturer', component: LecturerComponent },
-            { path: 'student', component: StudentComponent },
-            { path: 'academy-assistant', component: AcademyAssistantComponent },
-            { path: 'dean', component: DeanComponent },
-            { path: 'student-service-officer', component: StudentServiceOfficerComponent },
+            {
+                path: 'account/:id',
+                component: AccountDetailComponent,
+                canActivate: [GuardRoleService],
+                data: { allowedRole: 'admin' }
+            },
+            {
+                path: 'account',
+                component: AccountComponent,
+                canActivate: [GuardRoleService],
+                data: { allowedRole: 'admin' }
+            },
+            {
+                path: 'lecturer',
+                component: LecturerComponent,
+                canActivate: [GuardRoleService],
+                data: { allowedRole: ['lecturer'] }
+            },
+            {
+                path: 'student',
+                component: StudentComponent,
+                canActivate: [GuardRoleService],
+                data: { allowedRole: ['student/parent'] }
+            },
+            {
+                path: 'academy-assistant',
+                component: AcademyAssistantComponent,
+                canActivate: [GuardRoleService],
+                data: { allowedRole: ['admin'] }
+            },
+            {
+                path: 'dean',
+                component: DeanComponent,
+                canActivate: [GuardRoleService],
+                data: { allowedRole: ['board'] }
+            },
+            {
+                path: 'student-service-officer',
+                component: StudentServiceOfficerComponent,
+                canActivate: [GuardRoleService],
+                data: { allowedRole: ['admin'] }
+            },
         ]
     },
 ]

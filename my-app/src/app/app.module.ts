@@ -33,8 +33,10 @@ import { HttpModule } from '@angular/http';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { AccountService } from './main/accounts/account.service';
-import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MainService } from './main/main.service';
+import { GuardRoleService } from './services/guard-role.service';
+import { GuardLoginService } from './services/guard-login.service';
 
 
 
@@ -73,8 +75,20 @@ import { MainService } from './main/main.service';
     MessagesModule,
     MessageModule,
     BreadcrumbModule,
+
+
   ],
-  providers: [AlertService, LoadingService, ApiService, LoginService, CookieService, AccountService, MainService],
+  providers: [
+    AlertService,
+    LoadingService,
+    ApiService,
+    LoginService,
+    CookieService,
+    AccountService,
+    MainService,
+    GuardRoleService,
+    GuardLoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

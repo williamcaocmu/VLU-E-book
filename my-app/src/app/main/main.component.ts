@@ -13,17 +13,32 @@ import { MainService } from './main.service';
 	styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+	currentRole: any;
+	navConfig = {
+		tabAccount: ['admin'],
+		tabLecturer: ['lecturer'],
+		tabStudent: ['student/parent'],
+		tabAssistant: ['assistant'],
+		tabBoard: ['board']
+	}
 
 	auth = {
-		id: '',
-		staffid: '',
-		email: '',
-		otheremail: '',
-		phone1: '',
-		phone2: '',
-		status: '',
-		name: '',
-		role: ''
+		Id: '',
+		StaffId: '',
+		Email: '',
+		OtherEmail: '',
+		Phone1: '',
+		Phone2: '',
+		Status: '',
+		Name: '',
+		Role: ''
+	}
+
+	setConfigAuthor(arrTab: any[]) {
+		if (this.currentRole) {
+			return (arrTab.indexOf(this.currentRole) > -1);
+		}
+
 	}
 
 	constructor(
@@ -37,6 +52,22 @@ export class MainComponent implements OnInit {
 
 	) { }
 
+
+	// if (this.currentRole) {
+	//   if (this.currentRole == 'admin') {
+	//     this.router.navigate(['/main/account']);
+	//   }
+	//   else if (this.currentRole == 'lecturer') {
+	//     this.router.navigate(['/main/lecturer']);
+	//   }
+	//   else if (this.currentRole == 'student/parent') {
+	//     this.router.navigate(['/main/student']);
+	//   }
+	//   else if (this.currentRole == 'assistant') {
+	//     this.router.navigate(['/main/assistant']);
+	//   }
+	// }
+
 	ngOnInit() {
 		this.getAuthor();
 		return new Promise((resolve, reject) => {
@@ -46,6 +77,22 @@ export class MainComponent implements OnInit {
 			if (this.cookieService.check('cookie') == false) {
 				this.router.navigate(['/login']);
 			}
+			// else {
+			// 	let currentRole = res['Role'];
+			// 	if (currentRole == 'admin') {
+			// 		this.router.navigate(['/main/account']);
+			// 	}
+			// 	else if (currentRole == 'lecturer') {
+			// 		this.router.navigate(['/main/lecturer']);
+			// 	}
+			// 	else if (currentRole == 'student/parent') {
+			// 		this.router.navigate(['/main/student']);
+			// 	}
+			// 	else if(currentRole == 'assistant'){
+			// 		this.router.navigate(['/main/assistant']);
+			// 	}
+			// }
+
 		}).catch(err => {
 			this.router.navigate(['/login']);
 		})
@@ -54,6 +101,8 @@ export class MainComponent implements OnInit {
 	logOut() {
 		this.cookieService.deleteAll();
 		this.router.navigate(['/login']);
+		this.cookieService.deleteAll();
+		window.location.reload();
 	}
 
 
@@ -61,6 +110,22 @@ export class MainComponent implements OnInit {
 		this.mainService.getAuthorize()
 			.then(res => {
 				this.auth = res as any;
+				this.currentRole = this.auth.Role;
+				let currentRole = res['Role'];
+				if (this.currentRole == 'admin') {
+					this.router.navigate(['/main/account']);
+				}
+				else if (this.currentRole == 'lecturer') {
+					this.router.navigate(['/main/lecturer']);
+				}
+				else if (this.currentRole == 'student/parent') {
+					this.router.navigate(['/main/student']);
+				}
+				else if(this.currentRole == 'assistant'){
+					this.router.navigate(['/main/assistant']);
+				}
+				
+
 			})
 			.catch(err => {
 				console.log(err);

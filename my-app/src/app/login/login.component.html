@@ -19,14 +19,14 @@
                                                      alt="Logo"/></div> -->
           <div class="panel mw320">
 
-            <form #loginForm="ngForm" method="POST" id="form-login">
+            <form (keydown)="keyDownFunction($event)" #loginForm="ngForm" method="POST" id="form-login">
               <img src="../../assets/img/logoVanLang.png" class="img-responsive" alt="">
               <div class="panel-body pn mv10">
                 <div class="ui-g ui-fluid one-row-field">
                   <div class="ui-md-12">
                     <span class="ui-float-label">
                       <input [(ngModel)]="email" id="email" name="username" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                        required #emailLocal="ngModel" minlength="5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        required #emailLocal="ngModel" minlength="5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autofocus="autofocus">
                       <label for="email"> Email</label>
                     </span>
                   </div>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="radio-custom radio-primary mb5 lh25 section">
                   <a style="cursor: pointer;">Quên Mật Khẩu</a>
-                  <a  class="btn btn-bordered btn-primary pull-right" (click)="login()">Đăng Nhập</a>
+                  <a   class="btn btn-bordered btn-primary pull-right" (click)="login()">Đăng Nhập</a>
                 </div>
                 <!-- -------------- /section -------------- -->
 
