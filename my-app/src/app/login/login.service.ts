@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable , OnInit} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -6,7 +6,7 @@ import { ApiService } from '../services/api.service';
 
 
 @Injectable()
-export class LoginService {
+export class LoginService implements OnInit {
 
 	constructor(private cookieService: CookieService, private apiService: ApiService) {
 
@@ -51,6 +51,8 @@ export class LoginService {
 					})
 		})
 	}
+
+	ngOnInit(){}
 
 
 }	

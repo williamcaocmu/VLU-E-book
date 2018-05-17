@@ -31,12 +31,22 @@ export class AccountDetailComponent implements OnInit {
 
     selectedStatus: boolean;
 
+    /**navConfig = {
+		tabAccount: ['admin'],
+		tabLecturer: ['lecturer'],
+		tabStudent: ['student/parent'],
+		tabAssistant: ['assistant'],
+		tabBoard: ['board'],
+		tabOfficer: ['officer']
+	} */
     allRoles = [
         { shortNameRole: 'admin', fullNameRole: 'Admin' },
         { shortNameRole: 'assistant', fullNameRole: 'Academy Assistant' },
         { shortNameRole: 'officer', fullNameRole: 'Student Service Officer' },
         { shortNameRole: 'student/parent', fullNameRole: 'Student' },
         { shortNameRole: 'board', fullNameRole: 'Falcuty Board' },
+        { shortNameRole: 'lecturer', fullNameRole: 'Lecturer' },
+        
     ]
 
     constructor(private router: Router, private activatedRoute: ActivatedRoute, private accountService: AccountService, private alertService: AlertService) {

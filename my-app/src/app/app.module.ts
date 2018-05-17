@@ -37,7 +37,11 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MainService } from './main/main.service';
 import { GuardRoleService } from './services/guard-role.service';
 import { GuardLoginService } from './services/guard-login.service';
-
+import { MenuModule } from 'primeng/menu';
+import { ClassManagementComponent } from './main/academy-assistant/class-management/class-management.component';
+import { CourseManagementComponent } from './main/academy-assistant/course-management/course-management.component';
+import { DataViewModule } from 'primeng/dataview';
+import {PanelModule} from 'primeng/panel';
 
 
 
@@ -54,6 +58,8 @@ import { GuardLoginService } from './services/guard-login.service';
     AcademyAssistantComponent,
     DeanComponent,
     StudentServiceOfficerComponent,
+    ClassManagementComponent,
+    CourseManagementComponent,
 
 
   ],
@@ -75,7 +81,9 @@ import { GuardLoginService } from './services/guard-login.service';
     MessagesModule,
     MessageModule,
     BreadcrumbModule,
-
+    MenuModule,
+    DataViewModule,
+    PanelModule
 
   ],
   providers: [
@@ -87,7 +95,8 @@ import { GuardLoginService } from './services/guard-login.service';
     AccountService,
     MainService,
     GuardRoleService,
-    GuardLoginService
+    GuardLoginService,
+
   ],
   bootstrap: [AppComponent]
 })

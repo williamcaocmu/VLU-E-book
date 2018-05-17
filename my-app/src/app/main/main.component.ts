@@ -19,7 +19,8 @@ export class MainComponent implements OnInit {
 		tabLecturer: ['lecturer'],
 		tabStudent: ['student/parent'],
 		tabAssistant: ['assistant'],
-		tabBoard: ['board']
+		tabBoard: ['board'],
+		tabOfficer: ['officer']
 	}
 
 	auth = {
@@ -51,23 +52,6 @@ export class MainComponent implements OnInit {
 		private mainService: MainService
 
 	) { }
-
-
-	// if (this.currentRole) {
-	//   if (this.currentRole == 'admin') {
-	//     this.router.navigate(['/main/account']);
-	//   }
-	//   else if (this.currentRole == 'lecturer') {
-	//     this.router.navigate(['/main/lecturer']);
-	//   }
-	//   else if (this.currentRole == 'student/parent') {
-	//     this.router.navigate(['/main/student']);
-	//   }
-	//   else if (this.currentRole == 'assistant') {
-	//     this.router.navigate(['/main/assistant']);
-	//   }
-	// }
-
 	ngOnInit() {
 		this.getAuthor();
 		return new Promise((resolve, reject) => {
@@ -77,32 +61,18 @@ export class MainComponent implements OnInit {
 			if (this.cookieService.check('cookie') == false) {
 				this.router.navigate(['/login']);
 			}
-			// else {
-			// 	let currentRole = res['Role'];
-			// 	if (currentRole == 'admin') {
-			// 		this.router.navigate(['/main/account']);
-			// 	}
-			// 	else if (currentRole == 'lecturer') {
-			// 		this.router.navigate(['/main/lecturer']);
-			// 	}
-			// 	else if (currentRole == 'student/parent') {
-			// 		this.router.navigate(['/main/student']);
-			// 	}
-			// 	else if(currentRole == 'assistant'){
-			// 		this.router.navigate(['/main/assistant']);
-			// 	}
-			// }
-
 		}).catch(err => {
 			this.router.navigate(['/login']);
 		})
 	}
 
 	logOut() {
+		this.cookieService.delete('cookie');
 		this.cookieService.deleteAll();
 		this.router.navigate(['/login']);
 		this.cookieService.deleteAll();
 		window.location.reload();
+		
 	}
 
 
@@ -121,11 +91,16 @@ export class MainComponent implements OnInit {
 				else if (this.currentRole == 'student/parent') {
 					this.router.navigate(['/main/student']);
 				}
-				else if(this.currentRole == 'assistant'){
+				else if (this.currentRole == 'assistant') {
+					console.log("here is assistant");
 					this.router.navigate(['/main/assistant']);
 				}
-				
-
+				else if (this.currentRole == 'officer') {
+					this.router.navigate(['/main/officer'])
+				}
+				else if (this.currentRole == 'board') {
+					this.router.navigate(['/main/dean']);
+				}
 			})
 			.catch(err => {
 				console.log(err);
