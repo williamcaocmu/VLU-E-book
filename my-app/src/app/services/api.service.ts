@@ -21,7 +21,7 @@ export class ApiService {
 				.then(res => {
 					resolve(res.json());
 				}).catch(err => {
-					reject(err);
+					reject(err.json());
 				});
 		});
 	}
@@ -36,7 +36,7 @@ export class ApiService {
 				})
 				.catch(err => {
 					console.log(err); 
-					reject(err);
+					reject(err.json());
 				})
 		})
 	}
@@ -53,7 +53,7 @@ export class ApiService {
 					if (err.status == 401)
 						this.router.navigate(['/login']);
 					else {
-						reject(err);
+						reject(err.json());
 					}
 				})
 		})

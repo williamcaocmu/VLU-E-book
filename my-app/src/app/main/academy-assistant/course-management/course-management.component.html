@@ -1,3 +1,12 @@
-<p>
-  course-management works!
-</p>
+<p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
+<div class="row text-center">
+  <h3>DANH SÁCH KHOÁ - LỚP</h3>
+</div>
+
+<p-dataTable [value]="cars1" sortField="brand" rowGroupMode="subheader" groupField="Khoa" expandableRowGroups="true"
+        [sortableRowGroup]="false">
+    <p-header>Toggleable Row Groups with Footers</p-header>
+    <ng-template pTemplate="rowgroupheader" let-rowData><h5> {{rowData['Khoa'] }}</h5></ng-template>
+    <p-column  field="Lop" header="Khoá - Lớp"></p-column>
+  
+</p-dataTable>

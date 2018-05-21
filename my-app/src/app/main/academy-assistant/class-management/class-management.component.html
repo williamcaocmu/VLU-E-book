@@ -1,40 +1,60 @@
-<p-dataView #dv [value]="cars" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="brand"
- >
-<p-header>
+<p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
+<div class="row text-center">
+  <h3>DANH SÁCH SINH VIÊN</h3>
+</div>
+
+<p-dataTable [(selection)]="selectedCars" selectionMode="multiple" #dt [value]="allTimeSheetData" resizableColumns="true"
+  [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]" [responsive]="true" [globalFilter]="gb" [resizableColumns]="true"
+  emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true" [metaKeySelection]="false">
+  <!-- p-header -->
+  <p-header>
+    <div class="ui-helper-clearfix ">
+      <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
+
+      <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/account',0]" label="Thêm "></button>
+
+      <p-fileUpload icon="fa-circle" mode="basic" name="demo[]" url="./upload.php" accept=".xlsm,application/msexcel" (onUpload)="onBasicUpload($event)"
+        chooseLabel="Nhập file Excel" style="float:right"></p-fileUpload>
+
+
+    </div>
+  </p-header>
+  <!--  / p-header -->
+
+  <!-- p-footer -->
+  <p-footer class="footer">
     <div class="ui-helper-clearfix">
-        <div class="ui-g">
-
-            <div class="ui-g-6 ui-md-6 filter-container">
-                <div style="position:relative">
-                    <input type="search" pInputText placeholder="Search by brand" (keyup)="dv.filter($event.target.value)">
-                </div>
-            </div>
-            <div class="ui-g-6 ui-md-6" style="text-align:right">
-             <button>Add</button>
-            </div>
-        </div>
+      <button type="button" pButton icon="fa-file-o" iconPos="left" label="Xuất Tất Cả (CSV)" (click)="dt.exportCSV()" style="float:left"></button>
+      <button type="button" pButton icon="fa-file" iconPos="left" label="Xuất Dữ Liệu Đã Chọn (CSV)" (click)="dt.exportCSV({selectionOnly:true})"
+        style="float:right"></button>
     </div>
-</p-header>
-<ng-template let-car pTemplate="listItem">
-    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
-        <div class="ui-g-12 ui-md-3" style="text-align:center">
-            <!-- <img src="assets/showcase/images/demo/car/{{car.brand}}.png"> -->
-        </div>
-        <div class="ui-g-12 ui-md-8 car-details">
-            <div class="ui-g">
-                <div class="ui-g-2 ui-sm-6">Vin: </div>
-                <div class="ui-g-10 ui-sm-6"><b>{{car.vin}}</b></div>
+  </p-footer>
+  <!-- /p-footer  -->
 
-                <div class="ui-g-2 ui-sm-6">Year: </div>
-                <div class="ui-g-10 ui-sm-6"><b>{{car.year}}</b></div>
+  <!-- p-body -->
+  <p-column [sortable]="true" filterPlaceholder="Search" field="StaffId" header="Mã"></p-column>
+  <p-column [sortable]="true" field="Date" filterPlaceholder="Search" header="Ngày Sinh"></p-column>
+  <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
+  <p-column field="project" header="Khối" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
+    <ng-template pTemplate="filter" let-col>
+      <p-dropdown [options]="allProjects1" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+        styleClass="ui-column-filter"></p-dropdown>
+    </ng-template>
+  </p-column>
+  <p-column field="project" header="Lớp" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
+    <ng-template pTemplate="filter" let-col>
+      <p-dropdown [options]="allProjects2" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+        styleClass="ui-column-filter"></p-dropdown>
+    </ng-template>
+  </p-column>
+  <p-column [sortable]="true" field="sex" filterPlaceholder="Search" header="Phái"></p-column>
+  <p-column [style]="{'width':'90px'}" field="Id" header="Sửa">
+    <ng-template let-col let-Id="rowData" pTemplate="body">
+      <button pButton icon="fa-pencil" [routerLink]="['/main/account', Id[col.field]]" type="button" class="ui-button-warning"></button>
+      <button pButton type="button" icon="fa-search" (click)="selectCar($event, car)"></button>
+    </ng-template>
 
-                <div class="ui-g-2 ui-sm-6">Brand: </div>
-                <div class="ui-g-10 ui-sm-6"><b>{{car.brand}}</b></div>
+  </p-column>
+  <!-- / p-body -->
 
-                <div class="ui-g-2 ui-sm-6">Color: </div>
-                <div class="ui-g-10 ui-sm-6"><b>{{car.color}}</b></div>
-            </div>
-        </div>
-    </div>
-</ng-template>
-</p-dataView>
+</p-dataTable>

@@ -1,0 +1,4 @@
+
+  ::ng-deep .ui-fileupload-choose .fa-plus::before {
+    content: "\F0A6";
+  }

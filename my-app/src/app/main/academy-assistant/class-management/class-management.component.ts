@@ -1,39 +1,41 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-class-management',
-  templateUrl: './class-management.component.html',
-  styleUrls: ['./class-management.component.css']
+	selector: 'app-class-management',
+	templateUrl: './class-management.component.html',
+	styleUrls: ['./class-management.component.css']
 })
 
 
 
 export class ClassManagementComponent implements OnInit {
 
-  cars = [
-    {
-      vin: '1',
-      year: '1',
-      brand: '1',
-      color: '1'
-    },
-    {
-      vin: '2',
-      year: '2',
-      brand: '2',
-      color: '2'
-    },
-    {
-      vin: '3',
-      year: '3',
-      brand: '3',
-      color: '3'
-    }
-  ]
 
-  constructor() { }
+	items: MenuItem[] = [
+		{ label: 'Quản lí sinh viên' },
+	];
 
-  ngOnInit() {
-  }
+	allTimeSheetData = [
+		{project: 'a'},
+		{project: 'b'},
+		{project: 'c'},
+	]
+	allProjectNames1 = ['', 'a', 'b', 'c'];
+	allProjectNames2 = ['', 'm', 'n', 'p'];
+
+	allProjects1 = this.allProjectNames1.map((proj) => {
+		return { label: proj, value: proj }
+	});
+
+	allProjects2 = this.allProjectNames2.map((proj) => {
+		return { label: proj, value: proj }
+	});
+
+	constructor() { }
+
+	ngOnInit() {
+
+	}
 
 }

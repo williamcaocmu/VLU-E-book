@@ -64,12 +64,9 @@ export class AccountDetailComponent implements OnInit {
                             console.log(res);
                             this.account = res as any;
                             this.selectedStatus = (res['Status'] == 1) ? true : false;
-
-                            console.log(this.selectedStatus);
-
                         })
                         .catch(err => {
-                            // this.alertService.error(err);
+                            console.log(err);
                         })
                 }
             }
@@ -95,7 +92,8 @@ export class AccountDetailComponent implements OnInit {
 
             })
             .catch(err => {
-                this.alertService.error(err);
+                 let msg = JSON.parse(err._body)
+                console.log(msg.message);
             })
     }
 

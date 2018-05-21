@@ -17,10 +17,7 @@
   <p-column [sortable]="true" filterPlaceholder="Search" field="StaffId" header="Mã Nhân Viên"></p-column>
   <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
   <p-column [sortable]="true" field="Role" filterPlaceholder="Search" header="Vai Trò"></p-column>
-  <p-column [sortable]="true" field="Phone1" filterPlaceholder="Search" header="Số Điện Thoại 1"></p-column>
-  <p-column [sortable]="true" field="Phone2" filterPlaceholder="Search" header="Số Điện Thoại 2"></p-column>
-  <p-column [sortable]="true" field="Email" filterPlaceholder="Search" header=" Email"></p-column>
-  <p-column [sortable]="true" field="OtherEmail" filterPlaceholder="Search" header=" Email Khác"></p-column>
+  <p-column [sortable]="true" field="Phone1" filterPlaceholder="Search" header="Số Điện Thoại"></p-column>
   <p-column [style]="{'width':'120px'}" field="Status" filterPlaceholder="Search" filterPlaceholder="Input True/False" header="Trạng Thái">
     <ng-template let-col let-status="rowData" pTemplate="body">
       <p-button class="ui-button-success" disabled *ngIf="status[col.field]" icon="fa fa-fw fa-check" label="Active"></p-button>

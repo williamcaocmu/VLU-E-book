@@ -82,25 +82,25 @@ export class MainComponent implements OnInit {
 				this.auth = res as any;
 				this.currentRole = this.auth.Role;
 				let currentRole = res['Role'];
-				if (this.currentRole == 'admin') {
-					this.router.navigate(['/main/account']);
-				}
-				else if (this.currentRole == 'lecturer') {
-					this.router.navigate(['/main/lecturer']);
-				}
-				else if (this.currentRole == 'student/parent') {
-					this.router.navigate(['/main/student']);
-				}
-				else if (this.currentRole == 'assistant') {
-					console.log("here is assistant");
-					this.router.navigate(['/main/assistant']);
-				}
-				else if (this.currentRole == 'officer') {
-					this.router.navigate(['/main/officer'])
-				}
-				else if (this.currentRole == 'board') {
-					this.router.navigate(['/main/dean']);
-				}
+				// if (this.currentRole == 'admin') {
+				// 	this.router.navigate(['/main/account']);
+				// }
+				// else if (this.currentRole == 'lecturer') {
+				// 	this.router.navigate(['/main/lecturer']);
+				// }
+				// else if (this.currentRole == 'student/parent') {
+				// 	this.router.navigate(['/main/student']);
+				// }
+				// else if (this.currentRole == 'assistant') {
+				// 	console.log("here is assistant");
+				// 	this.router.navigate(['/main/assistant']);
+				// }
+				// else if (this.currentRole == 'officer') {
+				// 	this.router.navigate(['/main/officer'])
+				// }
+				// else if (this.currentRole == 'board') {
+				// 	this.router.navigate(['/main/dean']);
+				// }
 			})
 			.catch(err => {
 				console.log(err);

@@ -42,6 +42,8 @@ import { ClassManagementComponent } from './main/academy-assistant/class-managem
 import { CourseManagementComponent } from './main/academy-assistant/course-management/course-management.component';
 import { DataViewModule } from 'primeng/dataview';
 import {PanelModule} from 'primeng/panel';
+import {FileUploadModule} from 'primeng/fileupload';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -83,7 +85,9 @@ import {PanelModule} from 'primeng/panel';
     BreadcrumbModule,
     MenuModule,
     DataViewModule,
-    PanelModule
+    PanelModule,
+    FileUploadModule,
+    DialogModule
 
   ],
   providers: [
