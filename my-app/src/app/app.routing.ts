@@ -13,6 +13,7 @@ import { GuardRoleService } from './services/guard-role.service';
 import { GuardLoginService } from './services/guard-login.service';
 import { ClassManagementComponent } from './main/academy-assistant/class-management/class-management.component';
 import { CourseManagementComponent } from './main/academy-assistant/course-management/course-management.component';
+import { ClassManagementDetailComponent } from './main/academy-assistant/class-management-detail/class-management-detail.component';
 
 export const routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -52,6 +53,10 @@ export const routes = [
                     {
                         path: 'class-management',
                         component: ClassManagementComponent
+                    },
+                    {
+                        path: 'class-management/:id',
+                        component: ClassManagementDetailComponent
                     },
                     {
                         path: 'course-management',

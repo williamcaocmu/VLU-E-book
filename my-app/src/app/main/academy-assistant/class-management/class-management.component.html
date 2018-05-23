@@ -11,7 +11,7 @@
     <div class="ui-helper-clearfix ">
       <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
 
-      <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/account',0]" label="Thêm "></button>
+      <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/assistant/class-management',0]" label="Thêm "></button>
 
       <p-fileUpload icon="fa-circle" mode="basic" name="demo[]" url="./upload.php" accept=".xlsm,application/msexcel" (onUpload)="onBasicUpload($event)"
         chooseLabel="Nhập file Excel" style="float:right"></p-fileUpload>
@@ -48,13 +48,39 @@
     </ng-template>
   </p-column>
   <p-column [sortable]="true" field="sex" filterPlaceholder="Search" header="Phái"></p-column>
+  
   <p-column [style]="{'width':'90px'}" field="Id" header="Sửa">
-    <ng-template let-col let-Id="rowData" pTemplate="body">
-      <button pButton icon="fa-pencil" [routerLink]="['/main/account', Id[col.field]]" type="button" class="ui-button-warning"></button>
-      <button pButton type="button" icon="fa-search" (click)="selectCar($event, car)"></button>
+    <ng-template let-car="rowData" pTemplate="body">
+      <button pButton icon="fa-pencil" [routerLink]="['/main/account', car.Id]" type="button" class="ui-button-warning"></button>
+      <button pButton type="button" icon="fa-search" (click)="selectStudent($event, car)"></button>
     </ng-template>
 
   </p-column>
   <!-- / p-body -->
 
 </p-dataTable>
+
+<p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="225" (onAfterHide)="onDialogHide()">
+  <div class="ui-g" *ngIf="selectedCar">
+      <div class="ui-g-12" style="text-align:center">
+          <img src="assets/showcase/images/demo/car/{{selectedCar.brand}}.png">
+      </div>
+      <div class="ui-g-4"> Mã: </div>
+      <div class="ui-g-8">{{selectedCar.vin}}</div>
+
+      <div class="ui-g-4">Ngày Sinh: </div>
+      <div class="ui-g-8">{{selectedCar.brand}}</div>
+
+      <div class="ui-g-4">Họ và Tên: </div>
+      <div class="ui-g-8">{{selectedCar.year}}</div>
+
+      <div class="ui-g-4">Khối: </div>
+      <div class="ui-g-8">{{selectedCar.color}}</div>
+
+      <div class="ui-g-4">Lớp: </div>
+      <div class="ui-g-8">{{selectedCar.color}}</div>
+
+      <div class="ui-g-4">Phái: </div>
+      <div class="ui-g-8">{{selectedCar.color}}</div>
+  </div>
+</p-dialog>

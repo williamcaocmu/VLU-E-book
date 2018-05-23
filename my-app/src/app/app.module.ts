@@ -44,6 +44,8 @@ import { DataViewModule } from 'primeng/dataview';
 import {PanelModule} from 'primeng/panel';
 import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
+import { ClassManagementDetailComponent } from './main/academy-assistant/class-management-detail/class-management-detail.component';
+import { AcademyAssistantService } from './main/academy-assistant/academy-assistant.service';
 
 
 
@@ -62,6 +64,7 @@ import {DialogModule} from 'primeng/dialog';
     StudentServiceOfficerComponent,
     ClassManagementComponent,
     CourseManagementComponent,
+    ClassManagementDetailComponent,
 
 
   ],
@@ -100,6 +103,7 @@ import {DialogModule} from 'primeng/dialog';
     MainService,
     GuardRoleService,
     GuardLoginService,
+    AcademyAssistantService
 
   ],
   bootstrap: [AppComponent]

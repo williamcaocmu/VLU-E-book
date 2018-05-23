@@ -12,7 +12,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class AccountDetailComponent implements OnInit {
     items: MenuItem[] = [
-        { label: 'Tài Khoản' },
+        { label: 'Tài Khoản', routerLink: ['/main/account'] },
         { label: 'Thông Tin Tài Khoản' }
     ];
 
@@ -88,8 +88,7 @@ export class AccountDetailComponent implements OnInit {
 
         this.accountService.add(this.account)
             .then(res => {
-                this.alertService.success('Add Successfully')
-
+                this.router.navigate(['/main/account']);
             })
             .catch(err => {
                  let msg = JSON.parse(err._body)

@@ -24,12 +24,30 @@
       <button pButton type="button" *ngIf="!status[col.field]" [disabled]="true" class="ui-button-secondary" label="Deactive" icon="fa fa-fw fa-close"></button>
     </ng-template>
   </p-column>
-  <p-column [style]="{'width':'45px'}" field="Id" header="Sửa">
+  <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
     <ng-template let-col let-Id="rowData" pTemplate="body">
       <button pButton icon="fa-pencil" [routerLink]="['/main/account', Id[col.field]]" type="button" class="ui-button-warning"></button>
+      <button pButton type="button" icon="fa-search" (click)="selectAccount($event, Id)"></button>
     </ng-template>
   </p-column>
-
 </p-dataTable>
 
 
+<p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
+  <div class="ui-g" *ngIf="selectedAccount">
+      <div class="ui-g-4"> Mã Nhân Viên: </div>
+      <div class="ui-g-8">{{selectedAccount?.Id }}</div>
+
+      <div class="ui-g-4">Họ Và Tên: </div>
+      <div class="ui-g-8">{{selectedAccount?.Name}}</div>
+
+      <div class="ui-g-4">Vai Trò: </div>
+      <div class="ui-g-8">{{selectedAccount?.Role}}</div>
+
+      <div class="ui-g-4">Số Điện Thoại: </div>
+      <div class="ui-g-8">{{selectedAccount?.Phone1}}</div>
+
+      <div class="ui-g-4">Trạng Thái: </div>
+      <div class="ui-g-8">{{selectedAccount?.Status == 1 ? 'Active' : 'Deactive'}}</div>
+  </div>
+</p-dialog>

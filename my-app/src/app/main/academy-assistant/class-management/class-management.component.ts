@@ -11,7 +11,8 @@ import { MenuItem } from 'primeng/api';
 
 export class ClassManagementComponent implements OnInit {
 
-
+	selectedStudent : any;
+	displayDialog:boolean;
 	items: MenuItem[] = [
 		{ label: 'Quản lí sinh viên' },
 	];
@@ -36,6 +37,13 @@ export class ClassManagementComponent implements OnInit {
 
 	ngOnInit() {
 
+	}
+
+	selectStudent(event: Event, student :any){
+		this.selectedStudent = student;
+		this.displayDialog = true;
+		event.preventDefault();
+		console.log(student," - ", event);
 	}
 
 }

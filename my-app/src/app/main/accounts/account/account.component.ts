@@ -12,11 +12,15 @@ import { MenuItem } from 'primeng/api';
 	styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+	selectedAccount: any;
+	displayDialog:boolean;
 	items: MenuItem[] = [
-		{ label: 'Tài Khoản' },
+		{ 
+			label: 'Tài Khoản', 
+			routerLink: ['/main/account']
+		},
 	];
 	accounts: any;
-	multipleSelected: any[] = [];
 	constructor(private alertService: AlertService, private loadingService: LoadingService, private accountService: AccountService) { }
 	
 	ngOnInit() {
@@ -30,20 +34,13 @@ export class AccountComponent implements OnInit {
 			})
 	}
 
-	deleteMultiple() {
-		console.log(this.multipleSelected);
-		this.alertService.confirm('Do u want delete this').then(() => {
-			this.alertService.success('Delete Successfully')
-		})
+	selectAccount(event: Event, account : any) {
+		this.selectedAccount = account;
+		this.displayDialog = true;
+		event.preventDefault();
 	}
 
-	delete() {
-		this.alertService.success('success')
-	}
-
-	selectAccount(event: any) {
-		console.log(event);
-	}
+	
 
 
 }
