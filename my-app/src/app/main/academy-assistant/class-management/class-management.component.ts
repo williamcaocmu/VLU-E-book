@@ -13,11 +13,9 @@ import { ApiService } from "../../../services/api.service";
   styleUrls: ["./class-management.component.css"]
 })
 export class ClassManagementComponent implements OnInit {
-  @ViewChild("dt") filter;
+  
   allStudents: any;
   filesToUpload: Array<File>;
-
-  fileToUpload: File = null;
 
   uploadedFiles: {
     File: "";
