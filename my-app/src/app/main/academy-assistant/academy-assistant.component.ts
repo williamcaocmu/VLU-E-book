@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-academy-assistant',
@@ -10,9 +12,10 @@ export class AcademyAssistantComponent implements OnInit {
     {label:'Quản lí lớp', icon: 'fa-plus', routerLink: ['/main/assistant/class-management']},
     {label:'Quản lí khoá học', icon: 'fa-plus', routerLink: ['/main/assistant/course-management']}
   ]
-  constructor() { }
+  constructor(private http: Http) { }
 
   ngOnInit() {
   }
 
+ 
 }

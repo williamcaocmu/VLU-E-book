@@ -46,6 +46,11 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {DialogModule} from 'primeng/dialog';
 import { ClassManagementDetailComponent } from './main/academy-assistant/class-management-detail/class-management-detail.component';
 import { AcademyAssistantService } from './main/academy-assistant/academy-assistant.service';
+import {ChartModule} from 'primeng/chart';
+import {TreeTableModule} from 'primeng/treetable';
+
+
+
 
 
 
@@ -90,7 +95,11 @@ import { AcademyAssistantService } from './main/academy-assistant/academy-assist
     DataViewModule,
     PanelModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    ChartModule,
+    TreeTableModule,
+    AccordionModule
+    
 
   ],
   providers: [

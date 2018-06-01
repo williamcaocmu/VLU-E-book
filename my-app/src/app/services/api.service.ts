@@ -1,62 +1,122 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { Injectable } from "@angular/core";
+import { Http, Headers, Response, RequestOptions } from "@angular/http";
+import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
+import { Observable } from "rxjs/Observable";
+
 
 
 @Injectable()
 export class ApiService {
-	access_token: string = 'none';
-	host: string = 'http://vluebook.xyz/api/';
+  access_token: string = "none";
+  host: string = "http://vluebook.xyz/api/";
 
-	constructor(private http: Http, private router: Router, private cookieService: CookieService) {
-		this.access_token = this.cookieService.check('cookie') ? this.cookieService.get('cookie') : 'none'
-	}
+  constructor(
+    private http: Http,
+    private router: Router,
+    private cookieService: CookieService
+  ) {
+    this.access_token = this.cookieService.check("cookie")
+      ? this.cookieService.get("cookie")
+      : "none";
+  }
 
-	post(url: string, data: any) {
-		return new Promise<Response>((resolve, reject) => {
-			let headers = new Headers();
-			headers.append('Authorization','Bearer '+ this.access_token);
-			this.http.post(this.host + url, data, { headers: headers }).toPromise()
-				.then(res => {
-					resolve(res.json());
-				}).catch(err => {
-					reject(err.json());
-				});
-		});
-	}
+  post(url: string, data: any) {
+    return new Promise<Response>((resolve, reject) => {
+      let headers = new Headers();
+      headers.append("Authorization", "Bearer " + this.access_token);
+      console.log(data);
+      this.http
+        .post(this.host + url, data, { headers: headers })
+        .toPromise()
+        .then(res => {
+          resolve(res.json());
+        })
+        .catch(err => {
+          reject(err.json());
+        });
+    });
+  }
 
-	get(url: string) {
-		return new Promise<Response>((resolve, reject) => {
-			let headers = new Headers();
-			headers.append('Authorization','Bearer '+ this.access_token);
-			this.http.get(this.host + url, { headers: headers }).toPromise()
-				.then(res => {
-					resolve(res.json());
-				})
-				.catch(err => {
-					console.log(err); 
-					reject(err.json());
-				})
-		})
-	}
+  fileUpload(event, url) {
+	  return new Promise( (resolve, reject) => {
+		let fileList: FileList = event;
+		// if (fileList.length > 0) {
+		//   let file: File = FileList[0];
+		//   let formData: FormData = new FormData();
+	
+		  let headers = new Headers();
+		  // headers.append("Content-Type", "multipart/form-data");
+		  // headers.append("Accept", "application/json");
+		  headers.append("Authorization", "Bearer " + this.access_token);
+			this.http.post(this.host + url, {File: event} , {headers : headers})
+			.toPromise()
+			.then(
+				res => {
+					resolve(res.json())
+				}
+			).catch(err => {
+				reject(err);
+			})
+		
+		
+	  })
+  }
 
-	delete(url: string) {
-		return new Promise<Response>((resolve, reject) => {
-			let headers = new Headers();
-			headers.append('Authorization','Bearer '+ this.access_token);
-			this.http.delete(this.host + url, { headers: headers }).toPromise()
-				.then(res => {
-					resolve(res);
-				})
-				.catch(err => {
-					if (err.status == 401)
-						this.router.navigate(['/login']);
-					else {
-						reject(err.json());
-					}
-				})
-		})
-	}
+  postFile(event, url){
+	return new Promise<Response>((resolve, reject) => {
+		let headers = new Headers();
+		// headers.append("Content-Type", "multipart/form-data");
+    // headers.append("Accept", "application/json");
+    let frmData: FormData = new FormData();
+    frmData.append('photo',event, event.name)
+		headers.append("Authorization", "Bearer " + this.access_token);
+		console.log(frmData);
+		this.http
+		  .post(this.host + url, {File: frmData}, { headers: headers })
+		  .toPromise()
+		  .then(res => {
+			resolve(res.json());
+		  })
+		  .catch(err => {
+			reject(err.json());
+		  });
+	  });
+  }
 
+  get(url: string) {
+    return new Promise<Response>((resolve, reject) => {
+      let headers = new Headers();
+      headers.append("Authorization", "Bearer " + this.access_token);
+      this.http
+        .get(this.host + url, { headers: headers })
+        .toPromise()
+        .then(res => {
+          resolve(res.json());
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err.json());
+        });
+    });
+  }
+
+  delete(url: string) {
+    return new Promise<Response>((resolve, reject) => {
+      let headers = new Headers();
+      headers.append("Authorization", "Bearer " + this.access_token);
+      this.http
+        .delete(this.host + url, { headers: headers })
+        .toPromise()
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          if (err.status == 401) this.router.navigate(["/login"]);
+          else {
+            reject(err.json());
+          }
+        });
+    });
+  }
 }

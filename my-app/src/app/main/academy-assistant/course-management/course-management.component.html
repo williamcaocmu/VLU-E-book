@@ -3,10 +3,58 @@
   <h3>DANH SÁCH KHOÁ - LỚP</h3>
 </div>
 
-<p-dataTable [value]="cars1" sortField="brand" rowGroupMode="subheader" groupField="Khoa" expandableRowGroups="true"
-        [sortableRowGroup]="false">
-    <p-header>Toggleable Row Groups with Footers</p-header>
-    <ng-template pTemplate="rowgroupheader" let-rowData><h5> {{rowData['Khoa'] }}</h5></ng-template>
-    <p-column  field="Lop" header="Khoá - Lớp"></p-column>
-  
-</p-dataTable>
+<div class="ui-g" style="margin-bottom: 40px">
+  <!-- Create Grade -->
+  <div class="ui-g-6">
+    <button pButton type="button" (click)="changeStateGrade()" label="Tạo khối" class="ui-button-warning"></button>
+    <div *ngIf="isCreateGrade" class="row" style="margin-top: 30px">
+      <span class="ui-float-label">
+        <input [(ngModel)]="grade.Name" name="addGrade" id="float-input" type="text" size="30" pInputText>
+        <label for="float-input">Nhập tên khối</label>
+      </span>
+    </div>
+    <div *ngIf="isCreateGrade" class="row" style="margin-top: 10px">
+      <button pButton type="button" (click)="addGrade()" label="Tạo" class="ui-button-primary"></button>
+    </div>
+  </div>
+  <!-- / Create Grade -->
+
+  <!-- Create Class -->
+  <div class="ui-g-6">
+    <button style="float:right" pButton type="button" (click)="changeStateClass()" label="Tạo lớp" class="ui-button-warning"></button>
+    <div *ngIf="isCreateClass" class="row" style="margin-top: 30px">
+      <div class="ui-g-4">
+        <p-dropdown placeholder="Chọn khối để tạo" [options]="Khoa" optionLabel="name" [(ngModel)]="selectedGrade"></p-dropdown>
+      </div>
+      <div class="ui-g-8">
+        <span class="ui-float-label">
+          <input id="float-input" type="text" size="30" pInputText>
+          <label for="float-input">Nhập tên lớp</label>
+        </span>
+      </div>
+    </div>
+    <div *ngIf="isCreateClass" class="row" style="margin-top: 10px">
+      <button pButton type="button" label="Tạo" class="ui-button-primary"></button>
+    </div>
+  </div>
+  <!-- /Create Class -->
+</div>
+<!-- <p-dataTable [value]="allGrade" rowGroupMode="subheader" groupField="Name" expandableRowGroups="true" [sortableRowGroup]="false">
+  <p-header>Toggleable Row Groups with Footers</p-header>
+  <ng-template pTemplate="rowgroupheader" let-rowData>
+    <h5> {{rowData['Name']  }}</h5>
+  </ng-template>
+  <p-column *ngFor="let col of Class" field="Class" header="Khoá - Lớp">
+  </p-column>
+</p-dataTable> -->
+
+<p-accordion [multiple]="true">
+  <p-accordionTab class="ui-g-8" *ngFor="let grade of allGrade; let i = index" header="{{grade.Name}}">
+    <button *ngFor="let z of grade.Class" pButton type="button" label="{{z.Name}}" class="ui-button-secondary"></button>
+  </p-accordionTab>
+</p-accordion>
+
+{{allGrade | json}}
+
+
+<!-- <p-chart type="doughnut" [data]="data" [options]="options"></p-chart> -->

@@ -30,15 +30,6 @@ export class AccountDetailComponent implements OnInit {
     }
 
     selectedStatus: boolean;
-
-    /**navConfig = {
-		tabAccount: ['admin'],
-		tabLecturer: ['lecturer'],
-		tabStudent: ['student/parent'],
-		tabAssistant: ['assistant'],
-		tabBoard: ['board'],
-		tabOfficer: ['officer']
-	} */
     allRoles = [
         { shortNameRole: 'admin', fullNameRole: 'Admin' },
         { shortNameRole: 'assistant', fullNameRole: 'Academy Assistant' },
@@ -61,7 +52,6 @@ export class AccountDetailComponent implements OnInit {
                     // Lấy thông tin account nếu đã có id
                     this.accountService.getAccount(this.id)
                         .then(res => {
-                            console.log(res);
                             this.account = res as any;
                             this.selectedStatus = (res['Status'] == 1) ? true : false;
                         })
