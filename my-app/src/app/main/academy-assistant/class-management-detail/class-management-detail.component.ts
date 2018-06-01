@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
+import { AcademyAssistantService } from "../academy-assistant.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-class-management-detail",
@@ -16,7 +18,7 @@ export class ClassManagementDetailComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private assistantService: AcademyAssistantService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {}
 }
