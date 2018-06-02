@@ -59,6 +59,20 @@ export class AcademyAssistantService {
     });
   }
 
+
+  addClass(data){
+    return new Promise((resolve, reject) => {
+      this.apiService
+        .post("assistant/addClass", data)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
   getDetail(id: any) {
     return new Promise((resolve, reject) => {
       this.apiService

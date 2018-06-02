@@ -1,7 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { AcademyAssistantService } from "../academy-assistant.service";
-import {TreeNode} from 'primeng/api';
+import { TreeNode } from "primeng/api";
+import { Observable } from "rxjs/Rx";
+import "rxjs/add/operator/map";
+import { AlertService } from "../../../services/alert.service";
+import { LoadingService } from "../../../services/loading.service";
 
 @Component({
   selector: "app-course-management",
@@ -13,31 +17,31 @@ export class CourseManagementComponent implements OnInit {
     Name: ""
   };
 
+  class: any = {
+    Name: "",
+    GradeId: ""
+  };
+
   isCreateGrade: boolean = false;
   isCreateClass: boolean = false;
   selectedGrade: any;
 
   items: MenuItem[] = [{ label: "Quản lí khoá - lớp" }];
-
-  allGrade: TreeNode[];
+  gradeOptions: any[];
+  allGrade: any[];
 
   Khoa = [];
 
   LopInkHoa = [];
 
-  cars1 = [
-    { Lop: "T01", Khoa: "K20" },
-    { Lop: "T02", Khoa: "K20" },
-    { Lop: "T03", Khoa: "K21" },
-    { Lop: "T02", Khoa: "K21" },
-    { Lop: "T01", Khoa: "K21" },
-    { Lop: "T01", Khoa: "K22" }
-  ];
-
   data: any;
   options: any;
 
-  constructor(private assistantService: AcademyAssistantService) {}
+  constructor(
+    private assistantService: AcademyAssistantService,
+    private alertService: AlertService,
+    private loading: LoadingService
+  ) {}
 
   ngOnInit() {
     // this.data = {
@@ -69,14 +73,19 @@ export class CourseManagementComponent implements OnInit {
     // this.LopInkHoa = this.cars1.filter(x => x.Khoa == this.Khoa[0]);
     // console.log(this.LopInkHoa);
 
+    this.getAllGrade();
+  }
+
+  getAllGrade() {
+    this.loading.start();
     this.assistantService
       .getListGrades()
       .then(res => {
-        console.log(res);
+        this.loading.stop();
         this.allGrade = res as any;
       })
       .catch(err => {
-        console.log(err);
+        this.alertService.error(err);
       });
   }
 
@@ -92,11 +101,27 @@ export class CourseManagementComponent implements OnInit {
     this.assistantService
       .addGrade(this.grade)
       .then(() => {
-        console.log("Success");
+        this.alertService.success("Successfully");
         this.grade.Name = "";
+        this.getAllGrade();
       })
       .catch(err => {
-        console.log(err);
+        this.alertService.error(err);
       });
+  }
+
+  addClass() {
+    this.class.GradeId = this.selectedGrade["Id"];
+    this.assistantService
+      .addClass(this.class)
+      .then(() => {
+        this.alertService.success("Successfully");
+        this.class.Name = "";
+        this.getAllGrade();
+      })
+      .catch(err => {
+        this.alertService.error(err);
+      });
+    console.log(this.class);
   }
 }

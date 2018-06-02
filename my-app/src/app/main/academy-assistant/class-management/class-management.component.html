@@ -3,7 +3,7 @@
   <h3>DANH SÁCH SINH VIÊN</h3>
 </div>
 
-<p-dataTable [(selection)]="selectedCars" selectionMode="multiple" #dt [value]="allStudents" resizableColumns="true" [rows]="50"
+<p-dataTable [(selection)]="selectedStudent" selectionMode="multiple" #dt [value]="allStudents" resizableColumns="true" [rows]="50"
   [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [globalFilter]="gb" [resizableColumns]="true"
   emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true" [metaKeySelection]="false">
   <!-- p-header -->
@@ -30,16 +30,16 @@
   <!-- /p-footer  -->
 
   <!-- p-body -->
-  <p-column field="project" header="Khối" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
+  <p-column field="Grade" header="Khối" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
     <ng-template pTemplate="filter" let-col>
-      <p-dropdown [options]="allProjects1" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+      <p-dropdown [options]="gradeOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
         styleClass="ui-column-filter"></p-dropdown>
     </ng-template>
   </p-column>
 
-  <p-column field="project" header="Lớp" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
+  <p-column field="Class" header="Lớp" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
     <ng-template pTemplate="filter" let-col>
-      <p-dropdown [options]="allProjects2" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+      <p-dropdown [options]="classOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
         styleClass="ui-column-filter"></p-dropdown>
     </ng-template>
   </p-column>
@@ -71,9 +71,9 @@
     <div class="ui-g-4"> Phái: </div>
     <div class="ui-g-8">{{selectedStudent.Gender}}</div>
     <div class="ui-g-4"> Khối: </div>
-    <div class="ui-g-8">{{selectedStudent.StudentId}}</div>
+    <div class="ui-g-8">{{selectedStudent.Grade}}</div>
     <div class="ui-g-4"> Lớp: </div>
-    <div class="ui-g-8">{{selectedStudent.StudentId}}</div>
+    <div class="ui-g-8">{{selectedStudent.Class}}</div>
 
   </div>
 </p-dialog>

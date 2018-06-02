@@ -71,11 +71,12 @@ export class ApiService {
     let frmData: FormData = new FormData();
     frmData.append('photo',event, event.name)
 		headers.append("Authorization", "Bearer " + this.access_token);
-		console.log(frmData);
+    console.log("Form Data", event);
 		this.http
-		  .post(this.host + url, {File: frmData}, { headers: headers })
+		  .post(this.host + url, {File: 's'}, { headers: headers })
 		  .toPromise()
 		  .then(res => {
+        
 			resolve(res.json());
 		  })
 		  .catch(err => {

@@ -24,17 +24,17 @@
     <button style="float:right" pButton type="button" (click)="changeStateClass()" label="Tạo lớp" class="ui-button-warning"></button>
     <div *ngIf="isCreateClass" class="row" style="margin-top: 30px">
       <div class="ui-g-4">
-        <p-dropdown placeholder="Chọn khối để tạo" [options]="Khoa" optionLabel="name" [(ngModel)]="selectedGrade"></p-dropdown>
+        <p-dropdown placeholder="Chọn khối để tạo" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade"></p-dropdown>
       </div>
       <div class="ui-g-8">
         <span class="ui-float-label">
-          <input id="float-input" type="text" size="30" pInputText>
+          <input [(ngModel)]="class.Name" name="className" id="float-input" type="text" size="30" pInputText>
           <label for="float-input">Nhập tên lớp</label>
         </span>
       </div>
     </div>
     <div *ngIf="isCreateClass" class="row" style="margin-top: 10px">
-      <button pButton type="button" label="Tạo" class="ui-button-primary"></button>
+      <button pButton type="button" (click)="addClass()" label="Tạo" class="ui-button-primary"></button>
     </div>
   </div>
   <!-- /Create Class -->

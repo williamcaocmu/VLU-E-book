@@ -13,7 +13,10 @@ import { ApiService } from "../../../services/api.service";
   styleUrls: ["./class-management.component.css"]
 })
 export class ClassManagementComponent implements OnInit {
-  
+  allGrade: any;
+  gradeOptions: any[];
+  allClass: any;
+  classOptions: any[];
   allStudents: any;
   filesToUpload: Array<File>;
 
@@ -51,6 +54,26 @@ export class ClassManagementComponent implements OnInit {
       .then(res => {
         console.log(res);
         this.allStudents = res;
+
+        let Grades = this.allStudents.map(x => x.Grade);
+        this.allGrade = Grades.filter(
+          (value, index, array) => array.indexOf(value) == index
+        );
+        this.allGrade.unshift("");
+        this.gradeOptions = this.allGrade.map(proj => {
+          return { label: proj, value: proj };
+        });
+
+        let Classes = this.allStudents.map(x => x.Class);
+        this.allClass = Classes.filter(
+          (value, index, array) => array.indexOf(value) == index
+        );
+        this.allClass.unshift("");
+        this.classOptions = this.allClass.map(proj => {
+          return { label: proj, value: proj };
+        });
+
+        console.log("all grade", this.classOptions);
       })
       .catch(err => {
         console.log(err);
@@ -110,7 +133,7 @@ export class ClassManagementComponent implements OnInit {
       let file: File = fileList[0];
       let formData: FormData = new FormData();
       formData.append("photo", file, file.name);
-      console.log("data: ", formData.get("photo"));
+      console.log("data: ", file.name);
       this.assistantService
         .postFile(file)
         .then(res => console.log("a"))
