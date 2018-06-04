@@ -69,11 +69,14 @@ export class ApiService {
 		// headers.append("Content-Type", "multipart/form-data");
     // headers.append("Accept", "application/json");
     let frmData: FormData = new FormData();
-    frmData.append('photo',event, event.name)
+    frmData.append('File', event, event.name);
+    //headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
 		headers.append("Authorization", "Bearer " + this.access_token);
-    console.log("Form Data", event);
+    console.log("File", event);
+    console.log("Form data", frmData);
 		this.http
-		  .post(this.host + url, {File: 's'}, { headers: headers })
+		  .post(this.host + url,  frmData, { headers: headers })
 		  .toPromise()
 		  .then(res => {
         

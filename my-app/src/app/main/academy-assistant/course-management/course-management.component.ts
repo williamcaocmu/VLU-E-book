@@ -44,6 +44,7 @@ export class CourseManagementComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     // this.data = {
     //   labels: ["A"],
     //   datasets: [

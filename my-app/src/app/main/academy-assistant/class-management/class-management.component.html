@@ -3,7 +3,15 @@
   <h3>DANH SÁCH SINH VIÊN</h3>
 </div>
 
-<p-dataTable [(selection)]="selectedStudent" selectionMode="multiple" #dt [value]="allStudents" resizableColumns="true" [rows]="50"
+<!-- Upload FIle -->
+<p-fileUpload *ngIf="importFileExcel" mode="advanced" #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000"
+  (uploadHandler)="myUploader($event)" (onUpload)="onBasicUpload($event)"
+  [style]="{'margin-bottom':'100px'}"
+  >
+</p-fileUpload>
+<!-- / Upload FIle -->
+
+<p-dataTable [(selection)]="selectedStudent"  selectionMode="multiple" #dt [value]="allStudents" resizableColumns="true" [rows]="50"
   [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [globalFilter]="gb" [resizableColumns]="true"
   emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true" [metaKeySelection]="false">
   <!-- p-header -->
@@ -11,10 +19,7 @@
     <div class="ui-helper-clearfix ">
       <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
 
-      <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/assistant/class-management',0]" label="Thêm "></button>
-
-      <p-fileUpload maxFileSize="1000000" #fubauto url="http://vluebook.xyz/api/assistant/handleFile" icon="fa-circle" mode="basic"
-        name="demo[]" accept="all" (onUpload)="onBasicUpload($event)" auto="true" chooseLabel="Nhập file Excel" style="float:right"></p-fileUpload>
+      <button style="float:right" (click)="changeImportFileExcel()" type="button" pButton   label="{{displayStatusImportFile() }}"></button>
     </div>
   </p-header>
   <!--  / p-header -->
@@ -45,7 +50,7 @@
   </p-column>
 
   <p-column [sortable]="true" filterPlaceholder="Search" field="StudentId" header="Mã"></p-column>
-  <p-column [sortable]="true" field="Dob" filterPlaceholder="Search" header="Ngày Sinh"></p-column>
+
   <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
   <p-column [sortable]="true" field="Gender" filterPlaceholder="Search" header="Phái"></p-column>
   <p-column [style]="{'width':'90px'}" field="Id" header="Sửa">
@@ -66,33 +71,14 @@
     <div class="ui-g-8">{{selectedStudent.StudentId}}</div>
     <div class="ui-g-4"> Họ và Tên: </div>
     <div class="ui-g-8">{{selectedStudent.Name}}</div>
-    <div class="ui-g-4"> Ngày Sinh: </div>
-    <div class="ui-g-8">{{selectedStudent.Dob}}</div>
     <div class="ui-g-4"> Phái: </div>
     <div class="ui-g-8">{{selectedStudent.Gender}}</div>
     <div class="ui-g-4"> Khối: </div>
     <div class="ui-g-8">{{selectedStudent.Grade}}</div>
     <div class="ui-g-4"> Lớp: </div>
     <div class="ui-g-8">{{selectedStudent.Class}}</div>
-
   </div>
 </p-dialog>
-<!-- 
-<h3 class="first">Advanced</h3>
-<p-fileUpload name="myfile" customUpload="true"  (onUpload)="onUpload($event)" multiple="multiple"
-  maxFileSize="1000000">
-  <ng-template pTemplate="content">
-    <ul *ngIf="uploadedFiles.length">
-      <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-    </ul>
-  </ng-template>
-</p-fileUpload> -->
-<!-- <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
-<button type="button" (click)="upload()">Upload</button> -->
 
-<p-fileUpload mode="advanced" #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000"
-  (uploadHandler)="myUploader($event)" (onUpload)="onBasicUpload($event)"></p-fileUpload>
 
-<!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept="*"> -->
 
-<input type="file" (change)="fileUpload($event)" placeholder="Upload file" accept="*">

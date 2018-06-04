@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
+import { Component, OnInit, TemplateRef, ElementRef } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { AlertService } from "../../../services/alert.service";
 import { AcademyAssistantService } from "../academy-assistant.service";
@@ -13,6 +13,9 @@ import { ApiService } from "../../../services/api.service";
   styleUrls: ["./class-management.component.css"]
 })
 export class ClassManagementComponent implements OnInit {
+  
+  statusImportFile : any;
+  importFileExcel : boolean = false;
   allGrade: any;
   gradeOptions: any[];
   allClass: any;
@@ -20,9 +23,7 @@ export class ClassManagementComponent implements OnInit {
   allStudents: any;
   filesToUpload: Array<File>;
 
-  uploadedFiles: {
-    File: "";
-  };
+ 
   selectedStudent: any;
   displayDialog: boolean;
   items: MenuItem[] = [{ label: "Quản lí sinh viên" }];
@@ -52,7 +53,6 @@ export class ClassManagementComponent implements OnInit {
     this.assistantService
       .getList()
       .then(res => {
-        console.log(res);
         this.allStudents = res;
 
         let Grades = this.allStudents.map(x => x.Grade);
@@ -72,8 +72,6 @@ export class ClassManagementComponent implements OnInit {
         this.classOptions = this.allClass.map(proj => {
           return { label: proj, value: proj };
         });
-
-        console.log("all grade", this.classOptions);
       })
       .catch(err => {
         console.log(err);
@@ -84,60 +82,24 @@ export class ClassManagementComponent implements OnInit {
     this.selectedStudent = student;
     this.displayDialog = true;
     event.preventDefault();
-    console.log(student, " - ", event);
+    
   }
 
   myUploader(event) {
-    console.log("ahihi do nghoc", event.files);
     this.assistantService
-      .postFile(event.files)
+      .postFile(event.files[0])
       .then(res => {
-        console.log("success");
+        this.importFileExcel = false;
       })
       .catch(err => console.log(err));
   }
 
-  fileChange(event) {
-    let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      console.log(fileList);
-      let file: File = fileList[0];
-      let formData: FormData = new FormData();
-      formData.append("uploadFile", file);
-      let headers = new Headers();
-      headers.append(
-        "Authorization",
-        "Bearer " +
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC92bHVlYm9vay54eXpcL2FwaVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MjczNDc3MDMsImV4cCI6MTUyODY0MzcwMywibmJmIjoxNTI3MzQ3NzAzLCJqdGkiOiJ6RU1udjh5OUpYRVY5aXcxIiwic3ViIjoyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.QL_RDw8xf521zbYfs6JoOwrvB9SMoCaD1H5aqWzM8mk"
-      );
-      console.log(this.api.access_token);
-      headers.append("Content-Type", "application/json");
-      headers.append("Accept", "application/json");
-      this.http
-        .post(
-          "http://vluebook.xyz/api/assistant/handleFile",
-          { File: formData },
-          { headers: headers as any }
-        )
-        .map(res => res.json)
-        .catch(err => Observable.throw(err))
-        .subscribe(data => console.log("success"), err => console.log(err));
-    }
+  changeImportFileExcel(){
+    this.importFileExcel = !this.importFileExcel;
   }
-  // cai choose ở dưới là của thằng fileUpload cũng ra not exist path , thằng p-fileUpload là thư viện,
-  // thằng này tự viết đm lag vl đéo làm nữa, t2 đi , ok
-  fileUpload(event) {
-    let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      console.log(event.target.files, event);
-      let file: File = fileList[0];
-      let formData: FormData = new FormData();
-      formData.append("photo", file, file.name);
-      console.log("data: ", file.name);
-      this.assistantService
-        .postFile(file)
-        .then(res => console.log("a"))
-        .catch(err => console.log(err));
-    }
+
+  displayStatusImportFile(){
+    return this.statusImportFile = !this.importFileExcel ? "Nhập File Excel" : "Huỷ"; 
   }
+  
 }
