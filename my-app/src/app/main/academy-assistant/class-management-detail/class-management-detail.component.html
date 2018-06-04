@@ -1,4 +1,108 @@
 <p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
-<div class="row text-center">
-  <h3>DANH SÁCH SINH VIÊN</h3>
+<div class="chute chute-center" style="height: 726px; margin-top: 50px">
+  <div class="mw1000 center-block">
+
+    <div class="allcp-form theme-primary">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="panel-title text-center">
+            <h3 style="text-transform: uppercase">Danh Sách Sinh Viên</h3>
+
+          </div>
+        </div>
+        <div class="panel-body">
+          <form method="post" action="" id="form-ui" autocomplete="off">
+
+            <!-- Student ID  -->
+            <div class="ui-g ui-fluid one-row-field">
+                <div class="ui-md-12">
+                  <span class="ui-float-label">
+                    <input [(ngModel)]="academy.StudentId" name="studentID" id="float-input-studentID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                    <label for="float-input-studentID">Mã Sinh Viên</label>
+                  </span>
+                </div>
+              </div>
+              <!-- / Student ID -->
+
+            <!-- name -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label ">
+                  <input id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
+                    [(ngModel)]="academy.Name">
+                  <label for="float-input-name"> Họ Và Tên</label>
+                </span>
+              </div>
+            </div>
+            <!-- / name -->
+
+            <!-- Dob  -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="academy.Dob" type="text" id="float-input-dob" name="dob" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-dob">Ngày sinh</label>
+                </span>
+              </div>
+            </div>
+            <!-- / Dob -->
+
+            <!-- Gender -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <!-- <input type="radio" name="gender" value="male" [(ngModel)]="academy.Gender">Male</input>
+                  <input type="radio" name="gender" value="female" [(ngModel)]="academy.Gender">Male</input>
+                  <p-radioButton name="{{gender}}" value="Male" label="male" [(ngModel)]="academy.Gender" inputId="opt{{gender}}"></p-radioButton> -->
+                  <label for="float-input-personal-email"> Giới Tính</label>
+                </span>
+              </div>
+            </div>
+            <!--/ Gender -->
+
+            <!-- Grade -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="academy.Grade" id="float-input-other-grade" type="text" name="grade" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-other-grade"> Khối</label>
+                </span>
+              </div>
+            </div>
+            <!--/ Grade -->
+
+            <!-- Class -->
+            <div class="ui-g ui-fluid one-row-field">
+              <div class="ui-md-12">
+                <span class="ui-float-label">
+                  <input [(ngModel)]="academy.Class" id="float-input-personal-class" type="text" name="class" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <label for="float-input-personal-class"> Lớp </label>
+                </span>
+              </div>
+            </div>
+            <!--/ Class -->
+
+            <!-- Role -->
+            <label>Vai Trò</label>
+            <div class="ui-g ui-fluid" style="margin-bottom:10px">
+              <p-radioButton *ngFor="let role of allRoles" name="{{role}}" value="{{role.shortNameRole}}" label="{{role.fullNameRole}}" [(ngModel)]="account.Role" inputId="opt{{role.shortNameRole}}"></p-radioButton>
+            </div>
+            <!-- /Role -->
+
+            <div class="panel-footer text-right">
+              <a *ngIf="id == 0" (click)="addAccount()" class="btn btn-bordered btn-primary mb5"> Thêm Mới</a>
+              <a *ngIf="id != 0" (click)="updateAccount()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
+              <a class="btn btn-default btn-bordered mb5"> Huỷ</a>
+            </div>
+
+            <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
+              <i class="fa fa-reply"></i> Trở Về
+            </a>
+                
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
