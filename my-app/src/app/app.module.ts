@@ -98,8 +98,8 @@ import {TreeTableModule} from 'primeng/treetable';
     DialogModule,
     ChartModule,
     TreeTableModule,
-    AccordionModule
-    
+    AccordionModule,
+  
 
   ],
   providers: [

@@ -17,7 +17,7 @@
             <div class="ui-g ui-fluid one-row-field">
                 <div class="ui-md-12">
                   <span class="ui-float-label">
-                    <input [(ngModel)]="academy.StudentId" name="studentID" id="float-input-studentID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                    <input [(ngModel)]="student.StudentId"  name="studentID" id="float-input-studentID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                     <label for="float-input-studentID">Mã Sinh Viên</label>
                   </span>
                 </div>
@@ -28,8 +28,8 @@
             <div class="ui-g ui-fluid one-row-field">
               <div class="ui-md-12">
                 <span class="ui-float-label ">
-                  <input id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
-                    [(ngModel)]="academy.Name">
+                  <input [(ngModel)]="student.Name" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
+                    >
                   <label for="float-input-name"> Họ Và Tên</label>
                 </span>
               </div>
@@ -40,7 +40,7 @@
             <div class="ui-g ui-fluid one-row-field">
               <div class="ui-md-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="academy.Dob" type="text" id="float-input-dob" name="dob" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <input  type="text" id="float-input-dob" name="dob" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                   <label for="float-input-dob">Ngày sinh</label>
                 </span>
               </div>
@@ -64,7 +64,7 @@
             <div class="ui-g ui-fluid one-row-field">
               <div class="ui-md-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="academy.Grade" id="float-input-other-grade" type="text" name="grade" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <input [(ngModel)]="student.Grade" id="float-input-other-grade" type="text" name="grade" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                   <label for="float-input-other-grade"> Khối</label>
                 </span>
               </div>
@@ -75,19 +75,12 @@
             <div class="ui-g ui-fluid one-row-field">
               <div class="ui-md-12">
                 <span class="ui-float-label">
-                  <input [(ngModel)]="academy.Class" id="float-input-personal-class" type="text" name="class" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                  <input [(ngModel)]="student.Class" id="float-input-personal-class" type="text" name="class" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                   <label for="float-input-personal-class"> Lớp </label>
                 </span>
               </div>
             </div>
             <!--/ Class -->
-
-            <!-- Role -->
-            <label>Vai Trò</label>
-            <div class="ui-g ui-fluid" style="margin-bottom:10px">
-              <p-radioButton *ngFor="let role of allRoles" name="{{role}}" value="{{role.shortNameRole}}" label="{{role.fullNameRole}}" [(ngModel)]="account.Role" inputId="opt{{role.shortNameRole}}"></p-radioButton>
-            </div>
-            <!-- /Role -->
 
             <div class="panel-footer text-right">
               <a *ngIf="id == 0" (click)="addAccount()" class="btn btn-bordered btn-primary mb5"> Thêm Mới</a>
@@ -106,3 +99,5 @@
     </div>
   </div>
 </div>
+
+{{student | json}}

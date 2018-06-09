@@ -9,6 +9,14 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./class-management-detail.component.css"]
 })
 export class ClassManagementDetailComponent implements OnInit {
+  student: any = {
+    StudentId : '',
+    Name: '',
+    Gender: '',
+    Class: '',
+    Grade: ''
+  };
+  id:number;
   items: MenuItem[] = [
     {
       label: "Quản lí sinh viên"
@@ -20,5 +28,22 @@ export class ClassManagementDetailComponent implements OnInit {
 
   constructor(private assistantService: AcademyAssistantService, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      (params) => {
+        this.id = +params['id'];
+        if(this.id > 0){
+          this.assistantService.getDetail(this.id)
+          .then((res) => {
+            this.student = res;
+          })
+        }
+      }
+    )
+  }
+
+  updateAccount(){
+    this.student['Id'] = this.id;
+    console.log(this.student);
+  }
 }

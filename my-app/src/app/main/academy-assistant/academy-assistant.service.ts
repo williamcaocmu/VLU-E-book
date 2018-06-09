@@ -76,7 +76,7 @@ export class AcademyAssistantService {
   getDetail(id: any) {
     return new Promise((resolve, reject) => {
       this.apiService
-        .get(`/${id}`)
+        .get(`assistant/getStudent/${id}`)
         .then(res => {
           resolve(res);
         })

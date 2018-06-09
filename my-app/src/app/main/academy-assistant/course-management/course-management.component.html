@@ -49,12 +49,9 @@
 </p-dataTable> -->
 
 <p-accordion [multiple]="true">
-  <p-accordionTab class="ui-g-8" *ngFor="let grade of allGrade; let i = index" header="{{grade.Name}}">
+  <p-accordionTab class="ui-g-8 ui-g-offset-2" *ngFor="let grade of allGrade; let i = index" header="{{grade.Name}}">
     <button *ngFor="let z of grade.Class" pButton type="button" label="{{z.Name}}" class="ui-button-secondary"></button>
   </p-accordionTab>
 </p-accordion>
 
-{{allGrade | json}}
 
-
-<!-- <p-chart type="doughnut" [data]="data" [options]="options"></p-chart> -->
