@@ -3,23 +3,18 @@
   <h3>DANH SÁCH SINH VIÊN</h3>
 </div>
 
-<!-- Upload FIle -->
-<p-fileUpload *ngIf="importFileExcel" mode="advanced" #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000"
-  (uploadHandler)="myUploader($event)" (onUpload)="onBasicUpload($event)"
-  [style]="{'margin-bottom':'100px'}"
-  >
-</p-fileUpload>
-<!-- / Upload FIle -->
-
-<p-dataTable [(selection)]="selectedStudent"  selectionMode="multiple" #dt [value]="allStudents" resizableColumns="true" [rows]="50"
+<p-dataTable [(selection)]="selectedStudent" selectionMode="multiple" #dt [value]="allStudents" resizableColumns="true" [rows]="50"
   [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [globalFilter]="gb" [resizableColumns]="true"
   emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true" [metaKeySelection]="false">
   <!-- p-header -->
   <p-header>
     <div class="ui-helper-clearfix ">
       <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
-
-      <button style="float:right" (click)="changeImportFileExcel()" type="button" pButton   label="{{displayStatusImportFile() }}"></button>
+      <button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button>
+      <a style="color:green ; float:right; margin: 0 10px" href="../../../../assets/files/DanhSachSinhVien.xlsx" target="_self" download>
+        <i class="fa fa-download"></i> Tải mẫu danh sách sinh viên
+      </a>      
+      
     </div>
   </p-header>
   <!--  / p-header -->
@@ -64,8 +59,7 @@
 
 </p-dataTable>
 
-<p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400"
-  (onAfterHide)="onDialogHide()">
+<p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400">
   <div class="ui-g" *ngIf="selectedStudent">
     <div class="ui-g-4"> Mã: </div>
     <div class="ui-g-8">{{selectedStudent.StudentId}}</div>
@@ -80,5 +74,50 @@
   </div>
 </p-dialog>
 
+<p-dialog header="Gửi Danh Sách Sinh Viên " [(visible)]="displayFile" showEffect="fade" [modal]="true" width="900">
 
+  <!-- file upload -->
+  <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ"  *ngIf="!dataResponseImportFile" mode="advanced" #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000"
+    (uploadHandler)="myUploader($event)" (onUpload)="onBasicUpload($event)" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
+  <!-- / file upload -->
+
+  <!-- datatable of return data upload file -->
+
+  <p-dataTable *ngIf="dataResponseImportFile" [value]="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+    [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
+    <p-header>
+     <h3>Danh Sách Sinh Viên Từ File</h3>
+    </p-header>
+    <!-- p-body -->
+    <p-column field="Grade" header="Khối" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
+      <ng-template pTemplate="filter" let-col>
+        <p-dropdown [options]="gradeOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+          styleClass="ui-column-filter"></p-dropdown>
+      </ng-template>
+    </p-column>
+
+    <p-column field="Class" header="Lớp" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
+      <ng-template pTemplate="filter" let-col>
+        <p-dropdown [options]="classOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+          styleClass="ui-column-filter"></p-dropdown>
+      </ng-template>
+    </p-column>
+
+    <p-column [sortable]="true" filterPlaceholder="Search" field="Student_id" header="Mã"></p-column>
+
+    <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
+    <p-column [sortable]="true" field="Gender" filterPlaceholder="Search" header="Phái"></p-column>
+    <!-- / p-body -->
+
+  </p-dataTable>
+
+  <div *ngIf="dataResponseImportFile" class="ui-g" >
+    <div class="ui-g-4 ui-g-offset-5"> 
+        <p-message *ngIf="!isImport" severity="error" text="File lỗi . Import File lại"></p-message>
+        <button *ngIf="isImport"  type="button" pButton label="Xác Nhận" (click)="importFile()"></button>
+        <button pButton type="button" (click)="cancelImport()" label="Huỷ Bỏ" class="ui-button-secondary"></button>
+     </div>
+  </div>
+  <!-- / datatable of return data upload file -->
+</p-dialog>
 

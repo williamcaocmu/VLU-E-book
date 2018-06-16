@@ -45,6 +45,14 @@ export class AcademyAssistantService {
 
   }
 
+  importFile(fileName:any){
+    return new Promise((resolve, reject) =>{
+      this.apiService.get(`assistant/importFile/${fileName}`)
+        .then(res => resolve(res))
+        .catch(err => reject(err))
+    })
+  }
+
 
   addGrade(data: any) {
     return new Promise((resolve, reject) => {

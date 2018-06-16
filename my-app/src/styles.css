@@ -14,3 +14,7 @@
 span.ui-float-label>input{
   height: 40px;
 }
+
+:host >>> p-dataTable{
+  color: red;
+}

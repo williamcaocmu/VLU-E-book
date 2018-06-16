@@ -25,5 +25,6 @@ export class GuardRoleService implements CanActivate {
 		}).catch(err => {
 			return false;
 		})
+		
 	}
 }

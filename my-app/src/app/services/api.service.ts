@@ -9,7 +9,7 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class ApiService {
   access_token: string = "none";
-  host: string = "http://vluebook.xyz/api/";
+  host: string = "http://cntttest.vanlanguni.edu.vn:8080/CMU/K20T2/VLU/public/api/";
 
   constructor(
     private http: Http,
@@ -25,6 +25,8 @@ export class ApiService {
     return new Promise<Response>((resolve, reject) => {
       let headers = new Headers();
       headers.append("Authorization", "Bearer " + this.access_token);
+      headers.append('Accept', 'application/json');
+      headers.append('Content-Type', 'application/json');
       console.log(data);
       this.http
         .post(this.host + url, data, { headers: headers })
