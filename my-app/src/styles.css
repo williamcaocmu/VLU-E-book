@@ -18,3 +18,12 @@ span.ui-float-label>input{
 :host >>> p-dataTable{
   color: red;
 }
+
+p-radioButton{
+  display: block;
+  margin: .7em
+}
+
+p-dropdown{
+  height: 40px;
+}

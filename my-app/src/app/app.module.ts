@@ -48,11 +48,7 @@ import { ClassManagementDetailComponent } from './main/academy-assistant/class-m
 import { AcademyAssistantService } from './main/academy-assistant/academy-assistant.service';
 import {ChartModule} from 'primeng/chart';
 import {TreeTableModule} from 'primeng/treetable';
-
-
-
-
-
+import {InputMaskModule} from 'primeng/inputmask';
 
 
 @NgModule({
@@ -75,7 +71,7 @@ import {TreeTableModule} from 'primeng/treetable';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash:true}),
     InputSwitchModule,
     FormsModule,
     BrowserModule,
@@ -99,7 +95,7 @@ import {TreeTableModule} from 'primeng/treetable';
     ChartModule,
     TreeTableModule,
     AccordionModule,
-  
+    InputMaskModule
 
   ],
   providers: [

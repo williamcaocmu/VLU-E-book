@@ -36,6 +36,19 @@ export class AcademyAssistantService {
     });
   }
 
+  getListClasses() {
+    return new Promise((resolve, reject) => {
+      this.apiService
+        .get("assistant/getAllGrades")
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
   postFile(data){
 	  return new Promise( (resolve, reject) => {
 		  this.apiService.postFile(data,'assistant/handleFile')
@@ -106,4 +119,5 @@ export class AcademyAssistantService {
         });
     });
   }
+
 }

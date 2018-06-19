@@ -84,6 +84,7 @@ export class CourseManagementComponent implements OnInit {
       .then(res => {
         this.loading.stop();
         this.allGrade = res as any;
+        console.log(this.allGrade);
       })
       .catch(err => {
         this.alertService.error(err);

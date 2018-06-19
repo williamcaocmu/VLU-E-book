@@ -89,18 +89,11 @@
      <h3>Danh Sách Sinh Viên Từ File</h3>
     </p-header>
     <!-- p-body -->
-    <p-column field="Grade" header="Khối" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
-      <ng-template pTemplate="filter" let-col>
-        <p-dropdown [options]="gradeOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
-          styleClass="ui-column-filter"></p-dropdown>
-      </ng-template>
+    <p-column field="Grade" header="Khối"   [style]="{'overflow':'visible'}">
+      
     </p-column>
 
-    <p-column field="Class" header="Lớp" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
-      <ng-template pTemplate="filter" let-col>
-        <p-dropdown [options]="classOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
-          styleClass="ui-column-filter"></p-dropdown>
-      </ng-template>
+    <p-column field="Class" header="Lớp"  [style]="{'overflow':'visible'}">
     </p-column>
 
     <p-column [sortable]="true" filterPlaceholder="Search" field="Student_id" header="Mã"></p-column>

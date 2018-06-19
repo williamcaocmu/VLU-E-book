@@ -1,103 +1,102 @@
 <p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
 <div class="chute chute-center" style="height: 726px; margin-top: 50px">
-  <div class="mw1000 center-block">
+    <div class="mw1000 center-block">
 
-    <div class="allcp-form theme-primary">
-      <div class="panel">
-        <div class="panel-heading">
-          <div class="panel-title text-center">
-            <h3 style="text-transform: uppercase">Danh Sách Sinh Viên</h3>
+        <div class="allcp-form theme-primary">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <h3 style="text-transform: uppercase">Danh Sách Sinh Viên</h3>
 
-          </div>
-        </div>
-        <div class="panel-body">
-          <form method="post" action="" id="form-ui" autocomplete="off">
-
-            <!-- Student ID  -->
-            <div class="ui-g ui-fluid one-row-field">
-                <div class="ui-md-12">
-                  <span class="ui-float-label">
-                    <input [(ngModel)]="student.StudentId"  name="studentID" id="float-input-studentID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                    <label for="float-input-studentID">Mã Sinh Viên</label>
-                  </span>
+                    </div>
                 </div>
-              </div>
-              <!-- / Student ID -->
+                <div class="panel-body">
+                    <form method="post" action="" id="form-ui" autocomplete="off">
 
-            <!-- name -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label ">
-                  <input [(ngModel)]="student.Name" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
-                    >
-                  <label for="float-input-name"> Họ Và Tên</label>
-                </span>
-              </div>
+                        <!-- Student ID  -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="student.student_id" name="studentID" id="float-input-studentID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-studentID">Mã Sinh Viên</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / Student ID -->
+
+                        <!-- name -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label ">
+                                    <input [(ngModel)]="student.Name" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                        name="name">
+                                    <label for="float-input-name"> Họ Và Tên</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / name -->
+
+                        <!-- Dob  -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span>Ngày Sinh</span>
+                                <p-inputMask name="dob" mask="9999/99/99" [(ngModel)]="student.Dob" placeholder="dd/mm/yyyy" slotChar="yyyy/mm/dd"></p-inputMask>
+                            </div>
+                        </div>
+                        <!-- / Dob -->
+
+                        <!-- Gender -->
+
+
+                        <div *ngIf="id != 0" class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <label>Trạng Thái</label>
+                                <div class="ui-inputgroup">
+                                    <p-inputSwitch [(ngModel)]="selectedStatus" onLabel="Active" offLabel="Deactive" name="status"></p-inputSwitch>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label>Giới Tính</label>
+                        <div class="ui-g ui-fluid" style="margin-bottom:10px;">
+                            <p-radioButton *ngFor="let gender of allGenders" name="{{gender}}" value="{{gender.shortNameGender}}" label="{{gender.fullNameGender}}"
+                                [(ngModel)]="student.Gender" inputId="opt{{gender.shortNameGender}}"></p-radioButton>
+                        </div>
+                        <!--/ Gender -->
+
+                        <!-- Grade -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <div class="ui-g-6">
+                                    <label>Khối</label>
+                                    <p-dropdown name="grade" placeholder="Chọn khối" [options]="allGrades" optionLabel="Name" [(ngModel)]="selectedGrade" (onChange)="onchange($event.value)"></p-dropdown>
+                                </div>
+                                <div class="ui-g-6">
+                                    <label>Lớp</label>
+                                    <p-dropdown name="class" placeholder="Chọn lớp" [options]="allClasses" optionLabel="Name" [(ngModel)]="selectedClass"></p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Grade -->
+
+                        <!-- Class -->
+
+                        <!--/ Class -->
+
+                        <div class="panel-footer text-right">
+                            <a (click)="updateStudent()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
+                            <a class="btn btn-default btn-bordered mb5"> Huỷ</a>
+                        </div>
+
+                        <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
+                            <i class="fa fa-reply"></i> Trở Về
+                        </a>
+
+                    </form>
+                    {{student | json}}
+
+                </div>
             </div>
-            <!-- / name -->
-
-            <!-- Dob  -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input  type="text" id="float-input-dob" name="dob" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-dob">Ngày sinh</label>
-                </span>
-              </div>
-            </div>
-            <!-- / Dob -->
-
-            <!-- Gender -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <!-- <input type="radio" name="gender" value="male" [(ngModel)]="academy.Gender">Male</input>
-                  <input type="radio" name="gender" value="female" [(ngModel)]="academy.Gender">Male</input>
-                  <p-radioButton name="{{gender}}" value="Male" label="male" [(ngModel)]="academy.Gender" inputId="opt{{gender}}"></p-radioButton> -->
-                  <label for="float-input-personal-email"> Giới Tính</label>
-                </span>
-              </div>
-            </div>
-            <!--/ Gender -->
-
-            <!-- Grade -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="student.Grade" id="float-input-other-grade" type="text" name="grade" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-other-grade"> Khối</label>
-                </span>
-              </div>
-            </div>
-            <!--/ Grade -->
-
-            <!-- Class -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="student.Class" id="float-input-personal-class" type="text" name="class" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-personal-class"> Lớp </label>
-                </span>
-              </div>
-            </div>
-            <!--/ Class -->
-
-            <div class="panel-footer text-right">
-              <a *ngIf="id == 0" (click)="addAccount()" class="btn btn-bordered btn-primary mb5"> Thêm Mới</a>
-              <a *ngIf="id != 0" (click)="updateAccount()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
-              <a class="btn btn-default btn-bordered mb5"> Huỷ</a>
-            </div>
-
-            <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
-              <i class="fa fa-reply"></i> Trở Về
-            </a>
-                
-          </form>
-
         </div>
-      </div>
     </div>
-  </div>
 </div>
-
-{{student | json}}
