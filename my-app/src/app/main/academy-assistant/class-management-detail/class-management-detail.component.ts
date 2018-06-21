@@ -10,6 +10,8 @@ import { AlertService } from "../../../services/alert.service";
     styleUrls: ["./class-management-detail.component.css"]
 })
 export class ClassManagementDetailComponent implements OnInit {
+    tmpClassId:any;
+    tmpGradeId:any;
     selectedStatus: any;
     selectedClass:any;
     allGrades: any[];
@@ -54,11 +56,12 @@ export class ClassManagementDetailComponent implements OnInit {
                 this.assistantService
                     .getDetail(this.id)
                     .then(res => {
+                        this.getAllGrades();
                         this.student = res;
                         this.student.student_id = res['StudentId'];
                         this.selectedStatus = res["Status"] == 1 ? true : false;
-                        this.getAllGrades();
-                        
+                        this.tmpGradeId = res['GradeId'];
+                        this.tmpClassId = res['ClassId'];                        
                     })
                     .catch(err => {
                         this.alert.error(err);
@@ -69,28 +72,45 @@ export class ClassManagementDetailComponent implements OnInit {
 
     updateStudent() {
         this.student.Status = this.selectedStatus == true ? 1 : 0;
-        this.student.GradeId = this.selectedGrade ;
-        console.log(this.student.Dob);
-        // this.assistantService
-        //     .update(this.student)
-        //     .then(() => this.alert.success("Cập Nhật Thành Công"))
-        //     .catch(err => {
-        //         this.alert.error(`Lỗi ${err}`);
-        //         console.log(err);
-        //     });
+        // this.student.Gender = +this.student.Gender;
+        if(this.selectedGrade == undefined || this.selectedClass == undefined)  {
+            this.student.GradeId = this.tmpGradeId;
+            this.student.ClassId = this.tmpClassId;     
+        }
+       else{
+           this.student.GradeId = this.selectedGrade.Id;
+           this.student.ClassId = this.selectedClass.Id;
+       }
+        console.log(this.student);
+        this.assistantService
+            .update(this.student)
+            .then(() => this.alert.success("Cập Nhật Thành Công"))
+            .catch(err => {
+                this.alert.error(`Lỗi ${err}`);
+                console.log(err);
+            });
     }
 
     getAllGrades(){
       this.assistantService.getListGrades().then((res: any[]) => {
         this.allGrades = res;
-        console.log(this.allGrades);
       }).catch((e) => {
         console.log(e)
       })
     }
 
-    onchange(e){
+    changeGrade(e){
+        console.log(this.selectedGrade)
         this.allClasses = e.Class;
-        console.log(this.allClasses);
+        if(this.allClasses.length > 0){
+            this.selectedClass = e.Class[0] ;
+        }    
+        
+    }
+    changeClass(e){
+        if(e.length > 0){
+            this.selectedClass = e.Id;
+        }
+        
     }
 }

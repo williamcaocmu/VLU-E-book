@@ -69,11 +69,13 @@
                             <div class="ui-md-12">
                                 <div class="ui-g-6">
                                     <label>Khối</label>
-                                    <p-dropdown name="grade" placeholder="Chọn khối" [options]="allGrades" optionLabel="Name" [(ngModel)]="selectedGrade" (onChange)="onchange($event.value)"></p-dropdown>
+                                    <!-- <p-dropdown name="grade"  [options]="allGrades" optionLabel="Name" [(ngModel)]="selectedGrade" (onChange)="onchange($event.value)"></p-dropdown> -->
+                                    <p-dropdown placeholder="Chọn khối"  [options]="allGrades" optionLabel="Name" [(ngModel)]="selectedGrade" name="grades"
+                                    (onChange)="changeGrade($event.value)" ></p-dropdown>
                                 </div>
                                 <div class="ui-g-6">
                                     <label>Lớp</label>
-                                    <p-dropdown name="class" placeholder="Chọn lớp" [options]="allClasses" optionLabel="Name" [(ngModel)]="selectedClass"></p-dropdown>
+                                    <p-dropdown name="class" placeholder="Chọn lớp"  [options]="allClasses"  (onChange)="changeClass($event.value)" optionLabel="Name" [(ngModel)]="selectedClass"></p-dropdown>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +90,7 @@
                             <a class="btn btn-default btn-bordered mb5"> Huỷ</a>
                         </div>
 
-                        <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
+                        <a [routerLink]="['/main/assistant/class-management']" class="btn btn-bordered btn-danger mb5">
                             <i class="fa fa-reply"></i> Trở Về
                         </a>
 

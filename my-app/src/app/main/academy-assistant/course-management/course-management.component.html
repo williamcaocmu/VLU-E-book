@@ -37,6 +37,8 @@
       <button pButton type="button" (click)="addClass()" label="Tạo" class="ui-button-primary"></button>
     </div>
   </div>
+
+  <button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button>
   <!-- /Create Class -->
 </div>
 <!-- <p-dataTable [value]="allGrade" rowGroupMode="subheader" groupField="Name" expandableRowGroups="true" [sortableRowGroup]="false">
@@ -94,4 +96,43 @@
   </p-accordionTab>
 </p-accordion>
 
+<p-dialog header="Gửi Danh Sách Sinh Viên " [(visible)]="displayFile" showEffect="fade" [modal]="true" width="900">
+
+  <!-- file upload -->
+  <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ"  *ngIf="!dataResponseImportFile" mode="advanced" #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000"
+    (uploadHandler)="myUploader($event)" (onUpload)="onBasicUpload($event)" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
+  <!-- / file upload -->
+
+  <!-- datatable of return data upload file -->
+
+  <p-dataTable *ngIf="dataResponseImportFile" [value]="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+    [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
+    <p-header>
+     <h3>Danh Sách Sinh Viên Từ File</h3>
+    </p-header>
+    <!-- p-body -->
+    <p-column field="Grade" header="Khối"   [style]="{'overflow':'visible'}">
+      
+    </p-column>
+
+    <p-column field="Class" header="Lớp"  [style]="{'overflow':'visible'}">
+    </p-column>
+
+    <p-column [sortable]="true" filterPlaceholder="Search" field="Student_id" header="Mã"></p-column>
+
+    <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
+    <p-column [sortable]="true" field="Gender" filterPlaceholder="Search" header="Phái"></p-column>
+    <!-- / p-body -->
+
+  </p-dataTable>
+
+  <div *ngIf="dataResponseImportFile" class="ui-g" >
+    <div class="ui-g-4 ui-g-offset-5"> 
+        <p-message *ngIf="!isImport" severity="error" text="File lỗi . Import File lại"></p-message>
+        <button *ngIf="isImport"  type="button" pButton label="Xác Nhận" (click)="importFile()"></button>
+        <button pButton type="button" (click)="cancelImport()" label="Huỷ Bỏ" class="ui-button-secondary"></button>
+     </div>
+  </div>
+  <!-- / datatable of return data upload file -->
+</p-dialog>
 

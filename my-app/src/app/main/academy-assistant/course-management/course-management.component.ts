@@ -13,6 +13,8 @@ import { LoadingService } from "../../../services/loading.service";
   styleUrls: ["./course-management.component.css"]
 })
 export class CourseManagementComponent implements OnInit {
+
+  displayFile:boolean = false;
   grade: any = {
     Name: ""
   };
@@ -126,4 +128,8 @@ export class CourseManagementComponent implements OnInit {
       });
     console.log(this.class);
   }
+
+  showDialogFile() {
+    this.displayFile = true;
+}
 }

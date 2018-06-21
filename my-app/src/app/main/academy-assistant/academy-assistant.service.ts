@@ -110,7 +110,7 @@ export class AcademyAssistantService {
   update(data: any) {
     return new Promise((resolve, reject) => {
       this.apiService
-        .post("", data)
+        .post("assistant/updateStudent", data)
         .then(res => {
           resolve(res);
         })
