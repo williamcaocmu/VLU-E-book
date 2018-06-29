@@ -1,127 +1,131 @@
-<p-breadcrumb  [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
+<p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
 <div class="chute chute-center" style="height: 726px; margin-top: 50px">
-  <div class="mw1000 center-block">
+    <div class="mw1000 center-block">
 
-    <div class="allcp-form theme-primary">
-      <div class="panel">
-        <div class="panel-heading">
-          <div class="panel-title text-center">
-            <h3 style="text-transform: uppercase">Thông Tin Người Dùng</h3>
+        <div class="allcp-form theme-primary">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <h3 style="text-transform: uppercase">Thông Tin Người Dùng</h3>
 
-          </div>
-        </div>
-        <div class="panel-body">
-          <form method="post" action="" id="form-ui" autocomplete="off">
-
-            <!-- name -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label ">
-                  <input id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
-                    [(ngModel)]="account.Name">
-                  <label for="float-input-name"> Họ Và Tên</label>
-                </span>
-              </div>
-            </div>
-            <!-- / name -->
-
-            <!-- Staff ID  -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="account.StaffId" name="staffID" id="float-input-staffID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-staffID">Mã Nhân Viên</label>
-                </span>
-              </div>
-            </div>
-            <!-- / Staff ID -->
-
-            <!-- Password  -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="account.Password" type="password" id="float-input-password" autocomplete="new-password" name="password" pPassword class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-password">Mật Khẩu</label>
-                </span>
-              </div>
-            </div>
-            <!-- / Password -->
-
-            <!-- Personal Email -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="account.Email" id="float-input-personal-email" name="email" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-personal-email"> Email</label>
-                </span>
-              </div>
-            </div>
-            <!--/ Personal Email -->
-
-            <!-- Other Email -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="account.OtherEmail" id="float-input-other-email" type="text" name="otherEmail" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-other-email"> Email Khác</label>
-                </span>
-              </div>
-            </div>
-            <!--/ Other Email -->
-
-            <!-- Personal Email -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="account.Phone1" id="float-input-personal-phone" type="text" name="phone1" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-personal-phone"> Số Điện Thoại 1</label>
-                </span>
-              </div>
-            </div>
-            <!--/ Personal Email -->
-
-            <!-- Company Email -->
-            <div class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <span class="ui-float-label">
-                  <input [(ngModel)]="account.Phone2" id="float-input-other-phone" type="text" name="phone2" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-                  <label for="float-input-other-phone">Số Điện Thoại 2 </label>
-                </span>
-              </div>
-            </div>
-            <!--/ Company Email -->
-
-            <!-- Status -->
-            <div *ngIf="id != 0" class="ui-g ui-fluid one-row-field">
-              <div class="ui-md-12">
-                <label>Trạng Thái</label>
-                <div class="ui-inputgroup">
-                  <p-inputSwitch [(ngModel)]="selectedStatus" onLabel="Active" offLabel="Deactive" name="status" ></p-inputSwitch>
+                    </div>
                 </div>
-              </div>
+                <div class="panel-body">
+                    <form method="post" action="" id="form-ui" autocomplete="off">
+
+                        <!-- name -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label ">
+                                    <input id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget" name="name"
+                                        [(ngModel)]="account.Name">
+                                    <label for="float-input-name"> Họ Và Tên</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / name -->
+
+                        <!-- Staff ID  -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="account.StaffId" name="staffID" id="float-input-staffID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-staffID">Mã Nhân Viên</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / Staff ID -->
+
+                        <!-- Password  -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="account.Password" type="password" id="float-input-password" autocomplete="new-password" name="password"
+                                        pPassword class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-password">Mật Khẩu</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / Password -->
+
+                        <!-- Personal Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="account.Email" id="float-input-personal-email" name="email" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-personal-email"> Email</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Personal Email -->
+
+                        <!-- Other Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="account.OtherEmail" id="float-input-other-email" type="text" name="otherEmail" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-other-email"> Email Khác</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Other Email -->
+
+                        <!-- Personal Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="account.Phone1" id="float-input-personal-phone" type="text" name="phone1" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-personal-phone"> Số Điện Thoại 1</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Personal Email -->
+
+                        <!-- Company Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="account.Phone2" id="float-input-other-phone" type="text" name="phone2" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-other-phone">Số Điện Thoại 2 </label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Company Email -->
+
+                        <!-- Status -->
+                        <div *ngIf="id != 0" class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <label>Trạng Thái</label>
+                                <div class="ui-inputgroup">
+                                    <p-inputSwitch [(ngModel)]="selectedStatus" onLabel="Active" offLabel="Deactive" name="status"></p-inputSwitch>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Status -->
+
+                        <!-- Role -->
+                        <label>Vai Trò</label>
+                        <div class="ui-g ui-fluid" style="margin-bottom:10px">
+                            <p-radioButton *ngFor="let role of allRoles" name="{{role}}" value="{{role.shortNameRole}}" label="{{role.fullNameRole}}"
+                                [(ngModel)]="account.Role" inputId="opt{{role.shortNameRole}}"></p-radioButton>
+                        </div>
+                        <!-- /Role -->
+
+                        <div class="panel-footer text-right">
+                            <a *ngIf="id == 0" (click)="addAccount()" class="btn btn-bordered btn-primary mb5"> Thêm Mới</a>
+                            <a *ngIf="id != 0" (click)="updateAccount()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
+
+                        </div>
+
+                        <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
+                            <i class="fa fa-reply"></i> Trở Về
+                        </a>
+
+                        <p-messages [(value)]="msgs"></p-messages>
+                    </form>
+
+                </div>
             </div>
-            <!-- /Status -->
-
-            <!-- Role -->
-            <label>Vai Trò</label>
-            <div class="ui-g ui-fluid" style="margin-bottom:10px">
-              <p-radioButton *ngFor="let role of allRoles" name="{{role}}" value="{{role.shortNameRole}}" label="{{role.fullNameRole}}" [(ngModel)]="account.Role" inputId="opt{{role.shortNameRole}}"></p-radioButton>
-            </div>
-            <!-- /Role -->
-
-            <div class="panel-footer text-right">
-              <a *ngIf="id == 0" (click)="addAccount()" class="btn btn-bordered btn-primary mb5"> Thêm Mới</a>
-              <a *ngIf="id != 0" (click)="updateAccount()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
-              <a class="btn btn-default btn-bordered mb5"> Huỷ</a>
-            </div>
-
-            <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
-              <i class="fa fa-reply"></i> Trở Về
-            </a>
-          </form>
-
         </div>
-      </div>
     </div>
-  </div>
 </div>
