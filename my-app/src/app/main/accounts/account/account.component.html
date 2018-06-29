@@ -33,7 +33,7 @@
 </p-dataTable>
 
 
-<p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400" (onAfterHide)="onDialogHide()">
+<p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400">
   <div class="ui-g" *ngIf="selectedAccount">
       <div class="ui-g-4"> Mã Nhân Viên: </div>
       <div class="ui-g-8">{{selectedAccount?.Id }}</div>

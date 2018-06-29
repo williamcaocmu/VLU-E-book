@@ -14,6 +14,7 @@ import { GuardLoginService } from './services/guard-login.service';
 import { ClassManagementComponent } from './main/academy-assistant/class-management/class-management.component';
 import { CourseManagementComponent } from './main/academy-assistant/course-management/course-management.component';
 import { ClassManagementDetailComponent } from './main/academy-assistant/class-management-detail/class-management-detail.component';
+import { ViewHistoryComponent } from './main/academy-assistant/view-history/view-history.component';
 
 export const routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -61,6 +62,10 @@ export const routes = [
                     {
                         path: 'course-management',
                         component: CourseManagementComponent
+                    },
+                    {
+                        path: 'view-history',
+                        component: ViewHistoryComponent
                     }
                 ]
             },

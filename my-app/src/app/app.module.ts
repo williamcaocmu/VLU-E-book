@@ -49,6 +49,7 @@ import { AcademyAssistantService } from './main/academy-assistant/academy-assist
 import {ChartModule} from 'primeng/chart';
 import {TreeTableModule} from 'primeng/treetable';
 import {InputMaskModule} from 'primeng/inputmask';
+import { ViewHistoryComponent } from './main/academy-assistant/view-history/view-history.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import {InputMaskModule} from 'primeng/inputmask';
     ClassManagementComponent,
     CourseManagementComponent,
     ClassManagementDetailComponent,
+    ViewHistoryComponent,
 
 
   ],
