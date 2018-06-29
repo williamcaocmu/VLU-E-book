@@ -3,7 +3,9 @@
     <h3>DANH SÁCH SINH VIÊN</h3>
 </div>
 
-<p-dataTable [value]="allStudents"  [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [globalFilter]="gb"  emptyMessage="Không tìm thấy kết quả"   selectionMode="multiple"  #dt [rows]="50" [metaKeySelection]="false" [reorderableColumns]="true" responsive="true" [resizableColumns]="true">
+<p-dataTable [value]="allStudents" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [globalFilter]="gb"
+    emptyMessage="Không tìm thấy kết quả" selectionMode="multiple" #dt [rows]="50" [metaKeySelection]="false" [reorderableColumns]="true"
+    responsive="true" [resizableColumns]="true">
     <!-- p-header -->
     <p-header>
         <div class="ui-helper-clearfix ">
@@ -13,7 +15,6 @@
                 download>
                 <i class="fa fa-download"></i> Tải mẫu danh sách sinh viên
             </a>
-
         </div>
     </p-header>
     <!--  / p-header -->
@@ -78,7 +79,7 @@
     <!-- file upload -->
     <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ" *ngIf="!dataResponseImportFile" mode="advanced"
         #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000" (uploadHandler)="myUploader($event)"
-         [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
+        [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
     <!-- / file upload -->
 
     <!-- datatable of return data upload file -->
