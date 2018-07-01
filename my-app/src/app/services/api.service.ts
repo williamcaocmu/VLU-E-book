@@ -7,8 +7,9 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class ApiService {
     access_token: string = "none";
-    host: string = "http://125.234.238.137:8080/CMU/K20T2/VLU/public/api/";
+    // host: string = "http://125.234.238.137:8080/CMU/K20T2/VLU/public/api/";
     // host: string = "http://10.11.27.115:8080/K20T2/VLU/public/api/";
+    host: string = "http://localhost:8000/api/";
 
     constructor(
         private http: Http,

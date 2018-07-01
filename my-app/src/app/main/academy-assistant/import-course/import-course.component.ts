@@ -9,18 +9,24 @@ import { AlertService } from "../../../services/alert.service";
     styleUrls: ["./import-course.component.css"]
 })
 export class ImportCourseComponent implements OnInit {
+    selectedCourse: any;
+    displayDialog: boolean = false;
     displayFile: boolean = false;
     dataResponseImportFile: any[];
     isImport: boolean;
     msgs: Message[] = [];
     nameFileImport: any;
+    sumCourses: number;
+    allCourses = [];
 
     constructor(
         private assistantService: AcademyAssistantService,
         private alertService: AlertService
     ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.loadData();
+    }
 
     showDialogFile() {
         this.displayFile = true;
@@ -28,9 +34,11 @@ export class ImportCourseComponent implements OnInit {
 
     myUploader(event) {
         this.assistantService
-            .postFile(event.files[0])
+            .postCourse(event.files[0])
             .then(res => {
                 this.dataResponseImportFile = res["Students"] as any;
+                this.sumCourses = res["SumCourses"] as any;
+                console.log(this.dataResponseImportFile);
                 if (res["ErrorCount"] > 0) {
                     this.isImport = false;
                     let str;
@@ -61,7 +69,7 @@ export class ImportCourseComponent implements OnInit {
 
     importFile() {
         this.assistantService
-            .importFile(this.nameFileImport)
+            .importCourse(this.nameFileImport)
             .then(res => {
                 this.alertService.success("Thêm thành công");
                 this.cancelImport();
@@ -76,5 +84,22 @@ export class ImportCourseComponent implements OnInit {
         this.dataResponseImportFile = null;
     }
 
-    loadData() {}
+    loadData() {
+        this.assistantService
+            .getAllCourses()
+            .then(res => {
+                this.allCourses = res as any;
+                console.log(this.allCourses);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    selectCourse(event: Event, course: any) {
+        console.log(course);
+        this.selectedCourse = course;
+        this.displayDialog = true;
+        event.preventDefault();
+    }
 }

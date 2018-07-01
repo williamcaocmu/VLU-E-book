@@ -53,6 +53,7 @@ import { ViewHistoryComponent } from "./main/academy-assistant/view-history/view
 import { InplaceModule } from "primeng/inplace";
 import { ImportCourseComponent } from "./main/academy-assistant/import-course/import-course.component";
 import { MenubarModule } from "primeng/menubar";
+import { CourseDetailComponent } from './main/academy-assistant/course-detail/course-detail.component';
 
 @NgModule({
     declarations: [
@@ -70,7 +71,8 @@ import { MenubarModule } from "primeng/menubar";
         CourseManagementComponent,
         ClassManagementDetailComponent,
         ViewHistoryComponent,
-        ImportCourseComponent
+        ImportCourseComponent,
+        CourseDetailComponent
     ],
     imports: [
         BrowserModule,

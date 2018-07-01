@@ -91,7 +91,6 @@ export class ClassManagementDetailComponent implements OnInit {
             .update(this.student)
             .then(() => this.alert.success("Cập Nhật Thành Công"))
             .catch(err => {
-                console.log(err.errors);
                 if (err.errors.student_id) {
                     this.msgs.push({
                         severity: "error",

@@ -16,6 +16,7 @@ import { CourseManagementComponent } from "./main/academy-assistant/course-manag
 import { ClassManagementDetailComponent } from "./main/academy-assistant/class-management-detail/class-management-detail.component";
 import { ViewHistoryComponent } from "./main/academy-assistant/view-history/view-history.component";
 import { ImportCourseComponent } from "./main/academy-assistant/import-course/import-course.component";
+import { CourseDetailComponent } from "./main/academy-assistant/course-detail/course-detail.component";
 
 export const routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -73,6 +74,10 @@ export const routes = [
                     {
                         path: "import-course",
                         component: ImportCourseComponent
+                    },
+                    {
+                        path: "course-detail/:id",
+                        component: CourseDetailComponent
                     }
                 ]
             },

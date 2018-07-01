@@ -56,12 +56,65 @@ export class AcademyAssistantService {
         });
     }
 
+    postCourse(data) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .postFile(data, "assistant/handleCourse")
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
+    }
+
     importFile(fileName: any) {
         return new Promise((resolve, reject) => {
             this.apiService
                 .get(`assistant/importFile/${fileName}`)
                 .then(res => resolve(res))
                 .catch(err => reject(err));
+        });
+    }
+
+    importCourse(fileName: any) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/importCourse/${fileName}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
+    }
+
+    getAllCourses() {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getAllCourses`)
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
+    }
+
+    updateCourse(data) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .post("assistant/updateCourse", data)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    getCourse(id) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getCourse/${id}`)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
         });
     }
 
