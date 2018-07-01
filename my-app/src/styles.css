@@ -4,26 +4,30 @@
 @import "~primeng/resources/primeng.min.css";
 @import "~animate.css/animate.css";
 #content-footer.affix {
-  margin-left: 0px;
+    margin-left: 0px;
 }
 
-.one-row-field{
-  margin: 15px 0px;
+.one-row-field {
+    margin: 15px 0px;
 }
 
-span.ui-float-label>input{
-  height: 40px;
+span.ui-float-label>input {
+    height: 40px;
 }
 
-:host >>> p-dataTable{
-  color: red;
+:host>>>p-dataTable {
+    color: red;
 }
 
-p-radioButton{
-  display: block;
-  margin: .7em
+p-radioButton {
+    display: block;
+    margin: .7em
 }
 
-p-dropdown{
-  height: 40px;
+p-dropdown {
+    height: 40px;
+}
+
+#content_wrapper {
+    margin-left: 0px;
 }

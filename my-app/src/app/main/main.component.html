@@ -1,253 +1,246 @@
 <div id="main">
-  <!-- -------------- Header  -------------- -->
-  <header class="navbar navbar-fixed-top bgc-light">
-    <div class="navbar-logo-wrapper" style="width: auto;">
-      <img src="../../assets/img/logoVLU.png" style="background-size: cover; height: 100%; background-position: center; background-repeat:no-repeat">
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown dropdown-fuse">
-        <div class="navbar-btn btn-group">
-          <button data-toggle="dropdown" class="btn dropdown-toggle">
-            <span class="fa fa-bell fs20 text-primary"></span>
-          </button>
-          <button data-toggle="dropdown" class="btn dropdown-toggle fs18 visible-xl">
-            8
-          </button>
-          <div class="dropdown-menu keep-dropdown w375 animated animated-shorter fadeIn" role="menu">
-            <div class="panel mbn">
-              <div class="panel-menu">
-                <span class="panel-icon">
-                  <i class="fa fa-tasks"></i>
-                </span>
-                <span class="panel-title fw600"> Activity reports</span>
-                <button class="btn btn-default light btn-xs btn-bordered pull-right" type="button">
-                  <i class="fa fa-refresh"></i>
-                </button>
-              </div>
-              <div class="panel-body panel-scroller scroller-navbar scroller-overlay scroller-pn pn">
-                <ol class="timeline-list">
-                  <li class="timeline-item">
-                    <div class="timeline-icon bg-dark light">
-                      <span class="fa fa-envelope"></span>
-                    </div>
-                    <div class="timeline-desc">
-                      <b>John Doe</b> Sent you a message.
-                      <a>View now</a>
-                    </div>
-                    <div class="timeline-date">11:15am</div>
-                  </li>
-                  <li class="timeline-item">
-                    <div class="timeline-icon bg-success">
-                      <span class="fa fa-info"></span>
-                    </div>
-                    <div class="timeline-desc">
-                      <b>Admin</b> created invoice for:
-                      <a>iPad Air</a>
-                    </div>
-                    <div class="timeline-date">6:26pm</div>
-                  </li>
-                  <li class="timeline-item">
-                    <div class="timeline-icon bg-success">
-                      <span class="fa fa-info"></span>
-                    </div>
-                    <div class="timeline-desc">
-                      <b>Admin</b> created invoice for:
-                      <a>iPhone 5s</a>
-                    </div>
-                    <div class="timeline-date">11:45am</div>
-                  </li>
-                  <li class="timeline-item">
-                    <div class="timeline-icon bg-dark light">
-                      <span class="fa fa-envelope"></span>
-                    </div>
-                    <div class="timeline-desc">
-                      <b>Lara Johnes</b> Sent you a message.
-                      <a>View now</a>
-                    </div>
-                    <div class="timeline-date">3:18pm</div>
-                  </li>
-                  <li class="timeline-item">
-                    <div class="timeline-icon bg-primary">
-                      <span class="fa fa-star"></span>
-                    </div>
-                    <div class="timeline-desc">
-                      <b>Richard Johnes</b> Added to wishlist:
-                      <a>iPhone 5c</a>
-                    </div>
-                    <div class="timeline-date">8:15am</div>
-                  </li>
-                  <li class="timeline-item">
-                    <div class="timeline-icon bg-success">
-                      <span class="fa fa-info"></span>
-                    </div>
-                    <div class="timeline-desc">
-                      <b>Admin</b> created invoice for:
-                      <a>Mac Pro</a>
-                    </div>
-                    <div class="timeline-date">9:29pm</div>
-                  </li>
-                  <li class="timeline-item">
-                    <div class="timeline-icon bg-primary">
-                      <span class="fa fa-star"></span>
-                    </div>
-                    <div class="timeline-desc">
-                      <b>Douglas Adams</b> Added to wishlist:
-                      <a>iPad 4</a>
-                    </div>
-                    <div class="timeline-date">3:05am</div>
-                  </li>
-                </ol>
+    <!-- Header bên dưới sẽ đc chọn -->
+    <!-- 
+<header id="topbar" class=" bg-dark">
+    <div class="topbar-left">
+        <ul class="nav nav-list nav-list-topbar pull-left">
+            <li class="active">
+                <a>Active Menu Link</a>
+            </li>
+            <li>
+                <a>Menu Link</a>
+            </li>
+            <li>
+                <a>Menu Link</a>
+            </li>
+            <li>
+                <a>Menu Link</a>
+            </li>
 
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="dropdown dropdown-fuse">
-        <a class="dropdown-toggle fw600" data-toggle="dropdown">
-          <span class="hidden-xs"> </span>
-          <span class="fa fa-caret-down hidden-xs mr15"></span>
-          <img src="assets/img/avatars/profile_avatar.jpg" alt="avatar" class="mw55">
-        </a>
-        <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
-          <li class="list-group-item">
-            <a class="animated animated-short fadeInUp">
-              <span class="fa fa-envelope-o"></span> Email
-              <span class="label label-warning">{{auth.Email}}</span>
-            </a>
-          </li>
-          <li class="dropdown-footer text-center">
-            <a (click)="logOut()" class="btn btn-primary btn-sm btn-bordered">
-              <span  class="fa fa-power-off pr5"></span> Đăng Xuất </a>
-          </li>
         </ul>
-      </li>
-      <li id="sidebar_top_toggle">
-        <span class="fa fa-caret-up"></span>
-      </li>
-    </ul>
-  </header>
-  <!-- -------------- /Header  -------------- -->
-
-  <!-- -------------- Sidebar  -------------- -->
-  <aside id="sidebar_left" class="affix">
-
-    <!-- -------------- Sidebar Left Wrapper  -------------- -->
-    <div class="sidebar-left-content nano-content">
-
-      <!-- -------------- Sidebar Menu  -------------- -->
-      <ul class="nav sidebar-menu">
-        <li *ngIf="setConfigAuthor(navConfig.tabAccount)" routerLinkActive="active">
-          <a [routerLink]="['/main/account']" routerLinkActive="menu-open" class="accordion-toggle">
-            <span class="fa fa-user"></span>
-            <span class="sidebar-title">Tài Khoản</span>
-            <span class="caret"></span>
-          </a>
-          <!-- <ul class="nav sub-nav">
-              <li>
-                <a>
-                  <span class="fa fa-file-text-o"></span> Layout 1 </a>
-              </li>
-            </ul> -->
-        </li>
-
-        <li *ngIf="setConfigAuthor(navConfig.tabLecturer)">
-          <a [routerLink]="['/main/lecturer']" routerLinkActive="active">
-            <span class="fa fa-dashboard"></span>
-            <span class="sidebar-title">Giảng Viên</span>
-            <span class="caret"></span>
-          </a>
-        </li>
-
-        <li *ngIf="setConfigAuthor(navConfig.tabStudent)">
-          <a [routerLink]="['/main/student']" routerLinkActive="active">
-            <span class="fa fa-dashboard"></span>
-            <span class="sidebar-title">Sinh Viên</span>
-            <span class="caret"></span>
-          </a>
-          <ul class="nav sub-nav">
-            <li>
-              <a>
-                <span class="fa fa-file-text-o"></span> Layout 1 </a>
-            </li>
-          </ul>
-        </li>
-
-        <li *ngIf="setConfigAuthor(navConfig.tabBoard)">
-          <a [routerLink]="['/main/dean']" routerLinkActive="active">
-            <span class="fa fa-dashboard"></span>
-            <span class="sidebar-title">Trưởng Khoa</span>
-            <span class="caret"></span>
-          </a>
-
-        </li>
-
-        <li *ngIf="setConfigAuthor(navConfig.tabAssistant)">
-          <a [routerLink]="['/main/assistant']" routerLinkActive="active">
-            <span class="fa fa-university"></span>
-            <span class="sidebar-title">Giáo Vụ</span>
-            <span class="caret"></span>
-          </a>
-          <ul class="nav sub-nav">
-            <li>
-              <a [routerLink]="['/main/assistant/class-management']">
-                <span class="fa fa-file-text-o"></span> Quản lí sinh viên </a>
-            </li>
-            <li>
-              <a [routerLink]="['/main/assistant/course-management']">
-                <span class="fa fa-file-text-o"></span> Quản lí khoá - lớp </a>
-            </li>
-            <li>
-                <a [routerLink]="['/main/assistant/view-history']">
-                  <span class="fa fa-file-text-o"></span> Lịch sử nhập File </a>
-              </li>
-          </ul>
-
-        </li>
-
-        <li *ngIf="setConfigAuthor(navConfig.tabOfficer)">
-          <a [routerLink]="['/main/student-service-officer']" routerLinkActive="active">
-            <span class="fa fa-building"></span>
-            <span class="sidebar-title">Công tác hỗ trợ Sinh Viên</span>
-            <span class="caret"></span>
-          </a>
-
-        </li>
-      </ul>
-      <!-- -------------- /Sidebar Menu  -------------- -->
-
     </div>
-    <!-- -------------- /Sidebar Left Wrapper  -------------- -->
-
-  </aside>
-
-  <!-- -------------- Main Wrapper -------------- -->
-  <section id="content_wrapper">
-
-    <!-- <header id="topbar" class="affix alt">
-      <div class="topbar-left">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-icon">
-            <a>
-              <span class="fa fa-home"></span>
-            </a>
-          </li>
-          <li class="breadcrumb-active">
-            <a>Tài Khoản</a>
-          </li>
-        </ol>
-      </div>
-      <div class="topbar-right">
-      </div>
-    </header> -->
+    <div class="topbar-right hidden-xs hidden-sm">
+        <a href="#" class="btn btn-default btn-sm light fw600 ml10 mt5">
+            <span class="fa fa-anchor pr5"></span> Button Link </a>
+        <a href="#" class="btn btn-default btn-sm light fw600 ml10 mt5">
+            <span class="fa fa-bullseye pr5"></span> Button Link </a>
+        <a href="#" class="btn btn-default btn-sm light fw600 ml10 mt5">
+            <span class="fa fa-external-link pr5"></span> Button Link </a>
+    </div>
+</header> -->
 
 
-    <!-- -------------- Content -------------- -->
-    <section id="content" class="table-layoutlayout">
-      <router-outlet></router-outlet>
+    <header class="navbar navbar-fixed-top bg-light">
+        <div class="navbar-logo-wrapper" style="width: auto;">
+            <img src="../../assets/img/logoVLU.png" style="background-size: cover; height: 100%; background-position: center; background-repeat:no-repeat">
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown dropdown-fuse">
+                <div class="navbar-btn btn-group">
+                    <button data-toggle="dropdown" class="btn dropdown-toggle">
+                        <span class="fa fa-bell fs20 text-primary"></span>
+                    </button>
+                    <button data-toggle="dropdown" class="btn dropdown-toggle fs18 visible-xl">
+                        8
+                    </button>
+                    <div class="dropdown-menu keep-dropdown w375 animated animated-shorter fadeIn" role="menu">
+                        <div class="panel mbn">
+                            <div class="panel-menu">
+                                <span class="panel-icon">
+                                    <i class="fa fa-tasks"></i>
+                                </span>
+                                <span class="panel-title fw600"> Activity reports</span>
+                                <button class="btn btn-default light btn-xs btn-bordered pull-right" type="button">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                            </div>
+                            <div class="panel-body panel-scroller scroller-navbar scroller-overlay scroller-pn pn">
+                                <ol class="timeline-list">
+                                    <li class="timeline-item">
+                                        <div class="timeline-icon bg-dark light">
+                                            <span class="fa fa-envelope"></span>
+                                        </div>
+                                        <div class="timeline-desc">
+                                            <b>John Doe</b> Sent you a message.
+                                            <a>View now</a>
+                                        </div>
+                                        <div class="timeline-date">11:15am</div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-icon bg-success">
+                                            <span class="fa fa-info"></span>
+                                        </div>
+                                        <div class="timeline-desc">
+                                            <b>Admin</b> created invoice for:
+                                            <a>iPad Air</a>
+                                        </div>
+                                        <div class="timeline-date">6:26pm</div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-icon bg-success">
+                                            <span class="fa fa-info"></span>
+                                        </div>
+                                        <div class="timeline-desc">
+                                            <b>Admin</b> created invoice for:
+                                            <a>iPhone 5s</a>
+                                        </div>
+                                        <div class="timeline-date">11:45am</div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-icon bg-dark light">
+                                            <span class="fa fa-envelope"></span>
+                                        </div>
+                                        <div class="timeline-desc">
+                                            <b>Lara Johnes</b> Sent you a message.
+                                            <a>View now</a>
+                                        </div>
+                                        <div class="timeline-date">3:18pm</div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-icon bg-primary">
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                        <div class="timeline-desc">
+                                            <b>Richard Johnes</b> Added to wishlist:
+                                            <a>iPhone 5c</a>
+                                        </div>
+                                        <div class="timeline-date">8:15am</div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-icon bg-success">
+                                            <span class="fa fa-info"></span>
+                                        </div>
+                                        <div class="timeline-desc">
+                                            <b>Admin</b> created invoice for:
+                                            <a>Mac Pro</a>
+                                        </div>
+                                        <div class="timeline-date">9:29pm</div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-icon bg-primary">
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                        <div class="timeline-desc">
+                                            <b>Douglas Adams</b> Added to wishlist:
+                                            <a>iPad 4</a>
+                                        </div>
+                                        <div class="timeline-date">3:05am</div>
+                                    </li>
+                                </ol>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown dropdown-fuse">
+                <a class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"> </span>
+                    <span class="fa fa-caret-down hidden-xs mr15"></span>
+                    <img src="assets/img/avatars/profile_avatar.jpg" alt="avatar" class="mw55">
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+                    <li class="list-group-item">
+                        <a class="animated animated-short fadeInUp">
+                            <span class="fa fa-envelope-o"></span> Email
+                            <span class="label label-warning">{{auth.Email}}</span>
+                        </a>
+                    </li>
+                    <li class="dropdown-footer text-center">
+                        <a (click)="logOut()" class="btn btn-primary btn-sm btn-bordered">
+                            <span class="fa fa-power-off pr5"></span> Đăng Xuất </a>
+                    </li>
+                </ul>
+            </li>
+            <li id="sidebar_top_toggle">
+                <span class="fa fa-caret-up"></span>
+            </li>
+        </ul>
+    </header>
+
+
+
+    <aside id="sidebar_left">
+        <div class="sidebar-left-content nano-content">
+            <ul class="nav sidebar-menu">
+                <li *ngIf="setConfigAuthor(navConfig.tabAccount)" routerLinkActive="active">
+                    <a [routerLink]="['/main/account']" routerLinkActive="menu-open" class="accordion-toggle">
+                        <span class="fa fa-user"></span>
+                        <span class="sidebar-title">Tài Khoản</span>
+                        <span class="caret"></span>
+                    </a>
+                </li>
+                <li *ngIf="setConfigAuthor(navConfig.tabLecturer)">
+                    <a [routerLink]="['/main/lecturer']" routerLinkActive="active">
+                        <span class="fa fa-dashboard"></span>
+                        <span class="sidebar-title">Giảng Viên</span>
+                        <span class="caret"></span>
+                    </a>
+                </li>
+                <li *ngIf="setConfigAuthor(navConfig.tabStudent)">
+                    <a [routerLink]="['/main/student']" routerLinkActive="active">
+                        <span class="fa fa-dashboard"></span>
+                        <span class="sidebar-title">Sinh Viên</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a>
+                                <span class="fa fa-file-text-o"></span> Layout 1 </a>
+                        </li>
+                    </ul>
+                </li>
+                <li *ngIf="setConfigAuthor(navConfig.tabBoard)">
+                    <a [routerLink]="['/main/dean']" routerLinkActive="active">
+                        <span class="fa fa-dashboard"></span>
+                        <span class="sidebar-title">Trưởng Khoa</span>
+                        <span class="caret"></span>
+                    </a>
+                </li>
+                <li *ngIf="setConfigAuthor(navConfig.tabAssistant)">
+                    <a [routerLink]="['/main/assistant']" routerLinkActive="active">
+                        <span class="fa fa-university"></span>
+                        <span class="sidebar-title">Giáo Vụ</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a [routerLink]="['/main/assistant/class-management']">
+                                <span class="fa fa-file-text-o"></span> Quản lí sinh viên </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/main/assistant/course-management']">
+                                <span class="fa fa-file-text-o"></span> Quản lí khoá - lớp </a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/main/assistant/import-course']">
+                                <span class="fa fa-file-text-o"></span> môn học</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/main/assistant/view-history']">
+                                <span class="fa fa-file-text-o"></span> Lịch sử nhập File </a>
+                        </li>
+                    </ul>
+                </li>
+                <li *ngIf="setConfigAuthor(navConfig.tabOfficer)">
+                    <a [routerLink]="['/main/student-service-officer']" routerLinkActive="active">
+                        <span class="fa fa-building"></span>
+                        <span class="sidebar-title">Công tác hỗ trợ Sinh Viên</span>
+                        <span class="caret"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+
+    <section id="content_wrapper">
+
+        <section id="content" class="table-layoutlayout">
+            <router-outlet></router-outlet>
+        </section>
+
     </section>
-    <!-- -------------- /Content -------------- -->
-  </section>
 
 </div>

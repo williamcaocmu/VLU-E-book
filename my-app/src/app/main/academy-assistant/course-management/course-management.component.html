@@ -6,67 +6,63 @@
 <div class="ui-g" style="margin-bottom: 40px">
     <!-- Create Grade -->
     <div class="ui-g-6">
-        <button pButton type="button" (click)="changeStateGrade()" label="{{isCreateGrade ? 'Huỷ': 'Tạo khối'}}" class="ui-button-warning"></button>
-        <div *ngIf="isCreateGrade" class="row" style="margin-top: 30px">
-            <span class="ui-float-label">
-                <input [(ngModel)]="grade.Name" name="addGrade" id="float-input" type="text" size="30" pInputText>
-                <label for="float-input">Nhập tên khối</label>
-            </span>
-        </div>
-        <div *ngIf="isCreateGrade" class="row" style="margin-top: 10px">
-            <button pButton type="button" (click)="addGrade()" label="Tạo" class="ui-button-primary"></button>
-            <p-messages [(value)]="msgsGrade"></p-messages>
-        </div>
-
+        <button pButton type="button" (click)="changeStateGrade()" label="{{isCreateGrade ? 'Huỷ': 'Tạo khoá'}}" class="ui-button-warning"></button>
     </div>
     <!-- / Create Grade -->
 
     <!-- Create Class -->
     <div class="ui-g-6">
         <button style="float:right" pButton type="button" (click)="changeStateClass()" label="Tạo lớp" class="ui-button-warning"></button>
-        <div *ngIf="isCreateClass" class="row" style="margin-top: 30px">
-            <div class="ui-g-4">
-                <p-dropdown placeholder="Chọn khối để tạo" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade"></p-dropdown>
-            </div>
-            <div class="ui-g-8">
-                <span class="ui-float-label">
-                    <input [(ngModel)]="class.Name" name="className" id="float-input" type="text" size="30" pInputText>
-                    <label for="float-input">Nhập tên lớp</label>
-                </span>
-            </div>
-        </div>
-        <div *ngIf="isCreateClass" class="row" style="margin-top: 10px">
-            <button [disabled]="!selectedGrade" pButton type="button" (click)="addClass()" label="Tạo" hiclass="ui-button-primary"></button>
-            <p-messages [(value)]="msgsClass"></p-messages>
-        </div>
+
     </div>
 
     <button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button>
     <!-- /Create Class -->
 </div>
-<!-- <p-dataTable [value]="allGrade" rowGroupMode="subheader" groupField="Name" expandableRowGroups="true" [sortableRowGroup]="false">
-  <p-header>Toggleable Row Groups with Footers</p-header>
-  <ng-template pTemplate="rowgroupheader" let-rowData>
-    <h5> {{rowData['Name']  }}</h5>
-  </ng-template>
-  <p-column *ngFor="let col of Class" field="Class" header="Khoá - Lớp">
-  </p-column>
-</p-dataTable> -->
+
+<p-accordion [multiple]="true">
+    <p-accordionTab class="ui-g-8 ui-g-offset-2" *ngFor="let grade of allGrade; let i = index" header="{{grade.Name}}">
+        <button (click)="showDialog(grade, z)" *ngFor="let z of grade.Class" pButton type="button" label="{{z.Name}}" class="ui-button-secondary"></button>
+
+    </p-accordionTab>
+</p-accordion>
+
+<!-- Dialog Edit thông tin class -->
+<p-dialog header="Thông tin lớp" [(visible)]="display" showEffect="fade" [modal]="true" width="500">
+    <div class="ui-g" *ngIf="selectedClassInfo">
+        <div class="ui-g-4"> Tên khối: </div>
+        <div class="ui-g-8">
+            {{selectedGradeInfo.Name}}
+        </div>
+        <div class="ui-g-4"> Tên lớp: </div>
+        <div class="ui-g-8">
+            {{selectedClassInfo.Name}}
+        </div>
+        <div *ngIf="editClassInfo" class="ui-g-4"> Tên lớp: </div>
+        <div *ngIf="editClassInfo" class="ui-g-8">
+            <input [(ngModel)]="classEdit.Name" name="classEdit" id="float-input" type="text" size="30" pInputText>
+        </div>
+        <button pButton (click)="editClassInfo = true
+        " type="button" label="Sửa" class="ui-button-primary"></button>
+        <button *ngIf="editClassInfo" pButton (click)="updateClass()" type="button" label="Xác Nhận" class="ui-button-primary"></button>
+        <p-dropdown placeholder="Chọn khối" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade" name="grades" (onChange)="changeGradeEdit($event.value)"></p-dropdown>
+    </div>
+</p-dialog>
+
 
 <p-dialog header="Gửi Danh Sách Sinh Viên " [(visible)]="displayFile" showEffect="fade" [modal]="true" width="900">
 
     <!-- file upload -->
     <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ" mode="advanced" #form name="myfile[]"
-        customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000" [style]="{'margin-bottom':'100px'}"
-        [accept]="'.xlsx'"> </p-fileUpload>
+        *ngIf="!dataResponseImportFile" (uploadHandler)="myUploader($event)" customUpload="true" showUploadButton="true" showCancelButton="true"
+        maxFileSize="10000000" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
     <!-- / file upload -->
 
     <!-- datatable of return data upload file -->
-
-    <p-dataTable resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true"
-        [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
+    <p-dataTable *ngIf="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+        [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
         <p-header>
-            <h3>Danh Sách Sinh Viên Từ File</h3>
+            <h3>Danh Sách Khoá Học Từ File</h3>
         </p-header>
         <!-- p-body -->
         <p-column field="Grade" header="Khối" [style]="{'overflow':'visible'}">
@@ -84,7 +80,7 @@
 
     </p-dataTable>
 
-    <div class="ui-g">
+    <div class="ui-g" *ngIf="dataResponseImportFile">
         <div class="ui-g-4 ui-g-offset-5">
             <p-message severity="error" text="File lỗi . Import File lại"></p-message>
             <button type="button" pButton label="Xác Nhận"></button>
@@ -94,49 +90,41 @@
     <!-- / datatable of return data upload file -->
 </p-dialog>
 
-<p-accordion [multiple]="true">
-    <p-accordionTab class="ui-g-8 ui-g-offset-2" *ngFor="let grade of allGrade; let i = index" header="{{grade.Name}}">
-        <button *ngFor="let z of grade.Class" pButton type="button" label="{{z.Name}}" class="ui-button-secondary"></button>
-    </p-accordionTab>
-</p-accordion>
 
-<p-dialog header="Gửi Danh Sách Sinh Viên " [(visible)]="displayFile" showEffect="fade" [modal]="true" width="900">
-
-    <!-- file upload -->
-    <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ" mode="advanced" #form name="myfile[]"
-        customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000" [style]="{'margin-bottom':'100px'}"
-        [accept]="'.xlsx'"> </p-fileUpload>
-    <!-- / file upload -->
-
-    <!-- datatable of return data upload file -->
-
-    <p-dataTable resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true"
-        [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
-        <p-header>
-            <h3>Danh Sách Sinh Viên Từ File</h3>
-        </p-header>
-        <!-- p-body -->
-        <p-column field="Grade" header="Khối" [style]="{'overflow':'visible'}">
-
-        </p-column>
-
-        <p-column field="Class" header="Lớp" [style]="{'overflow':'visible'}">
-        </p-column>
-
-        <p-column [sortable]="true" filterPlaceholder="Search" field="Student_id" header="Mã"></p-column>
-
-        <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
-        <p-column [sortable]="true" field="Gender" filterPlaceholder="Search" header="Phái"></p-column>
-        <!-- / p-body -->
-
-    </p-dataTable>
-
-    <div class="ui-g">
-        <div class="ui-g-4 ui-g-offset-5">
-            <p-message severity="error" text="File lỗi . Import File lại"></p-message>
-            <button type="button" pButton label="Xác Nhận"></button>
-            <button pButton type="button" label="Huỷ Bỏ" class="ui-button-secondary"></button>
+<!-- TẠO KHOÁ -->
+<p-dialog header="Tạo Khoá" [(visible)]="isCreateGrade" showEffect="fade" [modal]="true" width="500">
+    <div class="ui-g-8 ui-g-offset-2">
+        <div *ngIf=" isCreateGrade " class="row " style="margin-top: 15px ">
+            <span class="ui-float-label">
+                <input style="width: 100%" [(ngModel)]="grade.Name" name="addGrade" id="float-input" type="text" size="30" pInputText>
+                <label for="float-input">Nhập tên khối</label>
+            </span>
+        </div>
+        <div *ngIf="isCreateGrade" class="row" style="margin-top: 10px">
+            <button pButton type="button" (click)="addGrade()" label="Tạo" class="ui-button-primary"></button>
+            <p-messages [(value)]="msgsGrade"></p-messages>
         </div>
     </div>
-    <!-- / datatable of return data upload file -->
+</p-dialog>
+
+
+<!-- TẠO LỚP -->
+<p-dialog header="Tạo Lớp" [(visible)]="isCreateClass" showEffect="fade" [modal]="true" width="700">
+    <div class="ui-g-8 ui-g-offset-2" style="height: 320px;">
+        <div *ngIf="isCreateClass" class="row" style="margin-top: 30px">
+            <div class="ui-g-12">
+                <p-dropdown placeholder="Chọn khối để tạo" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade"></p-dropdown>
+            </div>
+            <div class="ui-g-12">
+                <span class="ui-float-label">
+                    <input style="width: 100%" [(ngModel)]="class.Name" name="className" id="float-input" type="text" size="30" pInputText>
+                    <label for="float-input">Nhập tên lớp</label>
+                </span>
+            </div>
+        </div>
+        <div *ngIf="isCreateClass" class="row" style="margin-top: 10px">
+            <button [disabled]="!selectedGrade" pButton type="button" (click)="addClass()" label="Tạo" hiclass="ui-button-primary"></button>
+            <p-messages [(value)]="msgsClass"></p-messages>
+        </div>
+    </div>
 </p-dialog>

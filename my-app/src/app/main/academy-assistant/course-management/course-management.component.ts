@@ -14,6 +14,21 @@ import { Message } from "primeng/components/common/api";
     styleUrls: ["./course-management.component.css"]
 })
 export class CourseManagementComponent implements OnInit {
+    classEdit = {
+        Id: "",
+        Name: "",
+        GradeId: ""
+    };
+    editClassInfo: boolean = false;
+    selectedClassInfo: any;
+    selectedGradeInfo: any;
+    display: boolean = false;
+    msgs: Message[] = [];
+    isSendFile: boolean = false;
+    isImport: boolean;
+    dataResponseImportFile: any[];
+    messageImportFile: any;
+    nameFileImport: any;
     msgsGrade: Message[] = [];
     msgsClass: Message[] = [];
     displayFile: boolean = false;
@@ -146,5 +161,66 @@ export class CourseManagementComponent implements OnInit {
 
     showDialogFile() {
         this.displayFile = true;
+    }
+
+    myUploader(event) {
+        this.assistantService
+            .postFile(event.files[0])
+            .then(res => {
+                this.dataResponseImportFile = res["Students"] as any;
+                if (res["ErrorCount"] > 0) {
+                    this.isImport = false;
+                    let str;
+                    res["Students"].map(x => {
+                        if (x.Error) {
+                            str = `Sinh viên ${x.Student_id} có lỗi : ${
+                                x.Error
+                            }`;
+                            this.msgs.push({
+                                severity: "error",
+                                summary: "LỖI : ",
+                                detail: str
+                            });
+                        }
+                    });
+                } else {
+                    this.isImport = true;
+                    this.nameFileImport = res["File"];
+                }
+            })
+            .catch(err => {
+                this.alertService.error(
+                    err.message + " Vui lòng chọn lại file"
+                );
+            });
+        this.msgs = [];
+    }
+
+    showDialog(grade, z) {
+        this.display = true;
+        console.log(grade, z);
+        this.selectedGradeInfo = grade;
+        this.selectedClassInfo = z;
+    }
+
+    updateClass() {
+        this.classEdit.Id = this.selectedClassInfo.Id;
+        if (!this.classEdit.GradeId) {
+            this.classEdit.GradeId = this.selectedGradeInfo.Id;
+        }
+
+        console.log(this.classEdit.GradeId);
+        this.assistantService
+            .updateClass(this.classEdit)
+            .then(res => {
+                this.alertService.success(res);
+            })
+            .catch(err => {
+                console.log(err.errors.Name);
+                this.alertService.error(JSON.stringify(err.errors.Name));
+            });
+    }
+    changeGradeEdit(e) {
+        this.classEdit.GradeId = e.Id;
     }
 }
