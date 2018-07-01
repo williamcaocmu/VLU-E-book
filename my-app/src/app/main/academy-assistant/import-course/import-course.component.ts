@@ -38,15 +38,15 @@ export class ImportCourseComponent implements OnInit {
             .then(res => {
                 this.dataResponseImportFile = res["Students"] as any;
                 this.sumCourses = res["SumCourses"] as any;
-                console.log(this.dataResponseImportFile);
-                if (res["ErrorCount"] > 0) {
+                console.log(res);
+                // console.log(this.dataResponseImportFile);
+                if (res["ErrorCouses"] > 0) {
                     this.isImport = false;
                     let str;
                     res["Students"].map(x => {
                         if (x.Error) {
-                            str = `Sinh viên ${x.Student_id} có lỗi : ${
-                                x.Error
-                            }`;
+                            console.log(x);
+                            str = `Khoá học ${x.Name} có lỗi : ${x.Error}`;
                             this.msgs.push({
                                 severity: "error",
                                 summary: "LỖI : ",
