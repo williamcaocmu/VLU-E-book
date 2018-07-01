@@ -1,3 +1,43 @@
-<p>
-  import-course works!
-</p>
+<button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button>
+
+<p-dialog header="Gửi Danh Sách Sinh Viên " [(visible)]="displayFile" showEffect="fade" [modal]="true" width="900">
+
+    <!-- file upload -->
+    <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ" mode="advanced" #form name="myfile[]"
+        *ngIf="!dataResponseImportFile" (uploadHandler)="myUploader($event)" customUpload="true" showUploadButton="true" showCancelButton="true"
+        maxFileSize="10000000" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
+    <!-- / file upload -->
+
+    <!-- datatable of return data upload file -->
+    <p-dataTable *ngIf="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+        [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
+        <p-header>
+            <h3>Danh Sách Khoá Học Từ File</h3>
+        </p-header>
+        <!-- p-body -->
+        <p-column field="Grade" header="Khối" [style]="{'overflow':'visible'}">
+
+        </p-column>
+
+        <p-column field="Class" header="Lớp" [style]="{'overflow':'visible'}">
+        </p-column>
+
+        <p-column [sortable]="true" filterPlaceholder="Search" field="Student_id" header="Mã"></p-column>
+
+        <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
+        <p-column [sortable]="true" field="Gender" filterPlaceholder="Search" header="Phái"></p-column>
+        <!-- / p-body -->
+
+    </p-dataTable>
+
+    <div class="ui-g" *ngIf="dataResponseImportFile">
+        <div *ngIf="!isImport" class="ui-g-12">
+            <p-messages [(value)]="msgs"></p-messages>
+        </div>
+        <div class="ui-g-4 ui-g-offset-5">
+            <button *ngIf="isImport" type="button" pButton label="Xác Nhận" (click)="importFile()"></button>
+            <button pButton type="button" (click)="cancelImport()" label="Huỷ Bỏ" class="ui-button-secondary"></button>
+        </div>
+    </div>
+    <!-- / datatable of return data upload file -->
+</p-dialog>
