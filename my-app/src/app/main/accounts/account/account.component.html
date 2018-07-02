@@ -1,53 +1,52 @@
 <p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
-<div class="row text-center">
-  <h3>DANH SÁCH TÀI KHOẢN</h3>
+<div class="row justify-content-center">
+    <h3>DANH SÁCH TÀI KHOẢN</h3>
 </div>
 
-<p-dataTable class="ui-g-12" [value]="accounts"  resizableColumns="true" 
-  [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]" [responsive]="true"  [globalFilter]="gb"
-   [resizableColumns]="true" emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true">
-  <p-header>
-    <div class="ui-helper-clearfix ">
-      <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
-      <i style="float:left" class="custome fa fa-search"></i>
-      <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/account',0]" label="Thêm "></button>
-    </div>
-  </p-header>
-  <p-footer class="footer" > Có tất cả {{accounts?.length || 0}} tài khoản  </p-footer>
-  <p-column [sortable]="true" filterPlaceholder="Search" field="StaffId" header="Mã Nhân Viên"></p-column>
-  <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
-  <p-column [sortable]="true" field="Role" filterPlaceholder="Search" header="Vai Trò"></p-column>
-  <p-column [sortable]="true" field="Phone1" filterPlaceholder="Search" header="Số Điện Thoại"></p-column>
-  <p-column [style]="{'width':'120px'}" field="Status" filterPlaceholder="Search" filterPlaceholder="Input True/False" header="Trạng Thái">
-    <ng-template let-col let-status="rowData" pTemplate="body">
-      <p-button class="ui-button-success" disabled *ngIf="status[col.field]" icon="fa fa-fw fa-check" label="Active"></p-button>
-      <button pButton type="button" *ngIf="!status[col.field]" [disabled]="true" class="ui-button-secondary" label="Deactive" icon="fa fa-fw fa-close"></button>
-    </ng-template>
-  </p-column>
-  <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
-    <ng-template let-col let-Id="rowData" pTemplate="body">
-      <button pButton icon="fa-pencil" [routerLink]="['/main/account', Id[col.field]]" type="button" class="ui-button-warning"></button>
-      <button pButton type="button" icon="fa-search" (click)="selectAccount($event, Id)"></button>
-    </ng-template>
-  </p-column>
+<p-dataTable class="ui-g-12" [value]="accounts" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]"
+    [responsive]="true" [globalFilter]="gb" [resizableColumns]="true" emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true">
+    <p-header>
+        <div class="ui-helper-clearfix ">
+            <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
+            <i style="float:left" class="custome fa fa-search"></i>
+            <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/account',0]" label="Thêm "></button>
+        </div>
+    </p-header>
+    <p-footer class="footer"> Có tất cả {{accounts?.length || 0}} tài khoản </p-footer>
+    <p-column [sortable]="true" filterPlaceholder="Search" field="StaffId" header="Mã Nhân Viên"></p-column>
+    <p-column [sortable]="true" field="Name" filterPlaceholder="Search" header="Họ Và Tên"></p-column>
+    <p-column [sortable]="true" field="Role" filterPlaceholder="Search" header="Vai Trò"></p-column>
+    <p-column [sortable]="true" field="Phone1" filterPlaceholder="Search" header="Số Điện Thoại"></p-column>
+    <p-column [style]="{'width':'120px'}" field="Status" filterPlaceholder="Search" filterPlaceholder="Input True/False" header="Trạng Thái">
+        <ng-template let-col let-status="rowData" pTemplate="body">
+            <p-button class="ui-button-success" disabled *ngIf="status[col.field]" icon="fa fa-fw fa-check" label="Active"></p-button>
+            <button pButton type="button" *ngIf="!status[col.field]" [disabled]="true" class="ui-button-secondary" label="Deactive" icon="fa fa-fw fa-close"></button>
+        </ng-template>
+    </p-column>
+    <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
+        <ng-template let-col let-Id="rowData" pTemplate="body">
+            <button pButton icon="fa-pencil" [routerLink]="['/main/account', Id[col.field]]" type="button" class="ui-button-warning"></button>
+            <button pButton type="button" icon="fa-search" (click)="selectAccount($event, Id)"></button>
+        </ng-template>
+    </p-column>
 </p-dataTable>
 
 
 <p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="400">
-  <div class="ui-g" *ngIf="selectedAccount">
-      <div class="ui-g-4"> Mã Nhân Viên: </div>
-      <div class="ui-g-8">{{selectedAccount?.Id }}</div>
+    <div class="ui-g" *ngIf="selectedAccount">
+        <div class="ui-g-4"> Mã Nhân Viên: </div>
+        <div class="ui-g-8">{{selectedAccount?.Id }}</div>
 
-      <div class="ui-g-4">Họ Và Tên: </div>
-      <div class="ui-g-8">{{selectedAccount?.Name}}</div>
+        <div class="ui-g-4">Họ Và Tên: </div>
+        <div class="ui-g-8">{{selectedAccount?.Name}}</div>
 
-      <div class="ui-g-4">Vai Trò: </div>
-      <div class="ui-g-8">{{selectedAccount?.Role}}</div>
+        <div class="ui-g-4">Vai Trò: </div>
+        <div class="ui-g-8">{{selectedAccount?.Role}}</div>
 
-      <div class="ui-g-4">Số Điện Thoại: </div>
-      <div class="ui-g-8">{{selectedAccount?.Phone1}}</div>
+        <div class="ui-g-4">Số Điện Thoại: </div>
+        <div class="ui-g-8">{{selectedAccount?.Phone1}}</div>
 
-      <div class="ui-g-4">Trạng Thái: </div>
-      <div class="ui-g-8">{{selectedAccount?.Status == 1 ? 'Active' : 'Deactive'}}</div>
-  </div>
+        <div class="ui-g-4">Trạng Thái: </div>
+        <div class="ui-g-8">{{selectedAccount?.Status == 1 ? 'Active' : 'Deactive'}}</div>
+    </div>
 </p-dialog>

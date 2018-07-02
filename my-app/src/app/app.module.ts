@@ -10,7 +10,6 @@ import { StudentComponent } from "./main/student/student.component";
 import { InputSwitchModule } from "primeng/inputswitch";
 import { FormsModule } from "@angular/forms";
 import { AccordionModule } from "primeng/accordion"; //accordion and accordion tab
-import { MenuItem } from "primeng/api";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToggleButtonModule } from "primeng/togglebutton";
 import { AcademyAssistantComponent } from "./main/academy-assistant/academy-assistant.component";
@@ -53,7 +52,8 @@ import { ViewHistoryComponent } from "./main/academy-assistant/view-history/view
 import { InplaceModule } from "primeng/inplace";
 import { ImportCourseComponent } from "./main/academy-assistant/import-course/import-course.component";
 import { MenubarModule } from "primeng/menubar";
-import { CourseDetailComponent } from './main/academy-assistant/course-detail/course-detail.component';
+import { CourseDetailComponent } from "./main/academy-assistant/course-detail/course-detail.component";
+import { SplitButtonModule } from "primeng/splitbutton";
 
 @NgModule({
     declarations: [
@@ -102,7 +102,8 @@ import { CourseDetailComponent } from './main/academy-assistant/course-detail/co
         AccordionModule,
         InputMaskModule,
         InplaceModule,
-        MenubarModule
+        MenubarModule,
+        SplitButtonModule
     ],
     providers: [
         AlertService,

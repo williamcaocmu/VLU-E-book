@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { LoginService } from "../login/login.service";
 import { MainService } from "./main.service";
+import { MenuItem } from "primeng/api";
 
 @Component({
     selector: "app-main",
@@ -12,6 +13,7 @@ import { MainService } from "./main.service";
     styleUrls: ["./main.component.css"]
 })
 export class MainComponent implements OnInit {
+    items: MenuItem[] = [];
     currentRole: any;
     navConfig = {
         tabAccount: ["admin"],
@@ -65,11 +67,10 @@ export class MainComponent implements OnInit {
     }
 
     logOut() {
+        this.router.navigate(["/login"]);
         this.cookieService.delete("cookie");
         this.cookieService.deleteAll();
-        this.router.navigate(["/login"]);
-        this.cookieService.deleteAll();
-        window.location.reload();
+        this.mainService.logOut();
     }
 
     getAuthor() {
@@ -79,6 +80,12 @@ export class MainComponent implements OnInit {
                 this.auth = res as any;
                 this.currentRole = this.auth.Role;
                 let currentRole = res["Role"];
+                console.log(this.auth);
+                this.items.push({
+                    label: this.auth.Email,
+                    icon: "fa-envelope"
+                });
+
                 // if (this.currentRole == 'admin') {
                 // 	this.router.navigate(['/main/account']);
                 // }

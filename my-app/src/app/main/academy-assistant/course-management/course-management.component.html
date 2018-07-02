@@ -1,22 +1,19 @@
 <p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
-<div class="row text-center">
+<div class="row justify-content-center">
     <h3>DANH SÁCH KHOÁ - LỚP</h3>
 </div>
 
 <div class="ui-g" style="margin-bottom: 40px">
     <!-- Create Grade -->
-    <div class="ui-g-6">
-        <button pButton type="button" (click)="changeStateGrade()" label="{{isCreateGrade ? 'Huỷ': 'Tạo khoá'}}" class="ui-button-warning"></button>
+    <div class="ui-g-12">
+        <button pButton type="button" (click)="changeStateGrade()" label="Tạo khoá" class="ui-button-warning"></button>
+        <button pButton type="button" (click)="changeStateClass()" label="Tạo lớp" class="ui-button-warning"></button>
     </div>
     <!-- / Create Grade -->
 
     <!-- Create Class -->
-    <div class="ui-g-6">
-        <button style="float:right" pButton type="button" (click)="changeStateClass()" label="Tạo lớp" class="ui-button-warning"></button>
 
-    </div>
 
-    <button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button>
     <!-- /Create Class -->
 </div>
 

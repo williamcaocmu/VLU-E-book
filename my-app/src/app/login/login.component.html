@@ -1,80 +1,82 @@
 <body class="utility-page sb-l-c sb-r-c">
 
-  <!-- -------------- Body Wrap  -------------- -->
-  <div id="main" class="animated fadeIn">
+    <!-- -------------- Body Wrap  -------------- -->
+    <div id="main" class="animated fadeIn">
 
-    <!-- -------------- Main Wrapper -------------- -->
-    <section id="content_wrapper">
+        <!-- -------------- Main Wrapper -------------- -->
+        <section id="content_wrapper">
 
-      <div id="canvas-wrapper">
-        <canvas id="demo-canvas"></canvas>
-      </div>
+            <div id="canvas-wrapper">
+                <canvas id="demo-canvas"></canvas>
+            </div>
 
-      <!-- -------------- Content -------------- -->
-      <section id="content">
+            <!-- -------------- Content -------------- -->
+            <section id="content">
 
-        <!-- -------------- Login Form -------------- -->
-        <div class="wow slideInLeft allcp-form theme-primary mw320" id="login" data-wow-duration="2s" data-wow-delay="s">
-          <!-- <div class="text-center"><img src="assets/img/logoVanLang.png" class="img-responsive img-rounded "
+                <!-- -------------- Login Form -------------- -->
+                <div class="wow slideInLeft allcp-form theme-primary mw320" id="login" data-wow-duration="2s" data-wow-delay="s">
+                    <!-- <div class="text-center"><img src="assets/img/logoVanLang.png" class="img-responsive img-rounded "
                                                      alt="Logo"/></div> -->
-          <div class="panel mw320">
+                    <div class="panel mw320">
 
-            <form (keydown)="keyDownFunction($event)" #loginForm="ngForm" method="POST" id="form-login">
-              <img src="../../assets/img/logoVanLang.png" class="img-responsive" alt="">
-              <div class="panel-body pn mv10">
-                <div class="ui-g ui-fluid one-row-field">
-                  <div class="ui-md-12">
-                    <span class="ui-float-label">
-                      <input [(ngModel)]="email" id="email" name="username" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                        required #emailLocal="ngModel" minlength="5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autofocus="autofocus">
-                      <label for="email"> Email</label>
-                    </span>
-                  </div>
-                  <div *ngIf="emailLocal.invalid && (emailLocal.dirty || emailLocal.touched)">
-                    <p-message *ngIf="emailLocal.errors.required" severity="error" text="Email bắt buộc nhập"></p-message>
-                    <p-message *ngIf="emailLocal.errors.pattern" severity="error" text="Email không đúng định dạng"></p-message>
-                  </div>
+                        <form (keydown)="keyDownFunction($event)" #loginForm="ngForm" method="POST" id="form-login">
+                            <img src="../../assets/img/logoVanLang.png" class="img-responsive" alt="">
+                            <div class="panel-body pn mv10">
+                                <div class="ui-g ui-fluid one-row-field">
+                                    <div class="ui-md-12">
+                                        <span class="ui-float-label">
+                                            <input [(ngModel)]="email" id="email" name="username" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                                required #emailLocal="ngModel" minlength="5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                                autofocus="autofocus">
+                                            <label for="email"> Email *</label>
+                                        </span>
+                                    </div>
+                                    <div *ngIf="emailLocal.invalid && (emailLocal.dirty || emailLocal.touched)">
+                                        <p-message *ngIf="emailLocal.errors.required" severity="error" text="Email bắt buộc nhập"></p-message>
+                                        <p-message *ngIf="emailLocal.errors.pattern" severity="error" text="Email không đúng định dạng"></p-message>
+                                    </div>
+                                </div>
+                                <div class="ui-g ui-fluid one-row-field">
+                                    <div class="ui-md-12">
+                                        <span class="ui-float-label">
+                                            <input [(ngModel)]="password" type="password" id="password" autocomplete="new-password" name="password" class="ui-inputtext ui-corner-all ui-state-default ui-widget" pInputText
+                                                required #passwordLocal="ngModel"  autofocus="autofocus">
+                                            <label for="password">Mật Khẩu *</label>
+                                        </span>
+                                    </div>
+                                    <div *ngIf="passwordLocal.invalid && (passwordLocal.dirty || passwordLocal.touched)">
+                                        <p-message *ngIf="passwordLocal.errors.required" severity="error" text="Mật khẩu bắt buộc nhập"></p-message>
+                                    </div>
+                                </div>
+                              
+                                <div *ngIf='hasError' class="ui-g ui-fluid one-row-field">
+                                    <div class="ui-md-12">
+                                        <span class="ui-float-label">
+                                            <p-message severity="error" text="Thông tin chưa chính xác . Vui lòng nhập lại !!!"></p-message>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="radio-custom radio-primary mb5 lh25 section">
+                                    <a style="cursor: pointer;">Quên Mật Khẩu</a>
+                                    <a  class="btn btn-bordered btn-primary pull-right" (click)="login()">Đăng Nhập</a>
+                                </div>
+                                <!-- -------------- /section -------------- -->
+
+                            </div>
+                            <!-- -------------- /Form -------------- -->
+                        </form>
+                    </div>
+                    <!-- -------------- /Panel -------------- -->
                 </div>
-                <div class="ui-g ui-fluid one-row-field">
-                  <div class="ui-md-12">
-                    <span class="ui-float-label">
-                      <input [(ngModel)]="password" type="password" id="password" autocomplete="new-password" name="password" pPassword class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                        required #passwordLocal="ngModel">
-                      <label for="password">Mật Khẩu</label>
-                    </span>
-                  </div>
-                  <div *ngIf="passwordLocal.invalid && (passwordLocal.dirty || passwordLocal.touched)">
-                    <p-message *ngIf="passwordLocal.errors.required" severity="error" text="Mật khẩu bắt buộc nhập"></p-message>
-                  </div>
-                </div>
-                <div *ngIf='hasError' class="ui-g ui-fluid one-row-field">
-                  <div class="ui-md-12">
-                    <span class="ui-float-label">
-                      <p-message severity="error" text="Thông tin chưa chính xác . Vui lòng nhập lại !!!"></p-message>
-                    </span>
-                  </div>
-                </div>
-                <div class="radio-custom radio-primary mb5 lh25 section">
-                  <a style="cursor: pointer;">Quên Mật Khẩu</a>
-                  <a   class="btn btn-bordered btn-primary pull-right" (click)="login()">Đăng Nhập</a>
-                </div>
-                <!-- -------------- /section -------------- -->
+                <!-- -------------- /Spec Form -------------- -->
 
-              </div>
-              <!-- -------------- /Form -------------- -->
-            </form>
-          </div>
-          <!-- -------------- /Panel -------------- -->
-        </div>
-        <!-- -------------- /Spec Form -------------- -->
+            </section>
+            <!-- -------------- /Content -------------- -->
 
-      </section>
-      <!-- -------------- /Content -------------- -->
+        </section>
+        <!-- -------------- /Main Wrapper -------------- -->
 
-    </section>
-    <!-- -------------- /Main Wrapper -------------- -->
-
-  </div>
+    </div>
 
 
 </body>

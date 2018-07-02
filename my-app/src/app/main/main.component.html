@@ -1,35 +1,35 @@
 <div id="main">
     <!-- Header bên dưới sẽ đc chọn -->
+
+    <header id="topbar" class=" bg-dark">
+        <div class="topbar-left">
+            <ul *ngIf="setConfigAuthor(navConfig.tabAssistant)" class="nav nav-list nav-list-topbar pull-left">
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/main/assistant/class-management']"> Quản lí sinh viên</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/main/assistant/course-management']"> Quản lí khoá lớp</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/main/assistant/import-course']">Quản lí môn học</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/main/assistant/view-history']">Lịch sử nhập file</a>
+                </li>
+            </ul>
+            <ul *ngIf="setConfigAuthor(navConfig.tabAccount)" class="nav nav-list nav-list-topbar pull-left">
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/main/account']"> Quản lí tài khoản</a>
+                </li>
+            </ul>
+        </div>
+        <div class="topbar-right dropdown">
+            <!-- <button (click)="logOut()" pButton label="Logout" icon="fa fa-sign-out"></button> -->
+            <p-splitButton label="Đăng Xuất" styleClass="ui-button-secondary" icon=" a fa-sign-out " (onClick)="logOut()" dir="rtl" [model]="items"></p-splitButton>
+        </div>
+    </header>
+
     <!-- 
-<header id="topbar" class=" bg-dark">
-    <div class="topbar-left">
-        <ul class="nav nav-list nav-list-topbar pull-left">
-            <li class="active">
-                <a>Active Menu Link</a>
-            </li>
-            <li>
-                <a>Menu Link</a>
-            </li>
-            <li>
-                <a>Menu Link</a>
-            </li>
-            <li>
-                <a>Menu Link</a>
-            </li>
-
-        </ul>
-    </div>
-    <div class="topbar-right hidden-xs hidden-sm">
-        <a href="#" class="btn btn-default btn-sm light fw600 ml10 mt5">
-            <span class="fa fa-anchor pr5"></span> Button Link </a>
-        <a href="#" class="btn btn-default btn-sm light fw600 ml10 mt5">
-            <span class="fa fa-bullseye pr5"></span> Button Link </a>
-        <a href="#" class="btn btn-default btn-sm light fw600 ml10 mt5">
-            <span class="fa fa-external-link pr5"></span> Button Link </a>
-    </div>
-</header> -->
-
-
     <header class="navbar navbar-fixed-top bg-light">
         <div class="navbar-logo-wrapper" style="width: auto;">
             <img src="../../assets/img/logoVLU.png" style="background-size: cover; height: 100%; background-position: center; background-repeat:no-repeat">
@@ -232,7 +232,7 @@
                 </li>
             </ul>
         </div>
-    </aside>
+    </aside> -->
 
 
     <section id="content_wrapper">
