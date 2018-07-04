@@ -3,12 +3,13 @@
 
     <header id="topbar" class=" bg-dark">
         <div class="topbar-left">
+            <!-- Assistant -->
             <ul *ngIf="setConfigAuthor(navConfig.tabAssistant)" class="nav nav-list nav-list-topbar pull-left">
                 <li routerLinkActive="active">
                     <a [routerLink]="['/main/assistant/class-management']"> Quản lí sinh viên</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a [routerLink]="['/main/assistant/course-management']"> Quản lí khoá lớp</a>
+                    <a [routerLink]="['/main/assistant/course-management']"> Quản lí khoá - lớp</a>
                 </li>
                 <li routerLinkActive="active">
                     <a [routerLink]="['/main/assistant/import-course']">Quản lí môn học</a>
@@ -17,6 +18,8 @@
                     <a [routerLink]="['/main/assistant/view-history']">Lịch sử nhập file</a>
                 </li>
             </ul>
+
+            <!-- Admin -->
             <ul *ngIf="setConfigAuthor(navConfig.tabAccount)" class="nav nav-list nav-list-topbar pull-left">
                 <li routerLinkActive="active">
                     <a [routerLink]="['/main/account']"> Quản lí tài khoản</a>

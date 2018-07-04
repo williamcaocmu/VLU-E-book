@@ -27,7 +27,7 @@
 <!-- Dialog Edit thông tin class -->
 <p-dialog header="Thông tin lớp" [(visible)]="display" showEffect="fade" [modal]="true" width="500">
     <div class="ui-g" *ngIf="selectedClassInfo">
-        <div class="ui-g-4"> Tên khối: </div>
+        <div class="ui-g-4"> Tên khoá: </div>
         <div class="ui-g-8">
             {{selectedGradeInfo.Name}}
         </div>
@@ -42,7 +42,7 @@
         <button pButton (click)="editClassInfo = true
         " type="button" label="Sửa" class="ui-button-primary"></button>
         <button *ngIf="editClassInfo" pButton (click)="updateClass()" type="button" label="Xác Nhận" class="ui-button-primary"></button>
-        <p-dropdown placeholder="Chọn khối" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade" name="grades" (onChange)="changeGradeEdit($event.value)"></p-dropdown>
+        <p-dropdown placeholder="Chọn khoá" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade" name="grades" (onChange)="changeGradeEdit($event.value)"></p-dropdown>
     </div>
 </p-dialog>
 
@@ -62,7 +62,7 @@
             <h3>Danh Sách Khoá Học Từ File</h3>
         </p-header>
         <!-- p-body -->
-        <p-column field="Grade" header="Khối" [style]="{'overflow':'visible'}">
+        <p-column field="Grade" header="Khoá" [style]="{'overflow':'visible'}">
 
         </p-column>
 
@@ -94,7 +94,7 @@
         <div *ngIf=" isCreateGrade " class="row " style="margin-top: 15px ">
             <span class="ui-float-label">
                 <input style="width: 100%" [(ngModel)]="grade.Name" name="addGrade" id="float-input" type="text" size="30" pInputText>
-                <label for="float-input">Nhập tên khối</label>
+                <label for="float-input">Nhập tên khoá</label>
             </span>
         </div>
         <div *ngIf="isCreateGrade" class="row" style="margin-top: 10px">
@@ -110,7 +110,7 @@
     <div class="ui-g-8 ui-g-offset-2" style="height: 320px;">
         <div *ngIf="isCreateClass" class="row" style="margin-top: 30px">
             <div class="ui-g-12">
-                <p-dropdown placeholder="Chọn khối để tạo" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade"></p-dropdown>
+                <p-dropdown placeholder="Chọn khoá để tạo" [options]="allGrade" optionLabel="Name" [(ngModel)]="selectedGrade"></p-dropdown>
             </div>
             <div class="ui-g-12">
                 <span class="ui-float-label">

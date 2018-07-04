@@ -6,7 +6,7 @@ import { RequestOptions, Http } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/Rx";
 import { ApiService } from "../../../services/api.service";
-import {Message} from 'primeng/components/common/api';
+import { Message } from "primeng/components/common/api";
 
 @Component({
     selector: "app-class-management",
@@ -62,8 +62,10 @@ export class ClassManagementComponent implements OnInit {
                         x["displayGender"] = "Nữ";
                     }
                 });
-
-                this.allStudents.map(x => console.log(x.displayGender));
+                let index = 0;
+                this.allStudents.map(x => {
+                    x["STT"] = ++index;
+                });
 
                 let Grades = this.allStudents.map(x => x.Grade);
                 this.allGrade = Grades.filter(
@@ -117,11 +119,16 @@ export class ClassManagementComponent implements OnInit {
                     let str;
                     res["Students"].map(x => {
                         if (x.Error) {
-                            str = `Sinh viên ${x.Student_id} có lỗi : ${x.Error}`;
-                            this.msgs.push({severity:'error',summary:'LỖI : ',detail:str});
+                            str = `Sinh viên ${x.Student_id} có lỗi : ${
+                                x.Error
+                            }`;
+                            this.msgs.push({
+                                severity: "error",
+                                summary: "LỖI : ",
+                                detail: str
+                            });
                         }
-                    } 
-                );  
+                    });
                 } else {
                     this.isImport = true;
                     this.nameFileImport = res["File"];
@@ -132,7 +139,7 @@ export class ClassManagementComponent implements OnInit {
                     err.message + " Vui lòng chọn lại file"
                 );
             });
-            this.msgs = [];
+        this.msgs = [];
     }
 
     changeImportFileExcel() {
