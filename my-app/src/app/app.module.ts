@@ -54,6 +54,7 @@ import { ImportCourseComponent } from "./main/academy-assistant/import-course/im
 import { MenubarModule } from "primeng/menubar";
 import { CourseDetailComponent } from "./main/academy-assistant/course-detail/course-detail.component";
 import { SplitButtonModule } from "primeng/splitbutton";
+import { EducationPlanComponent } from './main/academy-assistant/education-plan/education-plan.component';
 
 @NgModule({
     declarations: [
@@ -72,7 +73,8 @@ import { SplitButtonModule } from "primeng/splitbutton";
         ClassManagementDetailComponent,
         ViewHistoryComponent,
         ImportCourseComponent,
-        CourseDetailComponent
+        CourseDetailComponent,
+        EducationPlanComponent
     ],
     imports: [
         BrowserModule,

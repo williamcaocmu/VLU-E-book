@@ -61,8 +61,7 @@
         <div class="ui-helper-clearfix ">
             <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
             <button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button>
-            <a style="color:green ; float:right; margin: 0 10px" href="../../../../assets/files/DanhSachSinhVien.xlsx" target="_self"
-                download>
+            <a style="color:green ; float:right; margin: 0 10px" href="../../../../assets/files/MonHoc.xlsx" target="_self" download>
                 <i class="fa fa-download"></i> Tải mẫu môn học
             </a>
         </div>
@@ -88,9 +87,10 @@
     <p-column field="TH" header="TH" [style]="{'width':'100px'}">
     </p-column>
 
-    <p-column [style]="{'width':'50px'}" field="Id" header="Sửa">
+    <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
         <ng-template let-course="rowData" pTemplate="body">
             <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
+            <button pButton (click)="deleteCourse(course)" icon="fa-trash" type="button" class="ui-button-danger"></button>
         </ng-template>
 
     </p-column>

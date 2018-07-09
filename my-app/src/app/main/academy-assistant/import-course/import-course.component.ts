@@ -102,4 +102,8 @@ export class ImportCourseComponent implements OnInit {
         this.displayDialog = true;
         event.preventDefault();
     }
+
+    deleteCourse(course) {
+        console.log(course);
+    }
 }

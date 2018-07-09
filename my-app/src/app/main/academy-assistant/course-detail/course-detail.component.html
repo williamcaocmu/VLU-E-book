@@ -38,6 +38,16 @@
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
+                                    <input [(ngModel)]="course.DVHT" id="float-input-hvhttc" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                        name="HVHTTC">
+                                    <label for="float-input-name"> DHVHTC</label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label ">
                                     <input [(ngModel)]="course.TongTiet" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
                                         name="TongTiet">
                                     <label for="float-input-name"> Tổng Tiết</label>
@@ -78,8 +88,7 @@
                         <p-messages [(value)]="msgs"></p-messages>
 
                         <div class="panel-footer text-right">
-                            <a class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
-
+                            <a (click)="updateCourse()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
                         </div>
 
                         <a [routerLink]="['/main/assistant/class-management']" class="btn btn-bordered btn-danger mb5">

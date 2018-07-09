@@ -29,7 +29,8 @@ export class CourseDetailComponent implements OnInit {
         TongTiet: "",
         LT: "",
         BT: "",
-        TH: ""
+        TH: "",
+        DVHT: ""
     };
     constructor(
         private assistantService: AcademyAssistantService,
@@ -45,6 +46,7 @@ export class CourseDetailComponent implements OnInit {
                     .getCourse(this.Id)
                     .then(res => {
                         this.course = res as any;
+                        console.log('course info',res);
                     })
                     .catch(err => {
                         // if (err.errors.student_id) {
