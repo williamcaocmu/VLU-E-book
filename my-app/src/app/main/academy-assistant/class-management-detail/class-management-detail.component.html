@@ -64,26 +64,17 @@
                         </div>
                         <!--/ Gender -->
 
-                        <!-- Grade -->
+                        <!-- Class -->
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
-                                <div class="ui-g-6">
-                                    <label>Khối</label>
-                                    <!-- <p-dropdown name="grade"  [options]="allGrades" optionLabel="Name" [(ngModel)]="selectedGrade" (onChange)="onchange($event.value)"></p-dropdown> -->
-                                    <p-dropdown placeholder="Chọn khối" [options]="allGrades" optionLabel="Name" [(ngModel)]="selectedGrade" name="grades" (onChange)="changeGrade($event.value)"></p-dropdown>
-                                </div>
-                                <div class="ui-g-6">
-                                    <label>Lớp</label>
-                                    <p-dropdown name="class" placeholder="Chọn lớp" [options]="allClasses" (onChange)="changeClass($event.value)" optionLabel="Name"
-                                        [(ngModel)]="selectedClass"></p-dropdown>
-                                </div>
+                                <label>Lớp</label>
+                                <p-dropdown name="class" placeholder="Chọn lớp" [options]="allClasses" (onChange)="changeClass($event.value)" optionLabel="Name"
+                                    [(ngModel)]="selectedClass"></p-dropdown>
                             </div>
                         </div>
-                        <!--/ Grade -->
-
-                        <!-- Class -->
-
                         <!--/ Class -->
+
+
 
                         <p-messages [(value)]="msgs"></p-messages>
 

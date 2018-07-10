@@ -15,7 +15,7 @@ export class AlertService {
         });
     }
 
-    error(message: string) {
+    error(message) {
         swal({
             position: "bottom-right",
             type: "error",
@@ -25,21 +25,19 @@ export class AlertService {
         });
     }
 
-    confirm(message: string) {
+    confirm(message) {
         return new Promise((resolve, reject) => {
             swal({
-                title: "Comfirm",
+                title: "Xác Nhận",
                 text: message,
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes",
-                cancelButtonText: "No"
+                confirmButtonText: "Có",
+                cancelButtonText: "Không"
             }).then(result => {
-                console.log(result);
                 if (result.value) resolve();
-                else reject();
             });
         });
     }

@@ -24,8 +24,8 @@ p-radioButton {
     margin: .7em
 }
 
-p-dropdown {
-    height: 40px;
+.ui-dropdown {
+    height: 40px !important;
 }
 
 #content_wrapper {

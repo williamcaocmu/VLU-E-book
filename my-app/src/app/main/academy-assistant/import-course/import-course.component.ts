@@ -104,6 +104,17 @@ export class ImportCourseComponent implements OnInit {
     }
 
     deleteCourse(course) {
-        console.log(course);
+        this.alertService
+            .confirm("Bạn có chắc muốn xoá !!!")
+            .then(res => {
+                this.assistantService
+                    .deleteCourse(course.Id)
+                    .then(res => {
+                        this.alertService.success(res["message"]);
+                        this.loadData();
+                    })
+                    .catch(err => this.alertService.error(err));
+            })
+            .catch(err => this.alertService.error(err));
     }
 }

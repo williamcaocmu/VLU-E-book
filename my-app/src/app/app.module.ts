@@ -54,7 +54,8 @@ import { ImportCourseComponent } from "./main/academy-assistant/import-course/im
 import { MenubarModule } from "primeng/menubar";
 import { CourseDetailComponent } from "./main/academy-assistant/course-detail/course-detail.component";
 import { SplitButtonModule } from "primeng/splitbutton";
-import { EducationPlanComponent } from './main/academy-assistant/education-plan/education-plan.component';
+import { EducationPlanComponent } from "./main/academy-assistant/education-plan/education-plan.component";
+import { PickListModule } from "primeng/picklist";
 
 @NgModule({
     declarations: [
@@ -105,7 +106,8 @@ import { EducationPlanComponent } from './main/academy-assistant/education-plan/
         InputMaskModule,
         InplaceModule,
         MenubarModule,
-        SplitButtonModule
+        SplitButtonModule,
+        PickListModule
     ],
     providers: [
         AlertService,

@@ -1,3 +1,37 @@
-<p>
-  education-plan works!
-</p>
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-6">
+        <p-dropdown [options]="" [(ngModel)]="grades" placeholder="Chọn khoá" optionLabel="name"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+        <p-dropdown [options]="" [(ngModel)]="semester" placeholder="Chọn học kì" optionLabel="name"></p-dropdown>
+    </div>
+
+    <div class="ui-g-12" style="margin: 35px">
+        <p-pickList [source]="allCourses" [target]="targetCars" sourceHeader="Danh sách môn học" targetHeader="Môn học được chọn"
+            [responsive]="true" filterBy="name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
+            targetFilterPlaceholder="Tìm môn học..." [sourceStyle]="{'height':'400px'}" [targetStyle]="{'height':'400px'}">
+            <ng-template let-car pTemplate="item">
+                <div class="ui-helper-clearfix">
+                    <div style="font-size:14px;float: left;margin:10px 5px 0 5px;">{{car.id}} - {{car.name}}</div>
+                </div>
+            </ng-template>
+        </p-pickList>
+    </div>
+
+    <div class="ui-g-12 ui-md-4">
+        <p-dropdown [options]="" [(ngModel)]="semester" placeholder="Chọn học kì" optionLabel="name"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-md-4">
+        <span class="ui-float-label">
+            <input id="float-input" type="text" size="30" pInputText>
+            <label for="float-input">Username</label>
+        </span>
+    </div>
+    <div class="ui-g-12 ui-md-4">
+        <span class="ui-float-label">
+            <input id="float-input" type="text" size="30" pInputText>
+            <label for="float-input">Username</label>
+        </span>
+    </div>
+
+</div>

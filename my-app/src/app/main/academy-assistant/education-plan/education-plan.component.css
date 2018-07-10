@@ -1,0 +1,19 @@
+.ui-dropdown {
+    width: 100% !important;
+}
+
+.ui-picklist-caption {
+    background: #2a2f43;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+
+.ui-picklist-buttons button {
+    height: 35px;
+}
+
+.ui-inputtext {
+    width: 100%;
+}

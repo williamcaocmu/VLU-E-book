@@ -25,12 +25,12 @@ export class CourseDetailComponent implements OnInit {
         Id: "",
         MaMH: "",
         Name: "",
-        Code: "",
         TongTiet: "",
         LT: "",
         BT: "",
         TH: "",
-        DVHT: ""
+        DVHT: "",
+        HK : ""
     };
     constructor(
         private assistantService: AcademyAssistantService,
@@ -46,7 +46,7 @@ export class CourseDetailComponent implements OnInit {
                     .getCourse(this.Id)
                     .then(res => {
                         this.course = res as any;
-                        console.log('course info',res);
+                        console.log(res);
                     })
                     .catch(err => {
                         // if (err.errors.student_id) {

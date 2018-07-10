@@ -38,9 +38,9 @@
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.DVHT" id="float-input-hvhttc" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="HVHTTC">
-                                    <label for="float-input-name"> DHVHTC</label>
+                                    <input [(ngModel)]="course.DVHT" id="float-input-hvhttc" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                        name="DVHT">
+                                    <label for="float-input-hvhttc"> DHVHTC</label>
                                 </span>
                             </div>
                         </div>
@@ -48,7 +48,17 @@
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.TongTiet" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                    <input [(ngModel)]="course.HK" id="float-input-hk" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                        name="HK">
+                                    <label for="float-input-hk"> Học Kì</label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label ">
+                                    <input [(ngModel)]="course.TongTiet" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
                                         name="TongTiet">
                                     <label for="float-input-name"> Tổng Tiết</label>
                                 </span>
@@ -58,7 +68,7 @@
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.BT" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                    <input [(ngModel)]="course.BT" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
                                         name="BT">
                                     <label for="float-input-name"> Bài Tập</label>
                                 </span>
@@ -68,7 +78,7 @@
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.LT" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                    <input [(ngModel)]="course.LT" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
                                         name="LT">
                                     <label for="float-input-name"> Lý Thuyết</label>
                                 </span>
@@ -78,7 +88,7 @@
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.TH" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                    <input [(ngModel)]="course.TH" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
                                         name="TH">
                                     <label for="float-input-name"> Thực Hành</label>
                                 </span>

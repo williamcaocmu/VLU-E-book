@@ -37,7 +37,7 @@ export class AcademyAssistantService {
     getListClasses() {
         return new Promise((resolve, reject) => {
             this.apiService
-                .get("assistant/getAllGrades")
+                .get("assistant/getAllClasses")
                 .then(res => {
                     resolve(res);
                 })
@@ -110,6 +110,19 @@ export class AcademyAssistantService {
         return new Promise((resolve, reject) => {
             this.apiService
                 .get(`assistant/getCourse/${id}`)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    deleteCourse(id) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/deleteCourse/${id}`)
                 .then(res => {
                     resolve(res);
                 })
