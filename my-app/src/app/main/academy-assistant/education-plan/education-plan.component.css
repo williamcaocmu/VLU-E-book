@@ -1,7 +1,3 @@
-.ui-dropdown {
-    width: 100% !important;
-}
-
 .ui-picklist-caption {
     background: #2a2f43;
     font-size: 20px;
@@ -14,6 +10,35 @@
     height: 35px;
 }
 
-.ui-inputtext {
-    width: 100%;
+.ui-steps .ui-steps-item {
+    width: 33%;
+    font-size: 17px;
+}
+
+.ui-steps.steps-custom {
+    margin-bottom: 30px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 50px;
+    border-radius: 50%;
+    margin-top: -30px;
+    margin-bottom: 10px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+    color: #555555;
+}
+
+
+.ui-dropdown-label.ui-inputtext{
+    height: 38px;
 }

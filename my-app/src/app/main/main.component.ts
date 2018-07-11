@@ -6,6 +6,7 @@ import { ApiService } from "../services/api.service";
 import { LoginService } from "../login/login.service";
 import { MainService } from "./main.service";
 import { MenuItem } from "primeng/api";
+import { AlertService } from "../services/alert.service";
 
 @Component({
     selector: "app-main",
@@ -49,7 +50,8 @@ export class MainComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private apiService: ApiService,
         private loginService: LoginService,
-        private mainService: MainService
+        private mainService: MainService,
+        private alert: AlertService
     ) {}
     ngOnInit() {
         this.getAuthor();
@@ -67,10 +69,12 @@ export class MainComponent implements OnInit {
     }
 
     logOut() {
-        this.router.navigate(["/login"]);
-        this.cookieService.delete("cookie");
-        this.cookieService.deleteAll();
-        this.mainService.logOut();
+        this.alert.confirm("Bạn có muốn đăng xuất").then(() => {
+            this.router.navigate(["/login"]);
+            this.cookieService.delete("cookie");
+            this.cookieService.deleteAll();
+            this.mainService.logOut();
+        });
     }
 
     getAuthor() {

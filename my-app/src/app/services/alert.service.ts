@@ -35,7 +35,8 @@ export class AlertService {
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Có",
-                cancelButtonText: "Không"
+                cancelButtonText: "Không",
+                width: 500
             }).then(result => {
                 if (result.value) resolve();
             });

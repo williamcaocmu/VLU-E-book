@@ -56,6 +56,7 @@ import { CourseDetailComponent } from "./main/academy-assistant/course-detail/co
 import { SplitButtonModule } from "primeng/splitbutton";
 import { EducationPlanComponent } from "./main/academy-assistant/education-plan/education-plan.component";
 import { PickListModule } from "primeng/picklist";
+import { StepsModule } from "primeng/steps";
 
 @NgModule({
     declarations: [
@@ -107,7 +108,8 @@ import { PickListModule } from "primeng/picklist";
         InplaceModule,
         MenubarModule,
         SplitButtonModule,
-        PickListModule
+        PickListModule,
+        StepsModule
     ],
     providers: [
         AlertService,

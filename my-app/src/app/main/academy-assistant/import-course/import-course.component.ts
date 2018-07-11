@@ -74,6 +74,7 @@ export class ImportCourseComponent implements OnInit {
                 this.alertService.success("Thêm thành công");
                 this.cancelImport();
                 this.loadData();
+                console.log(res);
             })
             .catch(err => {
                 this.alertService.error("Thêm lỗi");

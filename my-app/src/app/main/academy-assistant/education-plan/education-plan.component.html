@@ -1,11 +1,21 @@
-<div class="ui-g">
-    <div class="ui-g-12 ui-md-6">
-        <p-dropdown [options]="" [(ngModel)]="grades" placeholder="Chọn khoá" optionLabel="name"></p-dropdown>
+<div class="ui-g" style="margin-bottom: 50px">
+    <div class="ui-g-12">
+        <p-steps [model]="items" styleClass="steps-custom" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
     </div>
-    <div class="ui-g-12 ui-md-6">
-        <p-dropdown [options]="" [(ngModel)]="semester" placeholder="Chọn học kì" optionLabel="name"></p-dropdown>
-    </div>
+</div>
 
+<!-- STEP 1 -->
+<div class="ui-g" *ngIf="activeIndex == 0">
+    <div class="ui-g-12 ui-md-6">
+        <p-dropdown [style]="{'width':'100%'}" [options]="allGrades" [(ngModel)]="selectedGrade" placeholder="Chọn khoá" optionLabel="Name"></p-dropdown>
+    </div>
+    <div class="ui-g-12 ui-md-6">
+        <p-dropdown [style]="{'width':'100%'}" [options]="" [(ngModel)]="semester" placeholder="Chọn học kì" optionLabel="name"></p-dropdown>
+    </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="ui-g" *ngIf="activeIndex == 1">
     <div class="ui-g-12" style="margin: 35px">
         <p-pickList [source]="allCourses" [target]="targetCars" sourceHeader="Danh sách môn học" targetHeader="Môn học được chọn"
             [responsive]="true" filterBy="name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
@@ -17,21 +27,25 @@
             </ng-template>
         </p-pickList>
     </div>
-
-    <div class="ui-g-12 ui-md-4">
-        <p-dropdown [options]="" [(ngModel)]="semester" placeholder="Chọn học kì" optionLabel="name"></p-dropdown>
-    </div>
-    <div class="ui-g-12 ui-md-4">
-        <span class="ui-float-label">
-            <input id="float-input" type="text" size="30" pInputText>
-            <label for="float-input">Username</label>
-        </span>
-    </div>
-    <div class="ui-g-12 ui-md-4">
-        <span class="ui-float-label">
-            <input id="float-input" type="text" size="30" pInputText>
-            <label for="float-input">Username</label>
-        </span>
-    </div>
-
 </div>
+
+<!-- STEP 3 -->
+<div *ngIf="activeIndex == 2" class="ui-g ui-fluid one-row-field">
+
+    <div class="ui-g-6">
+        <p-dropdown [style]="{'width':'100%','height':'40px'}" [options]="fixedSemesters" [(ngModel)]="semester" placeholder="Chọn học kì"
+            optionLabel="Name"></p-dropdown>
+    </div>
+    <div class="ui-g-6">
+        <span class="ui-float-label">
+            <input [style]="{'width':'100%'}" id="float-input" type="text" size="30" pInputText>
+            <label for="float-input">Tên chương trình đào tạo</label>
+        </span>
+    </div>
+
+    <div class="ui-g-2 ui-g-offset-10">
+        <button pButton type="button" label="Thêm vào kế hoạch tạm" class="ui-button-success btn-block"></button>
+    </div>
+</div>
+
+<button (click)="onNext()">next</button>
