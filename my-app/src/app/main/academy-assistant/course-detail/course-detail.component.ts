@@ -13,10 +13,10 @@ import { AlertService } from "../../../services/alert.service";
 export class CourseDetailComponent implements OnInit {
     items: MenuItem[] = [
         {
-            label: "Quản lí sinh viên"
+            label: "Quản lí môn học"
         },
         {
-            label: "Thông tin sinh viên"
+            label: "Thông tin môn học"
         }
     ];
     msgs: Message[] = [];
