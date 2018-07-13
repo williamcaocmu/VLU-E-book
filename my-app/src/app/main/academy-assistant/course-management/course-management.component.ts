@@ -45,7 +45,7 @@ export class CourseManagementComponent implements OnInit {
     isCreateClass: boolean = false;
     selectedGrade: any;
 
-    items: MenuItem[] = [{ label: "Quản lí khoá - lớp" }];
+    items: MenuItem[] = [{ label: "Quản lí môn học" },{ label: "Thông tin môn học" }];
     gradeOptions: any[];
     allGrade: any[];
 
