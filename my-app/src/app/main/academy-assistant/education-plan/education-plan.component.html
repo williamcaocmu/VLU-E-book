@@ -12,10 +12,7 @@
     <div class="ui-g-12 ui-md-6">
         <p-dropdown [style]="{'width':'100%'}" [options]="" [(ngModel)]="semester" placeholder="Chọn học kì" optionLabel="name"></p-dropdown>
     </div>
-</div>
 
-<!-- STEP 2 -->
-<div class="ui-g" *ngIf="activeIndex == 1">
     <div class="ui-g-12" style="margin: 35px">
         <p-pickList [source]="allCourses" [target]="targetCars" sourceHeader="Danh sách môn học" targetHeader="Môn học được chọn"
             [responsive]="true" filterBy="name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
@@ -29,23 +26,33 @@
     </div>
 </div>
 
-<!-- STEP 3 -->
-<div *ngIf="activeIndex == 2" class="ui-g ui-fluid one-row-field">
-
+<!-- STEP 2 -->
+<div class="ui-g" *ngIf="activeIndex == 1">
     <div class="ui-g-6">
         <p-dropdown [style]="{'width':'100%','height':'40px'}" [options]="fixedSemesters" [(ngModel)]="semester" placeholder="Chọn học kì"
             optionLabel="Name"></p-dropdown>
     </div>
     <div class="ui-g-6">
         <span class="ui-float-label">
-            <input [style]="{'width':'100%'}" id="float-input" type="text" size="30" pInputText>
+            <input style="width:100%" id="float-input" type="text" size="30" pInputText>
             <label for="float-input">Tên chương trình đào tạo</label>
         </span>
     </div>
 
     <div class="ui-g-2 ui-g-offset-10">
-        <button pButton type="button" label="Thêm vào kế hoạch tạm" class="ui-button-success btn-block"></button>
+        <button (click)="addLocalStorage()" [routerLink]="['/main/assistant/temporary-plan']" routerLinkActive="router-link-active" pButton type="button" label="Thêm vào kế hoạch tạm"
+            class="ui-button-success btn-block"></button>
     </div>
 </div>
 
-<button (click)="onNext()">next</button>
+<!-- STEP 3 -->
+
+<div class="ui-g" style="margin-top: 50px">
+    <div class="ui-g-3 ui-g-offset-3">
+        <button (click)="onPrev()" [disabled]="activeIndex == 0" pButton label="Quay Lại" type="button" icon="fa fa-backward" style="width:100%; height: 50px;"></button>
+    </div>
+    <div class="ui-g-3">
+        <button (click)="onNext()" [disabled]="activeIndex == 1" pButton label="Tiếp Theo" type="button" icon="fa fa-forward" iconPos="right"
+            style="width:100%; height: 50px;"></button>
+    </div>
+</div>

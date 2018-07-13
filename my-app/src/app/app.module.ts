@@ -57,6 +57,7 @@ import { SplitButtonModule } from "primeng/splitbutton";
 import { EducationPlanComponent } from "./main/academy-assistant/education-plan/education-plan.component";
 import { PickListModule } from "primeng/picklist";
 import { StepsModule } from "primeng/steps";
+import { TemporaryPlanComponent } from './main/academy-assistant/temporary-plan/temporary-plan.component';
 
 @NgModule({
     declarations: [
@@ -76,7 +77,8 @@ import { StepsModule } from "primeng/steps";
         ViewHistoryComponent,
         ImportCourseComponent,
         CourseDetailComponent,
-        EducationPlanComponent
+        EducationPlanComponent,
+        TemporaryPlanComponent
     ],
     imports: [
         BrowserModule,

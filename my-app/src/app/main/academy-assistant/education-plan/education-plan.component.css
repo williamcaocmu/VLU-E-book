@@ -11,8 +11,10 @@
 }
 
 .ui-steps .ui-steps-item {
-    width: 33%;
-    font-size: 17px;
+    width: 50%;
+    font-size: 15px;
+    text-transform : uppercase;
+    font-weight: bold;
 }
 
 .ui-steps.steps-custom {
@@ -38,7 +40,8 @@
     color: #555555;
 }
 
-
-.ui-dropdown-label.ui-inputtext{
+.ui-dropdown-label.ui-inputtext {
     height: 38px;
 }
+
+

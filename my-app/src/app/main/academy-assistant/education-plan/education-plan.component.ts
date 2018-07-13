@@ -24,7 +24,7 @@ export class EducationPlanComponent implements OnInit {
     selectedGrade: any;
     allGrades = [];
 
-    targetCars: any[];
+    targetCars: any[] = [];
     activeIndex: number = 0;
 
     grades = [];
@@ -171,21 +171,15 @@ export class EducationPlanComponent implements OnInit {
     sourceCars: any[];
     items: MenuItem[] = [
         {
-            label: "Chọn khoá và lớp",
+            label: "Chọn danh sách môn học",
             command: event => {
                 this.activeIndex = 0;
             }
         },
         {
-            label: "Chọn danh sách môn học",
+            label: "Tạo chuơng trình đào tạo",
             command: event => {
                 this.activeIndex = 1;
-            }
-        },
-        {
-            label: "Chọn học kì",
-            command: event => {
-                this.activeIndex = 2;
             }
         }
     ];
@@ -212,10 +206,23 @@ export class EducationPlanComponent implements OnInit {
     }
 
     onNext() {
-        console.log(this.activeIndex);
         this.activeIndex++;
         if (this.activeIndex > 2) {
             this.activeIndex = 2;
         }
     }
+
+    onPrev() {
+        this.activeIndex--;
+        if (this.activeIndex < 0) {
+            this.activeIndex = 0;
+        }
+    }
+
+    addLocalStorage() {
+        console.log(this.targetCars);
+        localStorage.setItem("tmp_courses", JSON.stringify(this.targetCars));
+    }
+
+    
 }

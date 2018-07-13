@@ -1,0 +1,50 @@
+<p-dataTable [value]="tmpCourses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+    [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
+    <p-header>
+        <h3>Kế Hoạch Đào Tạo</h3>
+    </p-header>
+    <!-- p-body -->
+    <p-column field="STT" header="STT" [style]="{'width':'50px'}">
+    </p-column>
+
+    <p-column field="id" header="Mã môn học" [style]="{'width':'100px'}">
+    </p-column>
+
+    <p-column field="name" header="Tên môn học">
+    </p-column>
+
+    <p-column field="DVHTTC" header="DVHTTC" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="Tongtiet" header="Tổng tiết" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="BT" header="BT" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="LT" header="LT" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="TH" header="TH" [style]="{'width':'100px'}">
+    </p-column>
+
+
+    <!-- / p-body -->
+
+</p-dataTable>
+
+
+
+
+
+<!-- Dialog -->
+<p-dialog header="Thông tin Khoá học" [responsive]="true" showEffect="fade" [modal]="true" width="1200">
+    <div class="ui-g">
+        <!-- <div class="ui-g-4"> Mã: </div>
+        <div class="ui-g-8">{{selectedStudent.StudentId}}</div>
+        <div class="ui-g-4"> Họ và Tên: </div>
+        <div class="ui-g-8">{{selectedStudent.Name}}</div>
+        <div class="ui-g-4"> Phái: </div>
+        <div class="ui-g-8">{{selectedStudent.Gender}}</div>
+        <div class="ui-g-4"> Khối: </div>
+        <div class="ui-g-8">{{selectedStudent.Grade}}</div>
+        <div class="ui-g-4"> Lớp: </div>
+        <div class="ui-g-8">{{selectedStudent.Class}}</div> -->
+    </div>
+</p-dialog>
