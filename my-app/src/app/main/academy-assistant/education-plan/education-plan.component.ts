@@ -177,7 +177,7 @@ export class EducationPlanComponent implements OnInit {
             }
         },
         {
-            label: "Tạo chuơng trình đào tạo",
+            label: "Tạo kế hoạch đào tạo",
             command: event => {
                 this.activeIndex = 1;
             }

@@ -1,6 +1,6 @@
 <div class="ui-g" style="margin-bottom: 50px">
     <div class="ui-g-12">
-        <p-steps [model]="items" styleClass="steps-custom" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
+        <p-steps [readonly]="true" [model]="items" styleClass="steps-custom" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
     </div>
 </div>
 
@@ -35,13 +35,13 @@
     <div class="ui-g-6">
         <span class="ui-float-label">
             <input style="width:100%" id="float-input" type="text" size="30" pInputText>
-            <label for="float-input">Tên chương trình đào tạo</label>
+            <label for="float-input">Tên kế hoạch đào tạo</label>
         </span>
     </div>
 
     <div class="ui-g-2 ui-g-offset-10">
-        <button (click)="addLocalStorage()" [routerLink]="['/main/assistant/temporary-plan']" routerLinkActive="router-link-active" pButton type="button" label="Thêm vào kế hoạch tạm"
-            class="ui-button-success btn-block"></button>
+        <button (click)="addLocalStorage()" [routerLink]="['/main/assistant/temporary-plan']" routerLinkActive="router-link-active"
+            pButton type="button" label="Thêm vào kế hoạch tạm" class="ui-button-success btn-block"></button>
     </div>
 </div>
 

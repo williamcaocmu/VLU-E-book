@@ -60,7 +60,6 @@ export class ClassManagementDetailComponent implements OnInit {
                         this.student.student_id = res["StudentId"];
                         this.selectedStatus = res["Status"] == 1 ? true : false;
                         this.tmpClassId = res["ClassId"];
-                        console.log(this.tmpClassId);
                     })
                     .catch(err => {
                         this.alert.error(err);
@@ -70,47 +69,39 @@ export class ClassManagementDetailComponent implements OnInit {
     }
 
     updateStudent() {
-        console.log(this.student);
-        // this.msgs = [];
-        // this.student.Status = this.selectedStatus == true ? 1 : 0;
-        // // this.student.Gender = +this.student.Gender;
-        // if (
-        //     this.selectedGrade == undefined ||
-        //     this.selectedClass == undefined
-        // ) {
-        //     this.student.GradeId = this.tmpGradeId;
-        //     this.student.ClassId = this.tmpClassId;
-        // } else {
-        //     this.student.GradeId = this.selectedGrade.Id;
-        //     this.student.ClassId = this.selectedClass.Id;
-        // }
         // console.log(this.student);
-        // this.assistantService
-        //     .update(this.student)
-        //     .then(() => this.alert.success("Cập Nhật Thành Công"))
-        //     .catch(err => {
-        //         if (err.errors.student_id) {
-        //             this.msgs.push({
-        //                 severity: "error",
-        //                 summary: "LỖI : ",
-        //                 detail: JSON.stringify(err.errors.student_id)
-        //             });
-        //         }
-        //         if (err.errors.Name) {
-        //             this.msgs.push({
-        //                 severity: "error",
-        //                 summary: "LỖI : ",
-        //                 detail: JSON.stringify(err.errors.Name)
-        //             });
-        //         }
-        //         if (err.errors.Dob) {
-        //             this.msgs.push({
-        //                 severity: "error",
-        //                 summary: "LỖI : ",
-        //                 detail: JSON.stringify(err.errors.Dob)
-        //             });
-        //         }
-        //     });
+
+        this.student.ClassId = this.selectedClass.Id;
+        console.log(this.student);
+        this.msgs = [];
+        this.student.Status = this.selectedStatus == true ? 1 : 0;
+
+        this.assistantService
+            .update(this.student)
+            .then(() => this.alert.success("Cập Nhật Thành Công"))
+            .catch(err => {
+                if (err.errors.student_id) {
+                    this.msgs.push({
+                        severity: "error",
+                        summary: "LỖI : ",
+                        detail: JSON.stringify(err.errors.student_id)
+                    });
+                }
+                if (err.errors.Name) {
+                    this.msgs.push({
+                        severity: "error",
+                        summary: "LỖI : ",
+                        detail: JSON.stringify(err.errors.Name)
+                    });
+                }
+                if (err.errors.Dob) {
+                    this.msgs.push({
+                        severity: "error",
+                        summary: "LỖI : ",
+                        detail: JSON.stringify(err.errors.Dob)
+                    });
+                }
+            });
     }
 
     getAllClasses() {
