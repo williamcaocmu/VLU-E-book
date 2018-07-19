@@ -58,6 +58,7 @@ import { EducationPlanComponent } from "./main/academy-assistant/education-plan/
 import { PickListModule } from "primeng/picklist";
 import { StepsModule } from "primeng/steps";
 import { TemporaryPlanComponent } from './main/academy-assistant/temporary-plan/temporary-plan.component';
+import { ViewEducationPlanComponent } from './main/academy-assistant/view-education-plan/view-education-plan.component';
 
 @NgModule({
     declarations: [
@@ -78,7 +79,8 @@ import { TemporaryPlanComponent } from './main/academy-assistant/temporary-plan/
         ImportCourseComponent,
         CourseDetailComponent,
         EducationPlanComponent,
-        TemporaryPlanComponent
+        TemporaryPlanComponent,
+        ViewEducationPlanComponent
     ],
     imports: [
         BrowserModule,

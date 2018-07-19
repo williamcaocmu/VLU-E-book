@@ -1,15 +1,21 @@
 <!-- <button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button> -->
 
-<p-dialog header="Gửi Danh Sách Sinh Viên " [(visible)]="displayFile" showEffect="fade" [modal]="true" width="1200">
+<p-dialog header="Gửi Danh Sách Môn Học" [(visible)]="displayFile" showEffect="fade" [modal]="true" width="1200" minHeight="500">
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <p-dropdown [style]="{'width':'100%'}" (onChange)="onChange($event.value)" [(ngModel)]="selectedGrade" [options]="allGrades"
+                optionLabel="Name" placeholder="Chọn khối"></p-dropdown>
+        </div>
+    </div>
 
     <!-- file upload -->
     <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ" mode="advanced" #form name="myfile[]"
-        *ngIf="!dataResponseImportFile" (uploadHandler)="myUploader($event)" customUpload="true" showUploadButton="true" showCancelButton="true"
-        maxFileSize="10000000" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
+        *ngIf="!dataResponseImportFile && selectedGrade" (uploadHandler)="myUploader($event)" customUpload="true" showUploadButton="true"
+        showCancelButton="true" maxFileSize="10000000" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"> </p-fileUpload>
     <!-- / file upload -->
 
     <!-- datatable of return data upload file -->
-    <p-dataTable [value]="dataResponseImportFile" *ngIf="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true"
+    <p-dataTable [value]="dataResponseImportFile " *ngIf="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true"
         [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true"
         [metaKeySelection]="false">
         <p-header>
@@ -25,7 +31,7 @@
         <p-column field="Name" header="Tên môn học">
         </p-column>
 
-        <p-column field="DVHTTC" header="DVHTTC" [style]="{'width':'100px'}">
+        <p-column field="DVHT" header="DVHT" [style]="{'width':'100px'}">
         </p-column>
         <p-column field="Tongtiet" header="Tổng tiết" [style]="{'width':'100px'}">
         </p-column>
@@ -34,6 +40,8 @@
         <p-column field="LT" header="LT" [style]="{'width':'100px'}">
         </p-column>
         <p-column field="TH" header="TH" [style]="{'width':'100px'}">
+        </p-column>
+        <p-column field="HK" header="HK" [style]="{'width':'100px'}">
         </p-column>
 
 
@@ -76,7 +84,7 @@
     <p-column field="Name" header="Tên môn học">
     </p-column>
 
-    <p-column field="DVHTTC" header="DVHTTC" [style]="{'width':'100px'}">
+    <p-column field="DVHT" header="DVHT" [style]="{'width':'100px'}">
     </p-column>
     <p-column field="TongTiet" header="Tổng tiết" [style]="{'width':'100px'}">
     </p-column>
@@ -85,6 +93,8 @@
     <p-column field="LT" header="LT" [style]="{'width':'100px'}">
     </p-column>
     <p-column field="TH" header="TH" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="HK" header="HK" [style]="{'width':'100px'}">
     </p-column>
 
     <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">

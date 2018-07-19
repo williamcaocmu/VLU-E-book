@@ -1,25 +1,40 @@
 <div class="ui-g" style="margin-bottom: 50px">
-    <div class="ui-g-12">
-        <p-steps [readonly]="true" [model]="items" styleClass="steps-custom" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
-    </div>
+
 </div>
 
 <!-- STEP 1 -->
-<div class="ui-g" *ngIf="activeIndex == 0">
+<div class="ui-g">
     <div class="ui-g-12 ui-md-6">
-        <p-dropdown [style]="{'width':'100%'}" [options]="allGrades" [(ngModel)]="selectedGrade" placeholder="Chọn khoá" optionLabel="Name"></p-dropdown>
+        <div class="ui-g-12">
+            <span class="ui-float-label">
+                <input name="nameSemester" [(ngModel)]="nameSemester" style="width:100%" id="float-input" type="number" size="30" pInputText>
+                <label for="float-input">Nhập năm học</label>
+            </span>
+        </div>
+        <div class="ui-g-12">
+            <p-dropdown (onChange)=onChangeGrades($event.value) [style]="{'width':'100%'}" [options]="allGrades" [(ngModel)]="selectedGrade"
+                placeholder="Chọn khoá" optionLabel="Name"></p-dropdown>
+        </div>
+        <div class="ui-g-12" *ngIf="allSemesters.length > 0">
+            <p-dropdown [style]="{'width':'100%'}" [options]="allSemesters" [(ngModel)]="selectedSemester" placeholder="Chọn học kì"
+                optionLabel="Name" (onChange)=onChangeSemester($event.value)> </p-dropdown>
+        </div>
     </div>
     <div class="ui-g-12 ui-md-6">
-        <p-dropdown [style]="{'width':'100%'}" [options]="" [(ngModel)]="semester" placeholder="Chọn học kì" optionLabel="name"></p-dropdown>
+        <div class="ui-g-12">
+            <p-dropdown [style]="{'width':'100%'}" [(ngModel)]="selectedApplySemester" optionLabel="Name" [options]="applySemester" placeholder="Chọn học kì giảng dạy"
+                optionLabel="name"></p-dropdown>
+        </div>
     </div>
-
     <div class="ui-g-12" style="margin: 35px">
-        <p-pickList [source]="allCourses" [target]="targetCars" sourceHeader="Danh sách môn học" targetHeader="Môn học được chọn"
-            [responsive]="true" filterBy="name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
+        <p-pickList [showSourceControls]="false" [showTargetControls]="false" [source]="allCourses" [target]="targetCourses" sourceHeader="Danh sách môn học"
+            targetHeader="Môn học được chọn" [responsive]="true" filterBy="name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
             targetFilterPlaceholder="Tìm môn học..." [sourceStyle]="{'height':'400px'}" [targetStyle]="{'height':'400px'}">
-            <ng-template let-car pTemplate="item">
+            <ng-template let-course pTemplate="item">
                 <div class="ui-helper-clearfix">
-                    <div style="font-size:14px;float: left;margin:10px 5px 0 5px;">{{car.id}} - {{car.name}}</div>
+                    <div style="font-size:14px;float: left;margin:10px 5px 0 5px;">
+                        {{selectedGrade.Name}} - {{course.Name}}
+                    </div>
                 </div>
             </ng-template>
         </p-pickList>
@@ -27,32 +42,12 @@
 </div>
 
 <!-- STEP 2 -->
-<div class="ui-g" *ngIf="activeIndex == 1">
-    <div class="ui-g-6">
-        <p-dropdown [style]="{'width':'100%','height':'40px'}" [options]="fixedSemesters" [(ngModel)]="semester" placeholder="Chọn học kì"
-            optionLabel="Name"></p-dropdown>
-    </div>
-    <div class="ui-g-6">
-        <span class="ui-float-label">
-            <input style="width:100%" id="float-input" type="text" size="30" pInputText>
-            <label for="float-input">Tên kế hoạch đào tạo</label>
-        </span>
-    </div>
-
-    <div class="ui-g-2 ui-g-offset-10">
-        <button (click)="addLocalStorage()" [routerLink]="['/main/assistant/temporary-plan']" routerLinkActive="router-link-active"
-            pButton type="button" label="Thêm vào kế hoạch tạm" class="ui-button-success btn-block"></button>
-    </div>
-</div>
 
 <!-- STEP 3 -->
 
-<div class="ui-g" style="margin-top: 50px">
-    <div class="ui-g-3 ui-g-offset-3">
-        <button (click)="onPrev()" [disabled]="activeIndex == 0" pButton label="Quay Lại" type="button" icon="fa fa-backward" style="width:100%; height: 50px;"></button>
+<div class="ui-g">
+    <div class="ui-g-2 ui-g-offset-10">
+        <button pButton type="button" (click)="createEducationPlan()" label="Tạo Kế Hoạch Đào Tạo" class="ui-button-warning"></button>
     </div>
-    <div class="ui-g-3">
-        <button (click)="onNext()" [disabled]="activeIndex == 1" pButton label="Tiếp Theo" type="button" icon="fa fa-forward" iconPos="right"
-            style="width:100%; height: 50px;"></button>
-    </div>
+
 </div>

@@ -19,6 +19,7 @@ import { ImportCourseComponent } from "./main/academy-assistant/import-course/im
 import { CourseDetailComponent } from "./main/academy-assistant/course-detail/course-detail.component";
 import { EducationPlanComponent } from "./main/academy-assistant/education-plan/education-plan.component";
 import { TemporaryPlanComponent } from "./main/academy-assistant/temporary-plan/temporary-plan.component";
+import { ViewEducationPlanComponent } from "./main/academy-assistant/view-education-plan/view-education-plan.component";
 
 export const routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -86,8 +87,8 @@ export const routes = [
                         component: EducationPlanComponent
                     },
                     {
-                        path: "temporary-plan",
-                        component: TemporaryPlanComponent
+                        path: "view-education-plan",
+                        component: ViewEducationPlanComponent
                     }
                 ]
             },

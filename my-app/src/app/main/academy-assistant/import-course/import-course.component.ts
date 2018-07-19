@@ -9,7 +9,9 @@ import { AlertService } from "../../../services/alert.service";
     styleUrls: ["./import-course.component.css"]
 })
 export class ImportCourseComponent implements OnInit {
+    selectedGrade: any;
     selectedCourse: any;
+    allGrades: any[];
     displayDialog: boolean = false;
     displayFile: boolean = false;
     dataResponseImportFile: any[];
@@ -26,6 +28,7 @@ export class ImportCourseComponent implements OnInit {
 
     ngOnInit() {
         this.loadData();
+        this.getAllGrades();
     }
 
     showDialogFile() {
@@ -33,13 +36,17 @@ export class ImportCourseComponent implements OnInit {
     }
 
     myUploader(event) {
+        let object = {
+            File: event.files[0],
+            GradeId: this.selectedGrade.Id
+        };
+        console.log(object);
+
         this.assistantService
-            .postCourse(event.files[0])
+            .postCourse(object)
             .then(res => {
                 this.dataResponseImportFile = res["Students"] as any;
                 this.sumCourses = res["SumCourses"] as any;
-                console.log(res);
-                // console.log(this.dataResponseImportFile);
                 if (res["ErrorCouses"] > 0) {
                     this.isImport = false;
                     let str;
@@ -68,8 +75,12 @@ export class ImportCourseComponent implements OnInit {
     }
 
     importFile() {
+        let object = {
+            name: this.nameFileImport,
+            GradeId: this.selectedGrade.Id
+        };
         this.assistantService
-            .importCourse(this.nameFileImport)
+            .importCourse(object)
             .then(res => {
                 this.alertService.success("Thêm thành công");
                 this.cancelImport();
@@ -117,5 +128,20 @@ export class ImportCourseComponent implements OnInit {
                     .catch(err => this.alertService.error(err));
             })
             .catch(err => this.alertService.error(err));
+    }
+
+    getAllGrades() {
+        this.assistantService
+            .getListGrades()
+            .then((res: any[]) => {
+                this.allGrades = res;
+                console.log(this.selectedGrade);
+            })
+            .catch(err => this.alertService.error(err));
+    }
+
+    onChange(value) {
+        console.log(value);
+        this.selectedGrade = value;
     }
 }

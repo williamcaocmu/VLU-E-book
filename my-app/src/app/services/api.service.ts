@@ -7,7 +7,8 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class ApiService {
     access_token: string = "none";
-    // host: string ="http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/";
+    // host: string =
+        // "http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/";
     host: string = "http://125.234.238.137:8080/K20T2/VLU/public/api/";
     // host: string = "http://10.11.27.125:8080/K20T2/VLU/public/api/";
     // host: string = "http://localhost:8000/api/";
@@ -44,13 +45,7 @@ export class ApiService {
     fileUpload(event, url) {
         return new Promise((resolve, reject) => {
             let fileList: FileList = event;
-            // if (fileList.length > 0) {
-            //   let file: File = FileList[0];
-            //   let formData: FormData = new FormData();
-
             let headers = new Headers();
-            // headers.append("Content-Type", "multipart/form-data");
-            // headers.append("Accept", "application/json");
             headers.append("Authorization", "Bearer " + this.access_token);
             this.http
                 .post(this.host + url, { File: event }, { headers: headers })
@@ -66,12 +61,10 @@ export class ApiService {
 
     postFile(event, url) {
         return new Promise<Response>((resolve, reject) => {
+            console.log(event);
             let headers = new Headers();
-            // headers.append("Content-Type", "multipart/form-data");
-            // headers.append("Accept", "application/json");
             let frmData: FormData = new FormData();
             frmData.append("File", event, event.name);
-            //headers.append('Content-Type', 'multipart/form-data');
             headers.append("Accept", "application/json");
             headers.append("Authorization", "Bearer " + this.access_token);
             console.log("File", event);

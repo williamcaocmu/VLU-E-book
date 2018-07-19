@@ -67,18 +67,24 @@ export class AcademyAssistantService {
 
     //START COURSE
     postCourse(data) {
+        let tmpData = data.GradeId;
         return new Promise((resolve, reject) => {
             this.apiService
-                .postFile(data, "assistant/handleCourse")
+                .postFile(data.File, `assistant/handleCourse/${tmpData}`)
                 .then(res => resolve(res))
                 .catch(err => reject(err));
         });
     }
 
     importCourse(fileName: any) {
+        console.log("File Name", fileName);
         return new Promise((resolve, reject) => {
             this.apiService
-                .get(`assistant/importCourse/${fileName}`)
+                .get(
+                    `assistant/importCourse/${fileName.name}/${
+                        fileName.GradeId
+                    }`
+                )
                 .then(res => resolve(res))
                 .catch(err => reject(err));
         });
@@ -189,6 +195,73 @@ export class AcademyAssistantService {
         return new Promise((resolve, reject) => {
             this.apiService
                 .post("assistant/updateClass", data)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    // EDUCATION PLAN
+    postEducationPlan(data) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .post("createEducationPlan", data)
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
+    }
+
+    getEducationPlan(value) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getCourseList/${value.grade_id}/${value.hk}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
+    }
+
+    updateEducationPlan(data) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .post(`updateEducationPlan`, data)
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
+    }
+
+    getAllSemesters(id) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getHKFromGradeId/${id}`)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    createEducationPlan(value) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .post(`assistant/createEducationPlan`, value)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    getAllEducationPlans() {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getAllEducationPlans`)
                 .then(res => {
                     resolve(res);
                 })

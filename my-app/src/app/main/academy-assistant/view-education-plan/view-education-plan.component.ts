@@ -1,0 +1,28 @@
+import { Component, OnInit } from "@angular/core";
+import { AcademyAssistantService } from "../academy-assistant.service";
+
+@Component({
+    selector: "app-view-education-plan",
+    templateUrl: "./view-education-plan.component.html",
+    styleUrls: ["./view-education-plan.component.css"]
+})
+export class ViewEducationPlanComponent implements OnInit {
+    educationPlans = [];
+    constructor(private assistantService: AcademyAssistantService) {}
+
+    ngOnInit() {
+        this.getAllEducationPlans();
+    }
+
+    getAllEducationPlans() {
+        this.assistantService
+            .getAllEducationPlans()
+            .then(res => {
+                this.educationPlans = res as any;
+                console.log(this.educationPlans);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+}

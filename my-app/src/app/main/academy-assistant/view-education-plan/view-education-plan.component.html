@@ -1,0 +1,52 @@
+<div class="ui-g" style="margin-bottom: 40px">
+    <!-- Create Grade -->
+    <div class="ui-g-12">
+        <button pButton type="button" [routerLink]="['/main/assistant/education-plan']" label="Tạo Kế Hoạch Đào Tạo" class="ui-button-warning"></button>
+    </div>
+    <!-- / Create Grade -->
+
+    <!-- Create Class -->
+
+
+    <!-- /Create Class -->
+</div>
+
+<p-accordion [multiple]="true">
+    <p-accordionTab *ngFor="let plan of educationPlans" header="KẾ HOẠCH ĐÀO TẠO NĂM HỌC {{plan.Name}} - HỌC KÌ {{plan.HK}}"
+        class="ui-g-10 ui-g-offset-1">
+        <p-dataTable [value]="plan.Courses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true"
+            [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
+            <p-header>
+                <h3>Kế Hoạch Đào Tạo</h3>
+            </p-header>
+            <!-- p-body -->
+             <p-column field="MaMH" header="Mã môn học" [style]="{'width':'100px'}"></p-column>
+
+    <p-column field="Name" header="Tên môn học">
+    </p-column>
+
+    <p-column field="DVHT" header="DVHT" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="TongTiet" header="Tổng tiết" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="BT" header="BT" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="LT" header="LT" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="TH" header="TH" [style]="{'width':'100px'}">
+    </p-column>
+    <p-column field="HK" header="HK" [style]="{'width':'100px'}">
+    </p-column>
+
+    <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
+        <ng-template let-course="rowData" pTemplate="body">
+            <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
+            <button pButton (click)="deleteCourse(course)" icon="fa-trash" type="button" class="ui-button-danger"></button>
+        </ng-template>
+
+    </p-column>
+            <!-- / p-body -->
+
+        </p-dataTable>
+    </p-accordionTab>
+</p-accordion>

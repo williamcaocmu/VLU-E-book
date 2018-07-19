@@ -10,163 +10,30 @@ import { AlertService } from "../../../services/alert.service";
     encapsulation: ViewEncapsulation.None
 })
 export class EducationPlanComponent implements OnInit {
-    fixedSemesters: any[] = [
-        {
-            Name: "Học kì 1"
-        },
-        {
-            Name: "Học kì 2"
-        },
-        {
-            Name: "Học kì 3"
-        }
-    ];
+    nameSemester: any;
     selectedGrade: any;
     allGrades = [];
-
-    targetCars: any[] = [];
+    targetCourses: any[] = [];
     activeIndex: number = 0;
-
+    selectedSemester: any;
     grades = [];
-    semester = [];
-    allCourses = [
+    selectedApplySemester: any;
+    applySemester = [
         {
-            name: "a",
-            id: 1
+            id: 1,
+            name: "Học kì 1"
         },
         {
-            name: "b",
-            id: 2
+            id: 2,
+            name: "Học kì 2"
         },
         {
-            name: "b",
-            id: 3
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "a",
-            id: 1
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
-        },
-        {
-            name: "b",
-            id: 2
+            id: 3,
+            name: "Học kì 3"
         }
     ];
+    allSemesters = [];
+    allCourses = [];
 
     sourceCars: any[];
     items: MenuItem[] = [
@@ -205,24 +72,55 @@ export class EducationPlanComponent implements OnInit {
             });
     }
 
-    onNext() {
-        this.activeIndex++;
-        if (this.activeIndex > 2) {
-            this.activeIndex = 2;
-        }
+    createEducationPlan() {
+        let courses = [];
+        this.targetCourses.map(c => {
+            courses.push({
+                CourseId: c.Id
+            });
+        });
+        let obj = {
+            Year: this.nameSemester,
+            HK: this.selectedApplySemester.id,
+            List: []
+        };
+        obj.List = courses;
+        console.log(obj);
+        this.assistantService
+            .createEducationPlan(obj)
+            .then(res => {
+                this.alertService.success(res);
+            })
+            .catch(err => {
+                this.alertService.error(err.message);
+            });
     }
 
-    onPrev() {
-        this.activeIndex--;
-        if (this.activeIndex < 0) {
-            this.activeIndex = 0;
-        }
+    onChangeGrades(value) {
+        this.assistantService
+            .getAllSemesters(value.Id)
+            .then((res: any[]) => {
+                this.allSemesters = res;
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
-    addLocalStorage() {
-        console.log(this.targetCars);
-        localStorage.setItem("tmp_courses", JSON.stringify(this.targetCars));
+    onChangeSemester(value) {
+        const obj = {
+            hk: value.Name,
+            grade_id: this.selectedGrade.Id
+        };
+        console.log(obj);
+        this.assistantService
+            .getEducationPlan(obj)
+            .then(res => {
+                console.log(res);
+                this.allCourses = res as any;
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
-
-    
 }

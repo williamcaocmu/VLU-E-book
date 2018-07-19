@@ -5,7 +5,7 @@ import swal from "sweetalert2";
 export class AlertService {
     constructor() {}
 
-    success(message) {
+    success(message: any) {
         swal({
             position: "bottom-right",
             type: "success",
@@ -15,7 +15,7 @@ export class AlertService {
         });
     }
 
-    error(message) {
+    error(message: any) {
         swal({
             position: "bottom-right",
             type: "error",
@@ -25,7 +25,7 @@ export class AlertService {
         });
     }
 
-    confirm(message) {
+    confirm(message: any) {
         return new Promise((resolve, reject) => {
             swal({
                 title: "Xác Nhận",
@@ -39,6 +39,7 @@ export class AlertService {
                 width: 500
             }).then(result => {
                 if (result.value) resolve();
+                else reject();
             });
         });
     }

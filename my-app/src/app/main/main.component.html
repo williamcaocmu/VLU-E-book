@@ -3,7 +3,6 @@
 
     <header id="topbar" class=" bg-dark">
         <div class="topbar-left">
-            <!-- Assistant -->
             <ul *ngIf="setConfigAuthor(navConfig.tabAssistant)" class="nav nav-list nav-list-topbar pull-left">
                 <li routerLinkActive="active">
                     <a [routerLink]="['/main/assistant/class-management']"> Quản lí sinh viên</a>
@@ -12,20 +11,17 @@
                     <a [routerLink]="['/main/assistant/course-management']"> Quản lí khoá - lớp</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a [routerLink]="['/main/assistant/import-course']">Quản lí môn học</a>
+                    <a [routerLink]="['/main/assistant/import-course']">Chương trình đào tạo</a>
                 </li>
                 <li routerLinkActive="active">
                     <a [routerLink]="['/main/assistant/view-history']">Lịch sử nhập file</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a [routerLink]="['/main/assistant/education-plan']">Education Plan</a>
+                    <a [routerLink]="['/main/assistant/view-education-plan']">Kế hoạch đào tạo</a>
                 </li>
-                <li routerLinkActive="active">
-                    <a [routerLink]="['/main/assistant/temporary-plan']">Kế hoạch tạm </a>
-                </li>
-            </ul>
 
-            <!-- Admin -->
+
+            </ul>
             <ul *ngIf="setConfigAuthor(navConfig.tabAccount)" class="nav nav-list nav-list-topbar pull-left">
                 <li routerLinkActive="active">
                     <a [routerLink]="['/main/account']"> Quản lí tài khoản</a>
@@ -33,7 +29,7 @@
             </ul>
         </div>
         <div class="topbar-right dropdown">
-            <!-- <button (click)="logOut()" pButton label="Logout" icon="fa fa-sign-out"></button> -->
+
             <p-splitButton label="Đăng Xuất" styleClass="ui-button-secondary" icon=" a fa-sign-out " (onClick)="logOut()" dir="rtl" [model]="items"></p-splitButton>
         </div>
     </header>

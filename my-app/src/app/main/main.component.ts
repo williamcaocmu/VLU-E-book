@@ -8,6 +8,7 @@ import { MainService } from "./main.service";
 import { MenuItem } from "primeng/api";
 import { AlertService } from "../services/alert.service";
 
+
 @Component({
     selector: "app-main",
     templateUrl: "./main.component.html",
@@ -54,6 +55,7 @@ export class MainComponent implements OnInit {
         private alert: AlertService
     ) {}
     ngOnInit() {
+        
         this.getAuthor();
         return new Promise((resolve, reject) => {
             resolve();

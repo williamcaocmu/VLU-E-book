@@ -60,6 +60,7 @@ export class ClassManagementDetailComponent implements OnInit {
                         this.student.student_id = res["StudentId"];
                         this.selectedStatus = res["Status"] == 1 ? true : false;
                         this.tmpClassId = res["ClassId"];
+                        console.log(res)
                     })
                     .catch(err => {
                         this.alert.error(err);
