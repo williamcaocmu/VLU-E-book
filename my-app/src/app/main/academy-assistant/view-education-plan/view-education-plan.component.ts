@@ -25,4 +25,13 @@ export class ViewEducationPlanComponent implements OnInit {
                 console.log(err);
             });
     }
+
+    // exportExcel(id) {
+    //     console.log(id);
+    //     this.assistantService.exportEducationPlan(id).then(res =>{
+    //         console.log(res)
+    //     }).catch(err => {
+    //         console.log(err)
+    //     })
+    // }
 }

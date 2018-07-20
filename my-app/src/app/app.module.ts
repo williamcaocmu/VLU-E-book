@@ -59,6 +59,7 @@ import { PickListModule } from "primeng/picklist";
 import { StepsModule } from "primeng/steps";
 import { TemporaryPlanComponent } from './main/academy-assistant/temporary-plan/temporary-plan.component';
 import { ViewEducationPlanComponent } from './main/academy-assistant/view-education-plan/view-education-plan.component';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 @NgModule({
     declarations: [
@@ -113,7 +114,8 @@ import { ViewEducationPlanComponent } from './main/academy-assistant/view-educat
         MenubarModule,
         SplitButtonModule,
         PickListModule,
-        StepsModule
+        StepsModule,
+        KeyFilterModule
     ],
     providers: [
         AlertService,

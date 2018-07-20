@@ -270,4 +270,17 @@ export class AcademyAssistantService {
                 });
         });
     }
+
+    exportEducationPlan(id){
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/exportEducationPlan/${id}`)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
 }
