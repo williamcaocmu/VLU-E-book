@@ -6,7 +6,7 @@
 </div>
 
 <p-accordion [multiple]="true">
-    <p-accordionTab *ngFor="let plan of educationPlans" header="KẾ HOẠCH ĐÀO TẠO NĂM HỌC {{plan.Name}} - HỌC KÌ {{plan.HK}}"
+    <p-accordionTab *ngFor="let plan of educationPlans" header="KẾ HOẠCH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
         class="ui-g-10 ui-g-offset-1">
         <p-dataTable [value]="plan.Courses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
             [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
@@ -32,7 +32,7 @@
             </p-column>
             <p-column field="HK" header="HK" [style]="{'width':'100px'}">
             </p-column>
-            <p-column field="Grade" header="Khoá" [style]="{'width':'100px'}">
+            <p-column field="Grade" header="Grade" [style]="{'width':'100px'}">
             </p-column>
 
             <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
