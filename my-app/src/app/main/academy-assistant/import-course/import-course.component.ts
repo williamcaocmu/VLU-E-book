@@ -101,7 +101,9 @@ export class ImportCourseComponent implements OnInit {
             .getAllCourses()
             .then(res => {
                 this.allCourses = res as any;
-                console.log(this.allCourses);
+                console.log("all course ", this.allCourses);
+                let totalTongTiet = 0;
+                this.allCourses.map(x => (totalTongTiet += x.TongTiet));
             })
             .catch(err => {
                 console.log(err);
@@ -135,7 +137,7 @@ export class ImportCourseComponent implements OnInit {
             .getListGrades()
             .then((res: any[]) => {
                 this.allGrades = res;
-                console.log(this.selectedGrade);
+                console.log("all grades ", this.allGrades);
             })
             .catch(err => this.alertService.error(err));
     }

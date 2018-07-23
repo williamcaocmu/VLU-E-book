@@ -19,7 +19,8 @@ export class ViewEducationPlanComponent implements OnInit {
             .getAllEducationPlans()
             .then(res => {
                 this.educationPlans = res as any;
-                console.log(this.educationPlans);
+                let HK = this.educationPlans[0].HK;
+                this.educationPlans[0].Courses.map(x => (x.HK = HK));
             })
             .catch(err => {
                 console.log(err);

@@ -5,13 +5,7 @@
 <!-- STEP 1 -->
 <div class="ui-g">
     <div class="ui-g-12 ui-md-6">
-        <div class="ui-g-12">
-            <span class="ui-float-label">
-                <input pKeyFilter="int" name="nameSemester" [(ngModel)]="nameSemester" style="width:100%" id="float-input" type="number"
-                    size="30" pInputText>
-                <label for="float-input">Nhập năm học</label>
-            </span>
-        </div>
+
         <div class="ui-g-12">
             <p-dropdown (onChange)=onChangeGrades($event.value) [style]="{'width':'100%'}" [options]="allGrades" [(ngModel)]="selectedGrade"
                 placeholder="Chọn khoá" optionLabel="Name"></p-dropdown>
@@ -23,18 +17,27 @@
     </div>
     <div class="ui-g-12 ui-md-6">
         <div class="ui-g-12">
+            <span class="ui-float-label">
+                <input pKeyFilter="int" name="nameSemester" [(ngModel)]="nameSemester" style="width:100%" id="float-input" type="number"
+                    size="30" pInputText>
+                <label for="float-input">Nhập năm học</label>
+            </span>
+        </div>
+        <div class="ui-g-12">
             <p-dropdown [style]="{'width':'100%'}" [(ngModel)]="selectedApplySemester" optionLabel="Name" [options]="applySemester" placeholder="Chọn học kì giảng dạy"
                 optionLabel="name"></p-dropdown>
         </div>
     </div>
     <div class="ui-g-12" style="margin: 35px">
-        <p-pickList [showSourceControls]="false" [showTargetControls]="false" [source]="allCourses" [target]="targetCourses" sourceHeader="Danh sách môn học"
-            targetHeader="Môn học được chọn" [responsive]="true" filterBy="Name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
-            targetFilterPlaceholder="Tìm môn học..." [sourceStyle]="{'height':'400px'}" [targetStyle]="{'height':'400px'}">
+        <p-pickList [showSourceControls]="false" [showTargetControls]="false" [source]="allCourses" [target]="targetCourses" sourceHeader="Danh sách môn học" 
+            targetHeader="Môn học được chọn {{selectedApplySemester?.name ? 'cho '+ selectedApplySemester?.name : ''}}" [responsive]="true" filterBy="Name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
+            targetFilterPlaceholder="Tìm môn học..." [sourceStyle]="{'height':'400px'}" [targetStyle]="{'height':'400px'}" 
+            onMoveToTarget="onMoveToTargeta($event.items)"
+            >
             <ng-template let-course pTemplate="item">
                 <div class="ui-helper-clearfix">
                     <div style="font-size:14px;float: left;margin:10px 5px 0 5px;">
-                        {{selectedGrade.Name}} - {{course.Name}}
+                        {{selectedGrade.Name}} - {{course.Name}} 
                     </div>
                 </div>
             </ng-template>

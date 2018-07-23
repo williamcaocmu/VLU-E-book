@@ -3,7 +3,8 @@
 <p-dialog header="Gửi Danh Sách Môn Học" [(visible)]="displayFile" showEffect="fade" [modal]="true" width="1200" minHeight="500">
     <div class="ui-g">
         <div class="ui-g-12">
-            <p-dropdown [style]="{'width':'100%'}" (onChange)="onChange($event.value)" [(ngModel)]="selectedGrade" [options]="allGrades"
+            <p-dropdown [style]="{'width':'100%'}" (onChange)="onChange($event.value)" [(ngModel)]="selectedGrade" [options]="allGrades" 
+            [scrollHeight]="500"
                 optionLabel="Name" placeholder="Chọn khối"></p-dropdown>
         </div>
     </div>
@@ -87,6 +88,9 @@
     <p-column field="DVHT" header="DVHT" [style]="{'width':'100px'}">
     </p-column>
     <p-column field="TongTiet" header="Tổng tiết" [style]="{'width':'100px'}">
+        <ng-template pTemplate="footer">
+            <td>$506,202</td>
+        </ng-template>
     </p-column>
     <p-column field="BT" header="BT" [style]="{'width':'100px'}">
     </p-column>
@@ -94,8 +98,9 @@
     </p-column>
     <p-column field="TH" header="TH" [style]="{'width':'100px'}">
     </p-column>
-    <p-column field="HK" header="HK" [style]="{'width':'100px'}">
+    <p-column [sortable]="true" field="HK" header="HK" [style]="{'width':'100px'}">
     </p-column>
+    <p-column field="Grade" header="Khoá" [style]="{'width':'100px'}"></p-column>
 
     <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
         <ng-template let-course="rowData" pTemplate="body">
@@ -108,7 +113,6 @@
     <!-- p-footer -->
     <p-footer class="footer">
         <div class="ui-helper-clearfix">
-
         </div>
     </p-footer>
 </p-dataTable>
