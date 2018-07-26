@@ -271,7 +271,7 @@ export class AcademyAssistantService {
         });
     }
 
-    exportEducationPlan(id){
+    exportEducationPlan(id) {
         return new Promise((resolve, reject) => {
             this.apiService
                 .get(`assistant/exportEducationPlan/${id}`)
@@ -281,6 +281,28 @@ export class AcademyAssistantService {
                 .catch(err => {
                     reject(err);
                 });
+        });
+    }
+
+    uploadFileWord(data) {
+        console.log(data.File);
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .postFile(
+                    data.File,
+                    `assistant/importCourseWord/${data.grade_id}`
+                )
+                .then(res => resolve(res))
+                .catch(err => reject(err));
+        });
+    }
+
+    downloadFileWord(data) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .getWord(`downCourseWord/${data}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err));
         });
     }
 }

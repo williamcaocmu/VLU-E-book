@@ -20,6 +20,12 @@ export class ImportCourseComponent implements OnInit {
     nameFileImport: any;
     sumCourses: number;
     allCourses = [];
+    gradeOptions: any[];
+    allHK: any[];
+    HkOptions: any[];
+    showFileWord: boolean = false;
+    downloadFileWord: boolean = false;
+    url: any;
 
     constructor(
         private assistantService: AcademyAssistantService,
@@ -40,7 +46,6 @@ export class ImportCourseComponent implements OnInit {
             File: event.files[0],
             GradeId: this.selectedGrade.Id
         };
-        console.log(object);
 
         this.assistantService
             .postCourse(object)
@@ -52,7 +57,6 @@ export class ImportCourseComponent implements OnInit {
                     let str;
                     res["Students"].map(x => {
                         if (x.Error) {
-                            console.log(x);
                             str = `Khoá học ${x.Name} có lỗi : ${x.Error}`;
                             this.msgs.push({
                                 severity: "error",
@@ -85,7 +89,6 @@ export class ImportCourseComponent implements OnInit {
                 this.alertService.success("Thêm thành công");
                 this.cancelImport();
                 this.loadData();
-                console.log(res);
             })
             .catch(err => {
                 this.alertService.error("Thêm lỗi");
@@ -101,9 +104,25 @@ export class ImportCourseComponent implements OnInit {
             .getAllCourses()
             .then(res => {
                 this.allCourses = res as any;
-                console.log("all course ", this.allCourses);
+
                 let totalTongTiet = 0;
                 this.allCourses.map(x => (totalTongTiet += x.TongTiet));
+                let HK = this.allCourses.map(x => x.HK);
+
+                this.allHK = HK.filter(
+                    (value, index, array) => array.indexOf(value) == index
+                );
+                console.log(this.allHK);
+                this.HkOptions = this.allHK.map(x => {
+                    return {
+                        label: x.toString(),
+                        value: x.toString()
+                    };
+                });
+                this.HkOptions.unshift({
+                    label: "",
+                    value: ""
+                });
             })
             .catch(err => {
                 console.log(err);
@@ -111,7 +130,6 @@ export class ImportCourseComponent implements OnInit {
     }
 
     selectCourse(event: Event, course: any) {
-        console.log(course);
         this.selectedCourse = course;
         this.displayDialog = true;
         event.preventDefault();
@@ -138,12 +156,46 @@ export class ImportCourseComponent implements OnInit {
             .then((res: any[]) => {
                 this.allGrades = res;
                 console.log("all grades ", this.allGrades);
+                this.gradeOptions = this.allGrades.map(x => {
+                    return {
+                        label: x.Name,
+                        value: x.Name
+                    };
+                });
+                this.gradeOptions.unshift({
+                    label: "",
+                    value: ""
+                });
+                console.log(this.gradeOptions);
             })
-            .catch(err => this.alertService.error(err));
+            .catch(err => this.alertService.error(err["message"]));
     }
 
     onChange(value) {
         console.log(value);
         this.selectedGrade = value;
+    }
+
+    uploadFileWord(event) {
+        let object = { File: event.files[0], grade_id: this.selectedGrade.Id };
+        console.log(object);
+        this.assistantService
+            .uploadFileWord(object)
+            .then(res => {
+                this.alertService.success(res["message"]);
+            })
+            .catch(err => {
+                console.log(err["message"]);
+            });
+    }
+
+    DownloadWord() {
+        this.assistantService
+            .downloadFileWord(this.selectedGrade.Id)
+            .then(res => {
+                console.log(res);
+                this.url = res["url"];
+            })
+            .catch(err => console.log(err));
     }
 }

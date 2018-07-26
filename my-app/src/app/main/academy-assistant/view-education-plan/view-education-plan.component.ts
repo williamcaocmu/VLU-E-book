@@ -7,7 +7,9 @@ import { AcademyAssistantService } from "../academy-assistant.service";
     styleUrls: ["./view-education-plan.component.css"]
 })
 export class ViewEducationPlanComponent implements OnInit {
-    educationPlans = [];
+    educationPlans: any[];
+    allHK: any[];
+    isDisplayDialog: boolean = false;
     constructor(private assistantService: AcademyAssistantService) {}
 
     ngOnInit() {
@@ -19,20 +21,20 @@ export class ViewEducationPlanComponent implements OnInit {
             .getAllEducationPlans()
             .then(res => {
                 this.educationPlans = res as any;
-                let HK = this.educationPlans[0].HK;
-                this.educationPlans[0].Courses.map(x => (x.HK = HK));
+                let HK;
+                if (this.educationPlans.length > 0) {
+                    HK = this.educationPlans[0].HK;
+                    this.educationPlans[0].Courses.map(x => (x.HK = HK));
+                }
+                console.log(this.educationPlans);
             })
             .catch(err => {
                 console.log(err);
             });
     }
 
-    // exportExcel(id) {
-    //     console.log(id);
-    //     this.assistantService.exportEducationPlan(id).then(res =>{
-    //         console.log(res)
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
-    // }
+    sendIdEducation(id) {
+        console.log(id);
+        
+    }
 }

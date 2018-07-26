@@ -2,17 +2,22 @@
     <div class="ui-g-12">
         <button pButton type="button" [routerLink]="['/main/assistant/education-plan']" label="Tạo Kế Hoạch Đào Tạo" class="ui-button-warning"></button>
     </div>
-
 </div>
 
 <p-accordion [multiple]="true">
-    <p-accordionTab *ngFor="let plan of educationPlans" header="KẾ HOẠCH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
+    <p-accordionTab *ngFor="let plan of educationPlans; let i = index" header="KẾ HOẠCH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
         class="ui-g-10 ui-g-offset-1">
-        <p-dataTable [value]="plan.Courses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+
+        <p-dataTable #dt [value]="plan.Courses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
             [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false">
             <p-header>
                 <h3>Kế Hoạch Đào Tạo</h3>
-                <a href="http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/exportEducationPlan/{{plan.Id}}">Xuất file Excel</a>
+                <a href="http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/exportEducationPlan/{{plan.Id}}">Xuất file Excel
+                </a>
+
+                <button pButton type="button" label="Xuất file Word" (click)="sendIdEducation(plan.Id)">
+
+                </button>
             </p-header>
             <!-- p-body -->
             <p-column field="MaMH" header="Mã môn học" [style]="{'width':'100px'}"></p-column>
@@ -30,11 +35,10 @@
             </p-column>
             <p-column field="TH" header="TH" [style]="{'width':'100px'}">
             </p-column>
-            <p-column field="HK" header="HK" [style]="{'width':'100px'}">
+            <p-column field="HK" header="HK" [style]="{'width':'100px','overflow':'visible'}">
             </p-column>
-            <p-column field="Grade" header="Grade" [style]="{'width':'100px'}">
+            <p-column field="Grade" header="Khoá" [style]="{'width':'100px','overflow':'visible'}">
             </p-column>
-
             <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
                 <ng-template let-course="rowData" pTemplate="body">
                     <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
@@ -47,3 +51,7 @@
         </p-dataTable>
     </p-accordionTab>
 </p-accordion>
+
+<p-dialog *ngIf="isDisplayDialog" header="Gửi Danh Sách Môn Học" showEffect="fade" [modal]="true" width="1200" minHeight="500">
+
+</p-dialog>

@@ -7,9 +7,9 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class ApiService {
     access_token: string = "none";
-    host: string =
-        "http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/";
-    // host: string = "http://125.234.238.137:8080/K20T2/VLU/public/api/";
+    // host: string =
+        // "http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/";
+    host: string = "http://125.234.238.137:8080/K20T2/VLU/public/api/";
     // host: string = "http://10.11.27.125:8080/K20T2/VLU/public/api/";
     // host: string = "http://localhost:8000/api/";
 
@@ -68,7 +68,7 @@ export class ApiService {
             headers.append("Accept", "application/json");
             headers.append("Authorization", "Bearer " + this.access_token);
             console.log("File", event);
-            console.log("Form data", frmData);
+            // console.log("Form data", frmData);
             this.http
                 .post(this.host + url, frmData, { headers: headers })
                 .toPromise()
@@ -98,6 +98,24 @@ export class ApiService {
         });
     }
 
+    getWord(url: string) {
+        return new Promise<Response>((resolve, reject) => {
+            let headers = new Headers();
+            headers.append("Authorization", "Bearer " + this.access_token);
+            this.http
+                .get(this.host + url, { headers: headers })
+                .toPromise()
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                    reject(err);
+                });
+        });
+    }
+
+
     delete(url: string) {
         return new Promise<Response>((resolve, reject) => {
             let headers = new Headers();
@@ -116,4 +134,5 @@ export class ApiService {
                 });
         });
     }
+    
 }
