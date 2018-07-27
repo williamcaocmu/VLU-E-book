@@ -10,6 +10,12 @@ export class ViewEducationPlanComponent implements OnInit {
     educationPlans: any[];
     allHK: any[];
     isDisplayDialog: boolean = false;
+    openModel: boolean = false;
+    allGrades: any[] = [];
+    selectedGrade;
+    planId;
+    allowDownload = false;
+
     constructor(private assistantService: AcademyAssistantService) {}
 
     ngOnInit() {
@@ -35,6 +41,24 @@ export class ViewEducationPlanComponent implements OnInit {
 
     sendIdEducation(id) {
         console.log(id);
-        
+        this.openModel = true;
+        this.planId = id;
+        this.assistantService
+            .getAllGradesByPlanId(id)
+            .then(res => {
+                this.allGrades = res as any;
+                console.log(this.allGrades)
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    onChange(event) {
+        this.selectedGrade = event;
+    }
+
+    downloadFile() {
+       this.allowDownload = true;
     }
 }

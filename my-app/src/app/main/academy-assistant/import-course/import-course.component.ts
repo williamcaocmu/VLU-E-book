@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AcademyAssistantService } from "../academy-assistant.service";
 import { Message } from "primeng/components/common/api";
 import { AlertService } from "../../../services/alert.service";
+import { LoadingService } from "../../../services/loading.service";
 
 @Component({
     selector: "app-import-course",
@@ -26,10 +27,12 @@ export class ImportCourseComponent implements OnInit {
     showFileWord: boolean = false;
     downloadFileWord: boolean = false;
     url: any;
+    allowDownload: boolean = false;
 
     constructor(
         private assistantService: AcademyAssistantService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private loading: LoadingService
     ) {}
 
     ngOnInit() {
@@ -42,6 +45,7 @@ export class ImportCourseComponent implements OnInit {
     }
 
     myUploader(event) {
+        this.loading.start();
         let object = {
             File: event.files[0],
             GradeId: this.selectedGrade.Id
@@ -69,11 +73,13 @@ export class ImportCourseComponent implements OnInit {
                     this.isImport = true;
                     this.nameFileImport = res["File"];
                 }
+                this.loading.stop();
             })
             .catch(err => {
                 this.alertService.error(
                     err.message + " Vui lòng chọn lại file"
                 );
+                this.loading.stop();
             });
         this.msgs = [];
     }
@@ -100,6 +106,7 @@ export class ImportCourseComponent implements OnInit {
     }
 
     loadData() {
+        this.loading.start();
         this.assistantService
             .getAllCourses()
             .then(res => {
@@ -123,9 +130,11 @@ export class ImportCourseComponent implements OnInit {
                     label: "",
                     value: ""
                 });
+                this.loading.stop();
             })
             .catch(err => {
                 console.log(err);
+                this.loading.stop();
             });
     }
 
@@ -136,6 +145,7 @@ export class ImportCourseComponent implements OnInit {
     }
 
     deleteCourse(course) {
+        this.loading.start();
         this.alertService
             .confirm("Bạn có chắc muốn xoá !!!")
             .then(res => {
@@ -146,8 +156,12 @@ export class ImportCourseComponent implements OnInit {
                         this.loadData();
                     })
                     .catch(err => this.alertService.error(err));
+                this.loading.stop();
             })
-            .catch(err => this.alertService.error(err));
+            .catch(err => {
+                this.alertService.error(err);
+                this.loading.stop();
+            });
     }
 
     getAllGrades() {
@@ -195,6 +209,7 @@ export class ImportCourseComponent implements OnInit {
             .then(res => {
                 console.log(res);
                 this.url = res["url"];
+                this.allowDownload = true;
             })
             .catch(err => console.log(err));
     }

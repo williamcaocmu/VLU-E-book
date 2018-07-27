@@ -305,4 +305,30 @@ export class AcademyAssistantService {
                 .catch(err => reject(err));
         });
     }
+
+    downloadFileEducation(planid, gradeid) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`exportEducationPlanByGrade/${planid}/${gradeid}`)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    getAllGradesByPlanId(id) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getGradeByPlan/${id}`)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
 }

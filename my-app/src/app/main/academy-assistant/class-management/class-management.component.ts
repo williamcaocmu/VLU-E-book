@@ -7,6 +7,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/Rx";
 import { ApiService } from "../../../services/api.service";
 import { Message } from "primeng/components/common/api";
+import { LoadingService } from "../../../services/loading.service";
 
 @Component({
     selector: "app-class-management",
@@ -39,7 +40,8 @@ export class ClassManagementComponent implements OnInit {
         private alertService: AlertService,
         private assistantService: AcademyAssistantService,
         private http: Http,
-        private api: ApiService
+        private api: ApiService,
+        private loading: LoadingService
     ) {
         this.filesToUpload = [];
     }
@@ -49,6 +51,7 @@ export class ClassManagementComponent implements OnInit {
     }
 
     loadData() {
+        this.loading.start();
         this.assistantService
             .getList()
             .then(res => {
@@ -84,9 +87,11 @@ export class ClassManagementComponent implements OnInit {
                 this.classOptions = this.allClass.map(proj => {
                     return { label: proj, value: proj };
                 });
+                this.loading.stop();
             })
             .catch(err => {
                 console.log(err);
+                this.loading.stop();
             });
     }
 
@@ -97,15 +102,18 @@ export class ClassManagementComponent implements OnInit {
     }
 
     importFile() {
+        this.loading.start();
         this.assistantService
             .importFile(this.nameFileImport)
             .then(res => {
                 this.alertService.success("Thêm thành công");
                 this.cancelImport();
                 this.loadData();
+                this.loading.stop()
             })
             .catch(err => {
                 this.alertService.error("Thêm lỗi");
+                this.loading.stop();
             });
     }
 

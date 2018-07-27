@@ -1,14 +1,12 @@
-import { Injectable } from '@angular/core';
-import * as $ from 'jquery';
+import { Injectable } from "@angular/core";
+import * as $ from "jquery";
 @Injectable()
-
 @Injectable()
 export class LoadingService {
+    constructor() {}
 
-  constructor() { }
-
-  start() {
-    $('body').append(`<any id = "globalloading"
+    start() {
+        $("body").append(`<any id = "globalloading"
         style = "top:0;
         left: 0;
         height:100vh;
@@ -21,10 +19,9 @@ export class LoadingService {
         background-position:center;
         background-repeat:no-repeat;"
         ></any>`);
-  }
+    }
 
-  stop() {
-    $('#globalloading').remove();
-  }
-
+    stop() {
+        $("#globalloading").remove();
+    }
 }
