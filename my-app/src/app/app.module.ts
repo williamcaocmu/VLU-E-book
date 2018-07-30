@@ -60,6 +60,10 @@ import { StepsModule } from "primeng/steps";
 import { TemporaryPlanComponent } from './main/academy-assistant/temporary-plan/temporary-plan.component';
 import { ViewEducationPlanComponent } from './main/academy-assistant/view-education-plan/view-education-plan.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { AssignEducationPlanComponent } from './main/academy-assistant/assign-education-plan/assign-education-plan.component';
+import {ChipsModule} from 'primeng/chips';
+import {MultiSelectModule} from 'primeng/multiselect';
+import { ManageLecturerComponent } from './main/academy-assistant/manage-lecturer/manage-lecturer.component';
 
 @NgModule({
     declarations: [
@@ -81,7 +85,9 @@ import { KeyFilterModule } from 'primeng/keyfilter';
         CourseDetailComponent,
         EducationPlanComponent,
         TemporaryPlanComponent,
-        ViewEducationPlanComponent
+        ViewEducationPlanComponent,
+        AssignEducationPlanComponent,
+        ManageLecturerComponent
     ],
     imports: [
         BrowserModule,
@@ -115,7 +121,9 @@ import { KeyFilterModule } from 'primeng/keyfilter';
         SplitButtonModule,
         PickListModule,
         StepsModule,
-        KeyFilterModule
+        KeyFilterModule,
+        ChipsModule,
+        MultiSelectModule
     ],
     providers: [
         AlertService,

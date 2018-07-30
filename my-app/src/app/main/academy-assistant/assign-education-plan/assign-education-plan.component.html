@@ -1,0 +1,35 @@
+<div class="ui-g">
+    <div class="ui-g-6">
+        <input style="width:100%" [(ngModel)]="quantity" type="text" pInputText pKeyFilter="pint" placeholder="Nhập số lượng lớp ">
+    </div>
+    <div class="ui-g-3">
+        <button style="height: 35px; width: 100%" pButton type="button" (click)="create()" label="Tạo số lượng lớp" class="ui-button-success">
+        </button>
+    </div>
+    <div class="ui-g-3">
+        <button *ngIf="nameClass.length > 0" style="height: 35px; width: 100%" pButton type="button" (click)="clearAll()" label="Xoá tất cả"
+            class="ui-button-danger">
+        </button>
+    </div>
+</div>
+
+<div *ngFor="let item of nameClass; let i = index" class="ui-g">
+    <div class="ui-g-12" *ngIf="i == 0">
+        Nhấn Enter để xác nhận lớp
+    </div>
+    <div class="ui-g-6">
+        <p-chips name={{i}} [(ngModel)]="nameClass[i].value"></p-chips>
+    </div>
+
+    <div class="ui-g-6">
+        <p-dropdown [style]="{'width':'100%'}" placeholder="Chọn giảng viên" optionLabel="name" [showClear]="true">
+        </p-dropdown>
+    </div>
+</div>
+
+
+<!-- <div class="ui-g">
+    <div class="ui-g-12">
+        <button style="height: 35px" pButton type="button" (click)="log()" label="Tạo số lượng lớp" class="ui-button-success"></button>
+    </div>
+</div> -->

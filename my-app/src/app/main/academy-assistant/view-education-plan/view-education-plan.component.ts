@@ -61,4 +61,8 @@ export class ViewEducationPlanComponent implements OnInit {
     downloadFile() {
        this.allowDownload = true;
     }
+
+    createCourse(){
+        
+    }
 }

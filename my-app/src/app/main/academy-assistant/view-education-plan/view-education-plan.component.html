@@ -1,53 +1,55 @@
 <div class="ui-g" style="margin-bottom: 40px">
     <div class="ui-g-12">
-        <button pButton type="button" [routerLink]="['/main/assistant/education-plan']" label="Tạo Kế Hoạch Đào Tạo" class="ui-button-warning"></button>
+        <button pButton type="button" [routerLink]="['/main/assistant/education-plan']" label="Tạo Chương Trình Đào Tạo" class="ui-button-warning"></button>
     </div>
 </div>
 
 <p-accordion [multiple]="true">
-    <p-accordionTab *ngFor="let plan of educationPlans; let i = index" header="KẾ HOẠCH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
+    <p-accordionTab *ngFor="let plan of educationPlans; let i = index" header="CHƯƠNG TRÌNH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
         class="ui-g-12 ">
 
         <p-dataTable #dt [value]="plan.Courses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
             [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false" [style]="{'overflow':'visible'}">
             <p-header>
-                <h3>Kế Hoạch Đào Tạo</h3>
+                <div class="ui-helper-clearfix ">
+                    <button style="float:right" pButton type="button" (click)="createCourse()" label="Tạo lớp" class="ui-button-warning"></button>
+                    <button pButton type="button" label="Xuất file chương trình đào tạo" (click)="sendIdEducation(plan.Id)">
+                    </button>
+                </div>
 
-                <button pButton type="button" label="Xuất file kế hoạch đào tạo" (click)="sendIdEducation(plan.Id)">
-                </button>
             </p-header>
             <!-- p-body -->
-            <p-column field="MaMH" header="Mã môn học"></p-column>
-
-            <p-column field="Name" header="Tên môn học">
+            <p-column field="Grade" header="Khoá" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="HK" header="HK" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="MaMH" header="Mã MH" [style]="{'width':'80px'}">
+            </p-column>
+            <p-column field="Name" header="Tên môn học" [style]="{'width':'100%'}">
+            </p-column>
+            <p-column field="DVHT" header="DVHT" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="TongTiet" header="Tổng tiết" [style]="{'width':'80px'}">
+            </p-column>
+            <p-column field="BT" header="BT" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="LT" header="LT" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="TH" header="TH" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="TC" header="TC" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="SG" header="SG" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="DA" header="DA" [style]="{'width':'60px'}">
             </p-column>
 
-            <p-column field="DVHT" header="DVHT" [style]="{'width':'100px'}">
-            </p-column>
-            <p-column field="TongTiet" header="Tổng tiết">
-            </p-column>
-            <p-column field="BT" header="BT">
-            </p-column>
-            <p-column field="LT" header="LT">
-            </p-column>
-            <p-column field="TH" header="TH">
-            </p-column>
-            <p-column field="TC" header="TC">
-            </p-column>
-            <p-column field="SG" header="SG">
-            </p-column>
-            <p-column field="DA" header="DA">
-            </p-column>
-            <p-column field="HK" header="HK">
-            </p-column>
-            <p-column field="Grade" header="Khoá">
-            </p-column>
-            <p-column [style]="{'width':'85px'}" field="Id" header="Sửa">
+            <p-column [style]="{'width':'110px'}" field="Id" header="">
                 <ng-template let-course="rowData" pTemplate="body">
                     <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
                     <button pButton icon="fa-trash" type="button" class="ui-button-danger"></button>
+                    <button pButton icon="fa-mortar-board" type="button" [routerLink]="['/main/assistant/assign-education-plan']" class="ui-button-primary"></button>
                 </ng-template>
-
             </p-column>
             <!-- / p-body -->
 
@@ -63,10 +65,7 @@
             <button [disabled]="!selectedGrade" style="float:right" (click)="downloadFile()" type="button" pButton label="Xác nhận">
             </button>
             <a style="color:green ; float:right; margin: 0 10px" href="/K20T2/VLU/public/api/exportEducationPlanByGrade/{{planId}}/{{selectedGrade?.id}}"
-                target="_blank" 
-                download
-                *ngIf="allowDownload"
-            >
+                target="_blank" download *ngIf="allowDownload">
                 <i class="fa fa-download"></i> Bấm vào đây để tải
             </a>
         </div>
