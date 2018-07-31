@@ -16,8 +16,13 @@
 
     <!-- datatable of return data upload file -->
     <p-dataTable [value]="dataResponseImportFile " *ngIf="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true"
-        [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true"
-        [metaKeySelection]="false">
+        [pageLinks]="5" 
+        [rowsPerPageOptions]="[20,100,200]" 
+        [responsive]="true" 
+        [resizableColumns]="true" 
+        [reorderableColumns]="true"
+        [metaKeySelection]="false"
+    >
         <p-header>
             <h3>Danh Sách Khoá Học Từ File</h3>
         </p-header>
@@ -44,9 +49,7 @@
         <p-column field="HK" header="HK" [style]="{'width':'50px'}">
         </p-column>
 
-
         <!-- / p-body -->
-
     </p-dataTable>
 
     <div class="ui-g" *ngIf="dataResponseImportFile">

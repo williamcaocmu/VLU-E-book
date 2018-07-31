@@ -14,22 +14,67 @@
 </div>
 
 <div *ngFor="let item of nameClass; let i = index" class="ui-g">
-    <div class="ui-g-12" *ngIf="i == 0">
-        Nhấn Enter để xác nhận lớp
+    <div class="ui-g-8 ui-g-offset-4" *ngIf="i == 0">
+        <p style="text-transform: uppercase">nhấn enter để xác nhận chọn lớp
+            <span style="color: red">(*)</span>
+        </p>
+
     </div>
-    <div class="ui-g-6">
+    <div class="ui-g-4">
+        <p-dropdown [style]="{'width':'100%'}" [options]="courses" [(ngModel)]="nameClass[i].course" placeholder="Chọn môn học" optionLabel="Name"
+            [showClear]="true"></p-dropdown>
+    </div>
+    <div class="ui-g-4">
         <p-chips name={{i}} [(ngModel)]="nameClass[i].value"></p-chips>
     </div>
 
-    <div class="ui-g-6">
-        <p-dropdown [style]="{'width':'100%'}" placeholder="Chọn giảng viên" optionLabel="name" [showClear]="true">
+    <div class="ui-g-4">
+        <p-dropdown [options]="dummyTeacher" [(ngModel)]="nameClass[i].lecturer" [style]="{'width':'100%'}" placeholder="Chọn giảng viên"
+            optionLabel="Name" [showClear]="true">
         </p-dropdown>
     </div>
 </div>
 
-
-<!-- <div class="ui-g">
-    <div class="ui-g-12">
-        <button style="height: 35px" pButton type="button" (click)="log()" label="Tạo số lượng lớp" class="ui-button-success"></button>
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-4 ui-md-offset-4">
+        <button *ngIf="nameClass.length > 0" style="height: 35px; width: 100%" pButton type="button" (click)="createEducationPlan()"
+            label="Tạo kế hoạch đào tạo" class="ui-button-success">
+        </button>
     </div>
-</div> -->
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-12">
+        <p-dataTable #dt resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+            [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false" [style]="{'overflow':'visible'}">
+            <p-header>
+                <div class="ui-helper-clearfix ">
+                    <button style="float:right" pButton type="button" label="Tạo lớp" class="ui-button-warning"></button>
+                    <button pButton type="button" label="Xuất file chương trình đào tạo">
+                    </button>
+                </div>
+
+            </p-header>
+
+            <p-column field="Grade" header="Khoá" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="HK" header="HK" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column field="MaMH" header="Mã MH" [style]="{'width':'80px'}">
+            </p-column>
+            <p-column field="Name" header="Tên môn học" [style]="{'width':'100%'}">
+            </p-column>
+            <p-column field="DVHT" header="DVHT" [style]="{'width':'60px'}">
+            </p-column>
+            <p-column [style]="{'width':'110px'}" field="Id" header="">
+                <ng-template let-course="rowData" pTemplate="body">
+                    <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
+                    <button pButton icon="fa-trash" type="button" class="ui-button-danger"></button>
+                    <button pButton icon="fa-mortar-board" type="button" [routerLink]="['/main/assistant/assign-education-plan',plan.Id]" class="ui-button-primary"></button>
+                </ng-template>
+            </p-column>
+
+
+        </p-dataTable>
+    </div>
+</div>

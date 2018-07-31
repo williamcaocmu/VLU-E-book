@@ -118,7 +118,7 @@ export class EducationPlanComponent implements OnInit {
         this.assistantService
             .getEducationPlan(obj)
             .then(res => {
-                
+                console.log('course',res);
                 this.allCourses = res as any;
             })
             .catch(err => {

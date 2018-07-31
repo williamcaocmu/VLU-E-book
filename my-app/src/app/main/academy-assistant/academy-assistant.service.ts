@@ -71,7 +71,12 @@ export class AcademyAssistantService {
         return new Promise((resolve, reject) => {
             this.apiService
                 .postFile(data.File, `assistant/handleCourse/${tmpData}`)
-                .then(res => resolve(res))
+                .then(res => 
+                    {
+                        resolve(res);
+                        console.log(res)
+                    }
+                )
                 .catch(err => reject(err));
         });
     }

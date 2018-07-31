@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { AcademyAssistantService } from "../academy-assistant.service";
 
 @Component({
@@ -16,7 +17,10 @@ export class ViewEducationPlanComponent implements OnInit {
     planId;
     allowDownload = false;
 
-    constructor(private assistantService: AcademyAssistantService) {}
+    constructor(
+        private assistantService: AcademyAssistantService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.getAllEducationPlans();
@@ -47,7 +51,7 @@ export class ViewEducationPlanComponent implements OnInit {
             .getAllGradesByPlanId(id)
             .then(res => {
                 this.allGrades = res as any;
-                console.log(this.allGrades)
+                console.log(this.allGrades);
             })
             .catch(err => {
                 console.log(err);
@@ -59,10 +63,17 @@ export class ViewEducationPlanComponent implements OnInit {
     }
 
     downloadFile() {
-       this.allowDownload = true;
+        this.allowDownload = true;
     }
 
-    createCourse(){
-        
+    createCourse() {}
+
+    changePage(a) {
+        this.router.navigate([
+            "main",
+            "assistant",
+            "assign-education-plan",
+            a
+        ]);
     }
 }

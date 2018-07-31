@@ -93,7 +93,7 @@ export const routes = [
                         component: ViewEducationPlanComponent
                     },
                     {
-                        path: "assign-education-plan",
+                        path: "assign-education-plan/:id",
                         component: AssignEducationPlanComponent
                     },
                     {

@@ -5,9 +5,10 @@
 </div>
 
 <p-accordion [multiple]="true">
-    <p-accordionTab *ngFor="let plan of educationPlans; let i = index" header="CHƯƠNG TRÌNH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
+    <p-accordionTab 
+        *ngFor="let plan of educationPlans; let i = index" 
+        header="CHƯƠNG TRÌNH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
         class="ui-g-12 ">
-
         <p-dataTable #dt [value]="plan.Courses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
             [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false" [style]="{'overflow':'visible'}">
             <p-header>
@@ -48,7 +49,7 @@
                 <ng-template let-course="rowData" pTemplate="body">
                     <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
                     <button pButton icon="fa-trash" type="button" class="ui-button-danger"></button>
-                    <button pButton icon="fa-mortar-board" type="button" [routerLink]="['/main/assistant/assign-education-plan']" class="ui-button-primary"></button>
+                    <button pButton icon="fa-mortar-board" type="button" (click)="changePage(plan.Id)" class="ui-button-primary"></button>
                 </ng-template>
             </p-column>
             <!-- / p-body -->

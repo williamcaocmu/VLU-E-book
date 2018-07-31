@@ -50,10 +50,10 @@ export class ImportCourseComponent implements OnInit {
             File: event.files[0],
             GradeId: this.selectedGrade.Id
         };
-
         this.assistantService
             .postCourse(object)
             .then(res => {
+                console.log(res);
                 this.dataResponseImportFile = res["Students"] as any;
                 this.sumCourses = res["SumCourses"] as any;
                 if (res["ErrorCouses"] > 0) {
@@ -72,10 +72,12 @@ export class ImportCourseComponent implements OnInit {
                 } else {
                     this.isImport = true;
                     this.nameFileImport = res["File"];
+                    
                 }
                 this.loading.stop();
             })
             .catch(err => {
+                console.log(err);
                 this.alertService.error(
                     err.message + " Vui lòng chọn lại file"
                 );
@@ -97,7 +99,7 @@ export class ImportCourseComponent implements OnInit {
                 this.loadData();
             })
             .catch(err => {
-                this.alertService.error("Thêm lỗi");
+                console.log(err);
             });
     }
 
