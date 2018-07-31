@@ -48,24 +48,21 @@
         <p-dataTable #dt resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
             [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false" [style]="{'overflow':'visible'}">
             <p-header>
-                <div class="ui-helper-clearfix ">
+                <!-- <div class="ui-helper-clearfix ">
                     <button style="float:right" pButton type="button" label="Tạo lớp" class="ui-button-warning"></button>
                     <button pButton type="button" label="Xuất file chương trình đào tạo">
                     </button>
-                </div>
+                </div> -->
 
             </p-header>
 
-            <p-column field="Grade" header="Khoá" [style]="{'width':'60px'}">
+            <p-column field="Grade" header="Môn Học" [style]="{'width':'60px'}">
             </p-column>
-            <p-column field="HK" header="HK" [style]="{'width':'60px'}">
+            <p-column field="HK" header="Lớp" [style]="{'width':'60px'}">
             </p-column>
-            <p-column field="MaMH" header="Mã MH" [style]="{'width':'80px'}">
+            <p-column field="MaMH" header="Giảng Viên" [style]="{'width':'80px'}">
             </p-column>
-            <p-column field="Name" header="Tên môn học" [style]="{'width':'100%'}">
-            </p-column>
-            <p-column field="DVHT" header="DVHT" [style]="{'width':'60px'}">
-            </p-column>
+            
             <p-column [style]="{'width':'110px'}" field="Id" header="">
                 <ng-template let-course="rowData" pTemplate="body">
                     <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
