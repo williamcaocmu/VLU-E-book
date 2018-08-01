@@ -22,6 +22,7 @@ import { TemporaryPlanComponent } from "./main/academy-assistant/temporary-plan/
 import { ViewEducationPlanComponent } from "./main/academy-assistant/view-education-plan/view-education-plan.component";
 import { AssignEducationPlanComponent } from "./main/academy-assistant/assign-education-plan/assign-education-plan.component";
 import { ManageLecturerComponent } from "./main/academy-assistant/manage-lecturer/manage-lecturer.component";
+import { LecturerDetailComponent } from "./main/academy-assistant/lecturer-detail/lecturer-detail.component";
 
 export const routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -99,6 +100,10 @@ export const routes = [
                     {
                         path: "manage-lecturer",
                         component: ManageLecturerComponent
+                    },
+                    {
+                        path: "manage-lecturer/:id",
+                        component: LecturerDetailComponent
                     }
                 ]
             },

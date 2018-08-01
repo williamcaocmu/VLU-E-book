@@ -1,0 +1,112 @@
+<!-- <p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb> -->
+<div class="chute chute-center" style="height: 726px; margin-top: 50px">
+    <div class="mw1000 center-block">
+
+        <div class="allcp-form theme-primary">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <h3 style="text-transform: uppercase">Thông Tin Giảng Viên</h3>
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="" id="form-ui" autocomplete="off">
+
+                        <!-- name -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label ">
+                                    <input [(ngModel)]="lecturer.Name" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                        name="name">
+                                    <label for="float-input-name"> Họ Và Tên</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / name -->
+
+                        <!-- Staff ID  -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="lecturer.StaffId" name="staffID" id="float-input-staffID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-staffID">Mã Nhân Viên</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / Staff ID -->
+
+                        <!-- Password  -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="lecturer.Password" type="password" id="float-input-password" autocomplete="new-password" name="password"
+                                        pPassword class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-password">Mật Khẩu</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- / Password -->
+
+                        <!-- Personal Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="lecturer.Email" id="float-input-personal-email" name="email" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-personal-email"> Email</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Personal Email -->
+
+                        <!-- Other Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="lecturer.OtherEmail" id="float-input-other-email" type="text" name="otherEmail" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-other-email"> Email Khác</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Other Email -->
+
+                        <!-- Personal Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="lecturer.Phone1" id="float-input-personal-phone" type="text" name="phone1" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-personal-phone"> Số Điện Thoại 1</label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Personal Email -->
+
+                        <!-- Company Email -->
+                        <div class="ui-g ui-fluid one-row-field">
+                            <div class="ui-md-12">
+                                <span class="ui-float-label">
+                                    <input [(ngModel)]="lecturer.Phone2" id="float-input-other-phone" type="text" name="phone2" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <label for="float-input-other-phone">Số Điện Thoại 2 </label>
+                                </span>
+                            </div>
+                        </div>
+                        <!--/ Company Email -->
+
+                        <div class="panel-footer text-right">
+                            <a *ngIf="id == 0" (click)="addLecturer()" class="btn btn-bordered btn-primary mb5"> Thêm Mới</a>
+                            <a *ngIf="id != 0" (click)="updateLecturer()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
+
+                        </div>
+
+                        <a [routerLink]="['/main/account']" class="btn btn-bordered btn-danger mb5">
+                            <i class="fa fa-reply"></i> Trở Về
+                        </a>
+
+                        <p-messages [(value)]="msgs"></p-messages>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

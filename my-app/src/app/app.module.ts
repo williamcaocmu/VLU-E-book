@@ -64,6 +64,7 @@ import { AssignEducationPlanComponent } from './main/academy-assistant/assign-ed
 import {ChipsModule} from 'primeng/chips';
 import {MultiSelectModule} from 'primeng/multiselect';
 import { ManageLecturerComponent } from './main/academy-assistant/manage-lecturer/manage-lecturer.component';
+import { LecturerDetailComponent } from './main/academy-assistant/lecturer-detail/lecturer-detail.component';
 
 @NgModule({
     declarations: [
@@ -87,7 +88,8 @@ import { ManageLecturerComponent } from './main/academy-assistant/manage-lecture
         TemporaryPlanComponent,
         ViewEducationPlanComponent,
         AssignEducationPlanComponent,
-        ManageLecturerComponent
+        ManageLecturerComponent,
+        LecturerDetailComponent
     ],
     imports: [
         BrowserModule,

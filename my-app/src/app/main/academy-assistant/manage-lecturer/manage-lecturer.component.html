@@ -1,3 +1,25 @@
-<p>
-  manage-lecturer works!
-</p>
+<p-dataTable class="ui-g-12" [value]="lecturers" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[50,100]"
+    [responsive]="true" [globalFilter]="gb" [resizableColumns]="true" emptyMessage="Không tìm thấy kết quả" [reorderableColumns]="true">
+    <p-header>
+        <div class="ui-helper-clearfix ">
+            <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ... ">
+            <button style="float:right" type="button" pButton icon="fa-plus" [routerLink]="['/main/assistant/manage-lecturer',0]" label="Thêm "></button>
+        </div>
+    </p-header>
+    <p-column [sortable]="true" filterPlaceholder="Search" field="StaffId" header="Mã Nhân Viên"></p-column>
+    <p-column [sortable]="true" field="Name" header="Họ Và Tên"></p-column>
+    <p-column [sortable]="true" field="Email" header="Email"></p-column>
+    <p-column [sortable]="true" field="Phone1" header="Số Điện Thoại"></p-column>
+    <!-- <p-column [style]="{'width':'120px'}" field="Status" filterPlaceholder="Search" filterPlaceholder="Input True/False" header="Trạng Thái">
+        <ng-template let-col let-status="rowData" pTemplate="body">
+            <p-button class="ui-button-success" disabled *ngIf="status[col.field]" icon="fa fa-fw fa-check" label="Active"></p-button>
+            <button pButton type="button" *ngIf="!status[col.field]" [disabled]="true" class="ui-button-secondary" label="Deactive" icon="fa fa-fw fa-close"></button>
+        </ng-template>
+    </p-column> -->
+    <p-column [style]="{'width':'85px'}" field="Id">
+        <ng-template let-col let-Id="rowData" pTemplate="body">
+            <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/manage-lecturer', Id[col.field]]" type="button" class="ui-button-warning"></button>
+            <button pButton type="button" icon="fa-search" (click)="selectAccount($event, Id)"></button>
+        </ng-template>
+    </p-column>
+</p-dataTable>

@@ -21,15 +21,15 @@
 
     </div>
     <div class="ui-g-4">
-        <p-dropdown [style]="{'width':'100%'}" [options]="courses" [(ngModel)]="nameClass[i].course" placeholder="Chọn môn học" optionLabel="Name"
-            [showClear]="true"></p-dropdown>
+        <p-dropdown [style]="{'width':'100%'}" [options]="courses" [(ngModel)]="nameClass[i].CourseId" placeholder="Chọn môn học"
+            optionLabel="Name" [showClear]="true"></p-dropdown>
     </div>
     <div class="ui-g-4">
-        <p-chips name={{i}} [(ngModel)]="nameClass[i].value"></p-chips>
+        <p-chips name={{i}} [(ngModel)]="nameClass[i].Classes"></p-chips>
     </div>
 
     <div class="ui-g-4">
-        <p-dropdown [options]="dummyTeacher" [(ngModel)]="nameClass[i].lecturer" [style]="{'width':'100%'}" placeholder="Chọn giảng viên"
+        <p-dropdown [options]="lecturers" [(ngModel)]="nameClass[i].LecturerId" [style]="{'width':'100%'}" placeholder="Chọn giảng viên"
             optionLabel="Name" [showClear]="true">
         </p-dropdown>
     </div>
@@ -43,31 +43,26 @@
     </div>
 </div>
 
-<div class="ui-g">
+<div class="ui-g" *ngIf="plan">
     <div class="ui-g-12">
-        <p-dataTable #dt resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+        <p-dataTable [value]="plan" #dt resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
             [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false" [style]="{'overflow':'visible'}">
             <p-header>
-                <!-- <div class="ui-helper-clearfix ">
-                    <button style="float:right" pButton type="button" label="Tạo lớp" class="ui-button-warning"></button>
-                    <button pButton type="button" label="Xuất file chương trình đào tạo">
-                    </button>
-                </div> -->
 
             </p-header>
 
-            <p-column field="Grade" header="Môn Học" [style]="{'width':'60px'}">
+            <p-column field="Course" header="Môn Học">
             </p-column>
-            <p-column field="HK" header="Lớp" [style]="{'width':'60px'}">
+            <p-column field="Name" header="Lớp">
             </p-column>
-            <p-column field="MaMH" header="Giảng Viên" [style]="{'width':'80px'}">
+            <p-column field="Lecturer" header="Giảng Viên">
             </p-column>
-            
-            <p-column [style]="{'width':'110px'}" field="Id" header="">
+
+            <p-column [style]="{'width':'100px'}" field="Id" header="">
                 <ng-template let-course="rowData" pTemplate="body">
                     <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
                     <button pButton icon="fa-trash" type="button" class="ui-button-danger"></button>
-                    <button pButton icon="fa-mortar-board" type="button" [routerLink]="['/main/assistant/assign-education-plan',plan.Id]" class="ui-button-primary"></button>
+
                 </ng-template>
             </p-column>
 

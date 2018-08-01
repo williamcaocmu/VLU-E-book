@@ -13,20 +13,8 @@ export class AssignEducationPlanComponent implements OnInit {
     nameClass = [];
     quantity: number;
     courses: any[];
-    dummyTeacher: any[] = [
-        {
-            Id: 1,
-            Name: 'Cao Anh Quốc'
-        },
-        {
-            Id: 2,
-            Name: 'Phạm Ngọc Duy'
-        },
-        {
-            Id: 3,
-            Name: 'Đặng Đình Hoà'
-        }
-    ]
+    lecturers: any[];
+    plan: any;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -37,16 +25,30 @@ export class AssignEducationPlanComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.planid = +params["id"];
         });
+        this.getAllLecturers();
+        this.getAllClassesInPlan();
+    }
+
+    getAllLecturers() {
+        this.assistantService
+            .getALlLecturers()
+            .then(res => {
+                console.log(res);
+                this.lecturers = res as any;
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     create() {
         console.log(this.quantity);
         for (let i = 0; i < this.quantity; i++) {
             this.nameClass.push({
-                name: `${i}`,
-                value: "",
-                course: "",
-                lecturer: ""
+                nameRow: `${i}`,
+                CourseId: "",
+                Classes: "",
+                LecturerId: ""
             });
         }
         if (this.planid > 0) {
@@ -84,6 +86,34 @@ export class AssignEducationPlanComponent implements OnInit {
     }
 
     createEducationPlan() {
-        console.log(this.nameClass);
+        this.nameClass.map(x => {
+            x.CourseId = x.CourseId.Id;
+            x.LecturerId = x.LecturerId.Id;
+        });
+        let obj = {
+            AssClass: this.nameClass
+        };
+        console.log(obj);
+        this.assistantService
+            .createAssignClassInPlan(obj)
+            .then(res => {
+                this.nameClass.length = 0;
+                this.getAllClassesInPlan();
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    getAllClassesInPlan() {
+        this.assistantService
+            .getAllClassesInPlan()
+            .then(res => {
+                console.log("all classes in plan", res);
+                this.plan = res;
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 }
