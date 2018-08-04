@@ -23,6 +23,7 @@ import { ViewEducationPlanComponent } from "./main/academy-assistant/view-educat
 import { AssignEducationPlanComponent } from "./main/academy-assistant/assign-education-plan/assign-education-plan.component";
 import { ManageLecturerComponent } from "./main/academy-assistant/manage-lecturer/manage-lecturer.component";
 import { LecturerDetailComponent } from "./main/academy-assistant/lecturer-detail/lecturer-detail.component";
+import {CourseDetailKhdtComponent} from "./main/academy-assistant/course-detail-khdt/course-detail-khdt.component";
 
 export const routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -84,6 +85,10 @@ export const routes = [
                     {
                         path: "course-detail/:id",
                         component: CourseDetailComponent
+                    },
+                    {
+                        path: "course-detail-khdt/:id",
+                        component: CourseDetailKhdtComponent
                     },
                     {
                         path: "education-plan",

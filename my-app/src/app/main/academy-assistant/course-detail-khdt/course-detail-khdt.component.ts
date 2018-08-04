@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { AcademyAssistantService } from "../academy-assistant.service";
 import { ActivatedRoute } from "@angular/router";
 import { MenuItem } from "primeng/api";
@@ -6,11 +6,12 @@ import { Message } from "primeng/components/common/api";
 import { AlertService } from "../../../services/alert.service";
 
 @Component({
-    selector: "app-course-detail",
-    templateUrl: "./course-detail.component.html",
-    styleUrls: ["./course-detail.component.css"]
+  selector: 'app-course-detail-khdt',
+  templateUrl: './course-detail-khdt.component.html',
+  styleUrls: ['./course-detail-khdt.component.css']
 })
-export class CourseDetailComponent implements OnInit {
+export class CourseDetailKhdtComponent implements OnInit {
+
     items: MenuItem[] = [
         {
             label: "Quản lí môn học"
@@ -80,7 +81,7 @@ export class CourseDetailComponent implements OnInit {
     updateCourse() {
         console.log((this.course))
         this.assistantService
-            .updateCourse(this.course)
+            .updateCoursePlan(this.course)
             .then(res => {
                 this.alertService.success("Cập Nhật Thành Công");
             })
@@ -88,4 +89,5 @@ export class CourseDetailComponent implements OnInit {
                 console.log(err);
             });
     }
+
 }

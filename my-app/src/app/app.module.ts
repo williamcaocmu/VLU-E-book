@@ -65,6 +65,7 @@ import {ChipsModule} from 'primeng/chips';
 import {MultiSelectModule} from 'primeng/multiselect';
 import { ManageLecturerComponent } from './main/academy-assistant/manage-lecturer/manage-lecturer.component';
 import { LecturerDetailComponent } from './main/academy-assistant/lecturer-detail/lecturer-detail.component';
+import { CourseDetailKhdtComponent } from './main/academy-assistant/course-detail-khdt/course-detail-khdt.component';
 
 @NgModule({
     declarations: [
@@ -89,7 +90,8 @@ import { LecturerDetailComponent } from './main/academy-assistant/lecturer-detai
         ViewEducationPlanComponent,
         AssignEducationPlanComponent,
         ManageLecturerComponent,
-        LecturerDetailComponent
+        LecturerDetailComponent,
+        CourseDetailKhdtComponent
     ],
     imports: [
         BrowserModule,

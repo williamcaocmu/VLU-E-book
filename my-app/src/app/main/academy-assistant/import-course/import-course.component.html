@@ -16,10 +16,10 @@
 
     <!-- datatable of return data upload file -->
     <p-dataTable [value]="dataResponseImportFile " *ngIf="dataResponseImportFile" resizableColumns="true" [rows]="50" [paginator]="true"
-        [pageLinks]="5" 
-        [rowsPerPageOptions]="[20,100,200]" 
-        [responsive]="true" 
-        [resizableColumns]="true" 
+        [pageLinks]="5"
+        [rowsPerPageOptions]="[20,100,200]"
+        [responsive]="true"
+        [resizableColumns]="true"
         [reorderableColumns]="true"
         [metaKeySelection]="false"
     >
@@ -68,42 +68,42 @@
     minHeight="500">
     <div class="ui-g" style="height:120px; overflow: visible">
         <div class="ui-g-12">
-            <p-dropdown 
-                [style]="{'width':'100%'}" 
-                (onChange)="onChange($event.value)" 
-                [(ngModel)]="selectedGrade" 
+            <p-dropdown
+                [style]="{'width':'100%'}"
+                (onChange)="onChange($event.value)"
+                [(ngModel)]="selectedGrade"
                 [options]="allGrades"
-                optionLabel="Name" 
+                optionLabel="Name"
                 placeholder="Chọn khối"
             >
             </p-dropdown>
         </div>
     </div>
-    <p-fileUpload 
-        chooseLabel="Chọn File Word" 
-        uploadLabel="Gửi File" 
-        cancelLabel="Huỷ" 
-        mode="advanced" 
-        #form 
+    <p-fileUpload
+        chooseLabel="Chọn File Word"
+        uploadLabel="Gửi File"
+        cancelLabel="Huỷ"
+        mode="advanced"
+        #form
         name="myfile[]"
-        *ngIf="selectedGrade" 
-        (uploadHandler)="uploadFileWord($event)" 
-        customUpload="true" 
-        showUploadButton="true" 
+        *ngIf="selectedGrade"
+        (uploadHandler)="uploadFileWord($event)"
+        customUpload="true"
+        showUploadButton="true"
         showCancelButton="true"
-        maxFileSize="10000000" 
+        maxFileSize="10000000"
         [style]="{'margin-bottom':'50px'}"
     > </p-fileUpload>
 </p-dialog>
 
-<p-dialog header="Tải File Word Chương trình đào tạo" 
-    [(visible)]="downloadFileWord" 
-    showEffect="fade" 
-    [modal]="true" 
+<p-dialog header="Tải File Word Chương trình đào tạo"
+    [(visible)]="downloadFileWord"
+    showEffect="fade"
+    [modal]="true"
     width="500"
     minHeight="450">
-    <div 
-        class="ui-g" 
+    <div
+        class="ui-g"
         style="height:120px; overflow: visible"
     >
         <div class="ui-g-12">
@@ -120,16 +120,16 @@
 </p-dialog>
 
 
-<p-dataTable [value]="allCourses" 
-    [paginator]="true" 
-    [pageLinks]="5" 
-    [rowsPerPageOptions]="[20,100,200]" 
+<p-dataTable [value]="allCourses"
+    [paginator]="true"
+    [pageLinks]="5"
+    [rowsPerPageOptions]="[20,100,200]"
     [globalFilter]="gb"
-    emptyMessage="Không tìm thấy kết quả" 
-    #dt 
-    [rows]="50" 
-    [metaKeySelection]="false" 
-    [reorderableColumns]="true" 
+    emptyMessage="Không tìm thấy kết quả"
+    #dt
+    [rows]="50"
+    [metaKeySelection]="false"
+    [reorderableColumns]="true"
     responsive="true"
     [resizableColumns]="true"
     [style]="{'overflow':'visible'}"
@@ -137,19 +137,19 @@
     <!-- p-header -->
     <p-header>
         <div class="ui-helper-clearfix ">
-            <input 
-                style="float:left" 
-                #gb 
-                type="text" 
-                pInputText 
-                size="50" 
+            <input
+                style="float:left"
+                #gb
+                type="text"
+                pInputText
+                size="50"
                 placeholder="Tìm Kiếm  ..."
             >
-            <button 
-                style="float:right" 
-                (click)="showDialogFile()" 
-                type="button" 
-                pButton 
+            <button
+                style="float:right"
+                (click)="showDialogFile()"
+                type="button"
+                pButton
                 label="Nhập File Excel"
             >
             </button>
@@ -165,11 +165,11 @@
     <!--  / p-header -->
 
     <!-- p-body -->
-    <p-column 
-        [filter]="true" 
-        filterMatchMode="equals" 
-        field="Grade" 
-        header="Khoá" 
+    <p-column
+        [filter]="true"
+        filterMatchMode="equals"
+        field="Grade"
+        header="Khoá"
         [style]="{'overflow':'visible','width':'130px'}"
     >
         <ng-template pTemplate="filter" let-col>
@@ -179,66 +179,66 @@
         </ng-template>
     </p-column>
 
-    <p-column 
-        [filter]="true" 
-        [style]="{'overflow':'visible','width':'130px'}" 
-        field="HK" 
+    <p-column
+        [filter]="true"
+        [style]="{'overflow':'visible','width':'130px'}"
+        field="HK"
         header="HK"
     >
         <ng-template pTemplate="filter" let-col>
-            <p-dropdown 
-                [options]="HkOptions" 
-                [style]="{'width':'100%'}" 
+            <p-dropdown
+                [options]="HkOptions"
+                [style]="{'width':'100%'}"
                 (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
                 styleClass="ui-column-filter">
             </p-dropdown>
         </ng-template>
     </p-column>
-   
-    <p-column 
-        field="MaMH" 
-        header="Mã môn học" 
+
+    <p-column
+        field="MaMH"
+        header="Mã môn học"
         [style]="{'width':'120px'}"
     >
     </p-column>
 
-    <p-column 
-        field="Name" 
+    <p-column
+        field="Name"
         header="Tên môn học"
     >
     </p-column>
 
-    <p-column 
-        field="DVHT" 
-        header="DVHT" 
+    <p-column
+        field="DVHT"
+        header="DVHT"
         [style]="{'width':'50px'}"
     >
     </p-column>
 
-    <p-column 
-        field="TongTiet" 
-        header="Tổng tiết" 
+    <p-column
+        field="TongTiet"
+        header="Tổng tiết"
         [style]="{'width':'80px'}"
     >
         <!-- <ng-template pTemplate="footer">
                 <td>$506,202</td>
             </ng-template> -->
     </p-column>
-    <p-column 
-        field="BT" 
-        header="BT" 
+    <p-column
+        field="BT"
+        header="BT"
         [style]="{'width':'50px'}"
     >
     </p-column>
-    <p-column 
-        field="LT" 
-        header="LT" 
+    <p-column
+        field="LT"
+        header="LT"
         [style]="{'width':'50px'}"
     >
     </p-column>
-    <p-column 
-        field="TH" 
-        header="TH" 
+    <p-column
+        field="TH"
+        header="TH"
         [style]="{'width':'50px'}"
     >
     </p-column>
@@ -248,15 +248,15 @@
     </p-column>
     <p-column field="SG" header="SG" [style]="{'width':'50px'}">
     </p-column>
-    
 
-    <p-column 
-        [style]="{'width':'85px'}" 
+
+    <p-column
+        [style]="{'width':'50px'}"
         field="Id" header=""
     >
         <ng-template let-course="rowData" pTemplate="body">
             <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
-            <button pButton (click)="deleteCourse(course)" icon="fa-trash" type="button" class="ui-button-danger"></button>
+            <!--<button pButton (click)="deleteCourse(course)" icon="fa-trash" type="button" class="ui-button-danger"></button>-->
         </ng-template>
 
     </p-column>
@@ -270,16 +270,16 @@
 
 
 <!-- Dialog -->
-<p-dialog 
-    header="Thông tin Khoá học" 
-    [(visible)]="displayDialog" 
-    [responsive]="true" 
-    showEffect="fade" 
-    [modal]="true" 
+<p-dialog
+    header="Thông tin Khoá học"
+    [(visible)]="displayDialog"
+    [responsive]="true"
+    showEffect="fade"
+    [modal]="true"
     width="1200"
 >
-    <div 
-        class="ui-g" 
+    <div
+        class="ui-g"
         *ngIf="selectedCourse"
     >
         <!-- <div class="ui-g-4"> Mã: </div>

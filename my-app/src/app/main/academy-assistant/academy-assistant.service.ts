@@ -415,7 +415,7 @@ export class AcademyAssistantService {
                 });
         });
 		}
-		
+
 		getAllClassesInPlan(){
 			return new Promise((resolve, reject) => {
 				this.apiService
@@ -428,4 +428,13 @@ export class AcademyAssistantService {
 					});
 			});
 		}
+
+		updateCoursePlan(data){
+		    return new Promise((resolve, reject)=> {
+		        this.apiService
+                    .post("assistant/updateCoursePlan",data)
+                    .then(res => resolve(res))
+                    .catch(err => reject(err))
+            })
+        }
 }
