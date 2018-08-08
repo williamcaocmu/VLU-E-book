@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { AcademyAssistantService } from "../academy-assistant.service";
-import { ActivatedRoute } from "@angular/router";
-import { MenuItem } from "primeng/api";
-import { Message } from "primeng/components/common/api";
-import { AlertService } from "../../../services/alert.service";
+import {Component, OnInit} from "@angular/core";
+import {AcademyAssistantService} from "../academy-assistant.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MenuItem} from "primeng/api";
+import {Message} from "primeng/components/common/api";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
     selector: "app-course-detail",
@@ -30,13 +30,14 @@ export class CourseDetailComponent implements OnInit {
         BT: "",
         TH: "",
         DVHT: "",
-        HK : ""
+        HK: ""
     };
-    constructor(
-        private assistantService: AcademyAssistantService,
-        private activatedRouted: ActivatedRoute,
-        private alertService: AlertService
-    ) {}
+
+    constructor(private assistantService: AcademyAssistantService,
+                private activatedRouted: ActivatedRoute,
+                private alertService: AlertService,
+                private router: Router) {
+    }
 
     ngOnInit() {
         this.activatedRouted.params.subscribe(params => {
@@ -81,7 +82,8 @@ export class CourseDetailComponent implements OnInit {
         console.log((this.course))
         this.assistantService
             .updateCourse(this.course)
-            .then(res => {
+            .then(() => {
+                this.router.navigate(['/main/assistant/course-management'])
                 this.alertService.success("Cập Nhật Thành Công");
             })
             .catch(err => {

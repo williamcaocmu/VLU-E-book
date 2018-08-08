@@ -1,72 +1,91 @@
 <div class="ui-g">
-    <div class="ui-g-6">
-        <input style="width:100%" [(ngModel)]="quantity" type="text" pInputText pKeyFilter="pint" placeholder="Nhập số lượng lớp ">
-    </div>
-    <div class="ui-g-3">
-        <button style="height: 35px; width: 100%" pButton type="button" (click)="create()" label="Tạo số lượng lớp" class="ui-button-success">
-        </button>
-    </div>
-    <div class="ui-g-3">
-        <button *ngIf="nameClass.length > 0" style="height: 35px; width: 100%" pButton type="button" (click)="clearAll()" label="Xoá tất cả"
-            class="ui-button-danger">
-        </button>
-    </div>
-</div>
-
-<div *ngFor="let item of nameClass; let i = index" class="ui-g">
-    <div class="ui-g-8 ui-g-offset-4" *ngIf="i == 0">
-        <p style="text-transform: uppercase">nhấn enter để xác nhận chọn lớp
+    <div class="ui-g-8 ui-g-offset-4">
+        <p style="text-transform: uppercase">
+            nhấn enter để xác nhận chọn lớp
             <span style="color: red">(*)</span>
         </p>
-
     </div>
     <div class="ui-g-4">
-        <p-dropdown [style]="{'width':'100%'}" [options]="courses" [(ngModel)]="nameClass[i].CourseId" placeholder="Chọn môn học"
-            optionLabel="Name" [showClear]="true"></p-dropdown>
+        <p-dropdown [style]="{'width':'100%'}"
+                    [options]="courses"
+                    placeholder="Chọn môn học"
+                    optionLabel="Name"
+                    [showClear]="true"
+                    [(ngModel)]="CourseId"
+                    [filter]="true"
+        >
+            <ng-template let-item pTemplate="selectedItem">
+                <!--<button pButton type="button" icon="fa fa-check"></button>-->
+                <span style="vertical-align:middle">{{item.label}}</span>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+                <div  class="ui-helper-clearfix" style="position: relative;height: 30px;">
+                    <i *ngIf="item.value.Status" class="fa fa-check btn-success"></i>
+                    <div style="font-size:14px;float:right;margin-top:4px">{{item.label}}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
     </div>
     <div class="ui-g-4">
-        <p-chips name={{i}} [(ngModel)]="nameClass[i].Classes"></p-chips>
+        <p-chips name="chip" [(ngModel)]="Classes"></p-chips>
     </div>
-
     <div class="ui-g-4">
-        <p-dropdown [options]="lecturers" [(ngModel)]="nameClass[i].LecturerId" [style]="{'width':'100%'}" placeholder="Chọn giảng viên"
-            optionLabel="Name" [showClear]="true">
+        <p-dropdown [options]="lecturers"
+                    [style]="{'width':'100%'}"
+                    placeholder="Chọn giảng viên"
+                    optionLabel="Name"
+                    [showClear]="true"
+                    [(ngModel)]="LecturerId"
+                    [filter]="true"
+        >
         </p-dropdown>
     </div>
 </div>
-
 <div class="ui-g">
     <div class="ui-g-12 ui-md-4 ui-md-offset-4">
-        <button *ngIf="nameClass.length > 0" style="height: 35px; width: 100%" pButton type="button" (click)="createEducationPlan()"
-            label="Tạo kế hoạch đào tạo" class="ui-button-success">
+        <button style="height: 35px; width: 100%" pButton type="button"
+                (click)="createEducationPlan()"
+                label="Tạo kế hoạch đào tạo" class="ui-button-success">
         </button>
     </div>
 </div>
-
 <div class="ui-g" *ngIf="plan">
     <div class="ui-g-12">
-        <p-dataTable [value]="plan" #dt resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
-            [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false" [style]="{'overflow':'visible'}">
+        <p-dataTable [value]="plan" #dt
+                     resizableColumns="true"
+                     [rows]="50"
+                     [paginator]="true"
+                     [pageLinks]="5"
+                     [rowsPerPageOptions]="[20,100,200]"
+                     [responsive]="true"
+                     [resizableColumns]="true"
+                     [reorderableColumns]="true"
+                     [metaKeySelection]="false"
+                     [style]="{'overflow':'visible'}">
             <p-header>
-
             </p-header>
-
             <p-column field="Course" header="Môn Học">
             </p-column>
             <p-column field="Name" header="Lớp">
             </p-column>
             <p-column field="Lecturer" header="Giảng Viên">
             </p-column>
-
             <p-column [style]="{'width':'100px'}" field="Id" header="">
                 <ng-template let-course="rowData" pTemplate="body">
-                    <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button" class="ui-button-warning"></button>
-                    <button pButton icon="fa-trash" type="button" class="ui-button-danger"></button>
-
+                    <button pButton
+                            icon="fa-pencil"
+                            [routerLink]="['/main/assistant/course-detail', course.Id]"
+                            type="button" class="ui-button-warning">
+                    </button>
+                    <button pButton
+                            icon="fa-trash"
+                            type="button"
+                            class="ui-button-danger"
+                            (click)="deleteCourse(course.Id)"
+                    >
+                    </button>
                 </ng-template>
             </p-column>
-
-
         </p-dataTable>
     </div>
 </div>

@@ -29,15 +29,15 @@
         </div>
     </div>
     <div class="ui-g-12" style="margin: 35px">
-        <p-pickList [showSourceControls]="false" [showTargetControls]="false" [source]="allCourses" [target]="targetCourses" sourceHeader="Danh sách môn học" 
+        <p-pickList [showSourceControls]="false" [showTargetControls]="false" [source]="allCourses" [target]="targetCourses" sourceHeader="Danh sách môn học"
             targetHeader="Môn học được chọn {{selectedApplySemester?.name ? 'cho '+ selectedApplySemester?.name : ''}}" [responsive]="true" filterBy="Name" dragdrop="true" dragdropScope="course" sourceFilterPlaceholder="Tìm môn học..."
-            targetFilterPlaceholder="Tìm môn học..." [sourceStyle]="{'height':'400px'}" [targetStyle]="{'height':'400px'}" 
+            targetFilterPlaceholder="Tìm môn học..." [sourceStyle]="{'height':'400px'}" [targetStyle]="{'height':'400px'}"
             onMoveToTarget="onMoveToTargeta($event.items)"
             >
             <ng-template let-course pTemplate="item">
                 <div class="ui-helper-clearfix">
                     <div style="font-size:14px;float: left;margin:10px 5px 0 5px;">
-                        {{selectedGrade.Name}} - {{course.Name}} 
+                        {{course.Grade}} - {{course.Name}}
                     </div>
                 </div>
             </ng-template>

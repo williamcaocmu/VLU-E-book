@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
-import { ApiService } from "../../services/api.service";
-import { Http } from "@angular/http";
+import {Injectable} from "@angular/core";
+import {ApiService} from "../../services/api.service";
+import {Http} from "@angular/http";
 
 @Injectable()
 export class AcademyAssistantService {
-    constructor(private apiService: ApiService, private http: Http) {}
+    constructor(private apiService: ApiService, private http: Http) {
+    }
 
     getList() {
         return new Promise((resolve, reject) => {
@@ -84,7 +85,7 @@ export class AcademyAssistantService {
                 .get(
                     `assistant/importCourse/${fileName.name}/${
                         fileName.GradeId
-                    }`
+                        }`
                 )
                 .then(res => resolve(res))
                 .catch(err => reject(err));
@@ -138,6 +139,7 @@ export class AcademyAssistantService {
                 });
         });
     }
+
     //END COURSE
 
     addGrade(data: any) {
@@ -414,27 +416,54 @@ export class AcademyAssistantService {
                     reject(err);
                 });
         });
-		}
+    }
 
-		getAllClassesInPlan(){
-			return new Promise((resolve, reject) => {
-				this.apiService
-					.get("assistant/getAllClassInPlan")
-					.then(res => {
-						resolve(res);
-					})
-					.catch(err => {
-						reject(err);
-					});
-			});
-		}
+    getAllClassesInPlan() {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get("assistant/getAllClassInPlan")
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
 
-		updateCoursePlan(data){
-		    return new Promise((resolve, reject)=> {
-		        this.apiService
-                    .post("assistant/updateCoursePlan",data)
-                    .then(res => resolve(res))
-                    .catch(err => reject(err))
-            })
-        }
+    updateCoursePlan(data) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .post("assistant/updateCoursePlan", data)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+        })
+    }
+
+    deleteClassEducationInPlan(id) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/deleteClassInPlan/${id}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+        })
+    }
+
+    getCourseFromEducationPlan(id) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getTrueFalseCourseInPlan/${id}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+        })
+    }
+
+    deletePlan(id){
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/deleteEducationPlan/${id}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+        })
+    }
 }

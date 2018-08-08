@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { AcademyAssistantService } from "../academy-assistant.service";
-import { ActivatedRoute } from "@angular/router";
-import { MenuItem } from "primeng/api";
-import { Message } from "primeng/components/common/api";
-import { AlertService } from "../../../services/alert.service";
+import {Component, OnInit} from '@angular/core';
+import {AcademyAssistantService} from "../academy-assistant.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MenuItem} from "primeng/api";
+import {Message} from "primeng/components/common/api";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
-  selector: 'app-course-detail-khdt',
-  templateUrl: './course-detail-khdt.component.html',
-  styleUrls: ['./course-detail-khdt.component.css']
+    selector: 'app-course-detail-khdt',
+    templateUrl: './course-detail-khdt.component.html',
+    styleUrls: ['./course-detail-khdt.component.css']
 })
 export class CourseDetailKhdtComponent implements OnInit {
 
@@ -31,13 +31,14 @@ export class CourseDetailKhdtComponent implements OnInit {
         BT: "",
         TH: "",
         DVHT: "",
-        HK : ""
+        HK: ""
     };
-    constructor(
-        private assistantService: AcademyAssistantService,
-        private activatedRouted: ActivatedRoute,
-        private alertService: AlertService
-    ) {}
+
+    constructor(private assistantService: AcademyAssistantService,
+                private activatedRouted: ActivatedRoute,
+                private alertService: AlertService,
+                private router: Router) {
+    }
 
     ngOnInit() {
         this.activatedRouted.params.subscribe(params => {
@@ -82,7 +83,8 @@ export class CourseDetailKhdtComponent implements OnInit {
         console.log((this.course))
         this.assistantService
             .updateCoursePlan(this.course)
-            .then(res => {
+            .then(() => {
+                this.router.navigate(['/main/assistant/course-management']);
                 this.alertService.success("Cập Nhật Thành Công");
             })
             .catch(err => {

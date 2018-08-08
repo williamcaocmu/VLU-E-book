@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "../../../../../node_modules/@angular/router";
-import { AcademyAssistantService } from "../academy-assistant.service";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "../../../../../node_modules/@angular/router";
+import {AcademyAssistantService} from "../academy-assistant.service";
 
 @Component({
     selector: "app-assign-education-plan",
@@ -15,15 +15,25 @@ export class AssignEducationPlanComponent implements OnInit {
     courses: any[];
     lecturers: any[];
     plan: any;
+    Classes: "";
+    CourseId: "";
+    LecturerId: "";
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private assistantService: AcademyAssistantService
-    ) {}
+    constructor(private activatedRoute: ActivatedRoute,
+                private assistantService: AcademyAssistantService) {
+    }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
             this.planid = +params["id"];
+            if (this.planid > 0) {
+                this.assistantService.getCourseFromEducationPlan(this.planid).then(res => {
+                    console.log('get course success', res);
+                    this.courses = res as any;
+                }).catch(err => {
+                    console.log('get course fail', err);
+                })
+            }
         });
         this.getAllLecturers();
         this.getAllClassesInPlan();
@@ -39,29 +49,6 @@ export class AssignEducationPlanComponent implements OnInit {
             .catch(err => {
                 console.log(err);
             });
-    }
-
-    create() {
-        console.log(this.quantity);
-        for (let i = 0; i < this.quantity; i++) {
-            this.nameClass.push({
-                nameRow: `${i}`,
-                CourseId: "",
-                Classes: "",
-                LecturerId: ""
-            });
-        }
-        if (this.planid > 0) {
-            this.assistantService
-                .getAllEducationPlans()
-                .then((res: any[]) => {
-                    let tmp = res.filter(x => x.Id == this.planid)[0].Courses;
-                    this.courses = tmp;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        }
     }
 
     getAllEducationPlans() {
@@ -81,23 +68,19 @@ export class AssignEducationPlanComponent implements OnInit {
             });
     }
 
-    clearAll() {
-        this.nameClass.length = 0;
-    }
-
     createEducationPlan() {
-        this.nameClass.map(x => {
-            x.CourseId = x.CourseId.Id;
-            x.LecturerId = x.LecturerId.Id;
-        });
-        let obj = {
-            AssClass: this.nameClass
-        };
-        console.log(obj);
+        const CourseId = this.CourseId['Id'];
+        const LecturerId = this.LecturerId['Id'];
+        let data = {
+            AssClass: [{
+                CourseId,
+                LecturerId,
+                Classes: this.Classes
+            }]
+        }
         this.assistantService
-            .createAssignClassInPlan(obj)
+            .createAssignClassInPlan(data)
             .then(res => {
-                this.nameClass.length = 0;
                 this.getAllClassesInPlan();
             })
             .catch(err => {
@@ -115,5 +98,18 @@ export class AssignEducationPlanComponent implements OnInit {
             .catch(err => {
                 console.log(err);
             });
+    }
+
+    deleteCourse(id) {
+        console.log(id);
+        this.assistantService
+            .deleteClassEducationInPlan(id)
+            .then(res => {
+                console.log('delete success', res)
+                this.getAllClassesInPlan();
+            })
+            .catch(err => {
+                console.log('delete fail', err);
+            })
     }
 }

@@ -7,8 +7,8 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class ApiService {
     access_token: string = "none";
-    host: string ="http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/";
-    // host: string = "http://125.234.238.137:8080/K20T2/VLU/public/api/";
+    // host: string ="http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/";
+    host: string = "http://125.234.238.137:8080/K20T2/VLU/public/api/";
     // host: string = "http://10.11.27.125:8080/K20T2/VLU/public/api/";
     // host: string = "http://localhost:8000/api/";
 
@@ -133,5 +133,7 @@ export class ApiService {
                 });
         });
     }
+
+
 
 }

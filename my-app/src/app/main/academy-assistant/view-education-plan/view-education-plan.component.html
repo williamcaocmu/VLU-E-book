@@ -1,23 +1,42 @@
 <div class="ui-g" style="margin-bottom: 40px">
     <div class="ui-g-12">
-        <button pButton type="button" [routerLink]="['/main/assistant/education-plan']" label="Tạo Chương Trình Đào Tạo" class="ui-button-warning"></button>
+        <button pButton type="button" [routerLink]="['/main/assistant/education-plan']" label="Tạo Chương Trình Đào Tạo"
+                class="ui-button-warning"></button>
     </div>
 </div>
-
 <p-accordion [multiple]="true">
     <p-accordionTab
         *ngFor="let plan of educationPlans; let i = index"
         header="CHƯƠNG TRÌNH ĐÀO TẠO NĂM HỌC {{plan.Name}}-{{+plan.Name + 1}}  - HỌC KÌ {{plan.HK}}"
-        class="ui-g-12 ">
-        <p-dataTable #dt [value]="plan.Courses" resizableColumns="true" [rows]="50" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
-            [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" [metaKeySelection]="false" [style]="{'overflow':'visible'}">
+        class="ui-g-12"
+    >
+        <p-dataTable #dt [value]="plan.Courses"
+                     resizableColumns="true"
+                     [rows]="50" [paginator]="true" [pageLinks]="5"
+                     [rowsPerPageOptions]="[20,100,200]"
+                     [responsive]="true"
+                     [resizableColumns]="true"
+                     [reorderableColumns]="true"
+                     [metaKeySelection]="false"
+                     [style]="{'overflow':'visible'}"
+        >
             <p-header>
                 <div class="ui-helper-clearfix ">
-                    <button style="float:right" pButton type="button" (click)="createCourse()" label="Tạo lớp" class="ui-button-warning"></button>
-                    <button pButton type="button" label="Xuất file chương trình đào tạo" (click)="sendIdEducation(plan.Id)">
+                    <button style="float:left"
+                            pButton
+                            type="button"
+                            label="Xoá"
+                            class="ui-button-danger"
+                            (click)="deleteEducationPlan(plan.Id)"
+                    >
+                    </button>
+                    <button style="float:right" pButton type="button" (click)="changePage(plan.Id)" label="Tạo lớp"
+                            class="ui-button-warning">
+                    </button>
+                    <button pButton type="button" label="Xuất file chương trình đào tạo"
+                            (click)="sendIdEducation(plan.Id)">
                     </button>
                 </div>
-
             </p-header>
             <!-- p-body -->
             <p-column field="Grade" header="Khoá" [style]="{'width':'60px'}">
@@ -44,29 +63,30 @@
             </p-column>
             <p-column field="DA" header="DA" [style]="{'width':'60px'}">
             </p-column>
-
-            <p-column [style]="{'width':'80px'}" field="Id" header="">
+            <p-column [style]="{'width':'50px'}" field="Id" header="">
                 <ng-template let-course="rowData" pTemplate="body">
-                    <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail-khdt', course.Id]" type="button" class="ui-button-warning"></button>
-                    <!--<button pButton icon="fa-trash" type="button" class="ui-button-danger"></button>-->
-                    <button pButton icon="fa-mortar-board" type="button" (click)="changePage(plan.Id)" class="ui-button-primary"></button>
+                    <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail-khdt', course.Id]"
+                            type="button" class="ui-button-warning">
+                    </button>
                 </ng-template>
             </p-column>
             <!-- / p-body -->
-
         </p-dataTable>
     </p-accordionTab>
 </p-accordion>
-
-<p-dialog [(visible)]="openModel" header="Gửi Danh Sách Môn Học" showEffect="fade" [modal]="true" width="1200" minHeight="500">
+<p-dialog [(visible)]="openModel" header="Gửi Danh Sách Môn Học" showEffect="fade" [modal]="true" width="1200"
+          minHeight="500">
     <div class="ui-g" style="height:120px; overflow: visible">
         <div class="ui-g-12">
-            <p-dropdown [style]="{'width':'100%'}" (onChange)="onChange($event.value)" [options]="allGrades" optionLabel="name" placeholder="Chọn khối">
+            <p-dropdown [style]="{'width':'100%'}" (onChange)="onChange($event.value)" [options]="allGrades"
+                        optionLabel="name" placeholder="Chọn khối">
             </p-dropdown>
-            <button [disabled]="!selectedGrade" style="float:right" (click)="downloadFile()" type="button" pButton label="Xác nhận">
+            <button [disabled]="!selectedGrade" style="float:right" (click)="downloadFile()" type="button" pButton
+                    label="Xác nhận">
             </button>
-            <a style="color:green ; float:right; margin: 0 10px" href="/K20T2/VLU/public/api/exportEducationPlanByGrade/{{planId}}/{{selectedGrade?.id}}"
-                target="_blank" download *ngIf="allowDownload">
+            <a style="color:green ; float:right; margin: 0 10px"
+               href="/K20T2/VLU/public/api/exportEducationPlanByGrade/{{planId}}/{{selectedGrade?.id}}"
+               target="_blank" download *ngIf="allowDownload">
                 <i class="fa fa-download"></i> Bấm vào đây để tải
             </a>
         </div>

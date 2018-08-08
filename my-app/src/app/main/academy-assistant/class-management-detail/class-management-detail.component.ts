@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { MenuItem } from "primeng/api";
-import { AcademyAssistantService } from "../academy-assistant.service";
-import { ActivatedRoute } from "@angular/router";
-import { AlertService } from "../../../services/alert.service";
-import { Message } from "primeng/components/common/api";
+import {Component, OnInit} from "@angular/core";
+import {MenuItem} from "primeng/api";
+import {AcademyAssistantService} from "../academy-assistant.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AlertService} from "../../../services/alert.service";
+import {Message} from "primeng/components/common/api";
 
 @Component({
     selector: "app-class-management-detail",
@@ -27,9 +27,9 @@ export class ClassManagementDetailComponent implements OnInit {
         Dob: ""
     };
     allGenders = [
-        { shortNameGender: "0", fullNameGender: "Chưa xác định" },
-        { shortNameGender: "1", fullNameGender: "Nam" },
-        { shortNameGender: "2", fullNameGender: "Nữ" }
+        {shortNameGender: "0", fullNameGender: "Chưa xác định"},
+        {shortNameGender: "1", fullNameGender: "Nam"},
+        {shortNameGender: "2", fullNameGender: "Nữ"}
     ];
     id: number;
     items: MenuItem[] = [
@@ -42,11 +42,12 @@ export class ClassManagementDetailComponent implements OnInit {
     ];
     selectedDate: any;
 
-    constructor(
-        private assistantService: AcademyAssistantService,
-        private activatedRoute: ActivatedRoute,
-        private alert: AlertService
-    ) {}
+    constructor(private assistantService: AcademyAssistantService,
+                private activatedRoute: ActivatedRoute,
+                private alert: AlertService,
+                private router: Router
+    ) {
+    }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
@@ -70,8 +71,6 @@ export class ClassManagementDetailComponent implements OnInit {
     }
 
     updateStudent() {
-        // console.log(this.student);
-
         this.student.ClassId = this.selectedClass.Id;
         console.log(this.student);
         this.msgs = [];
@@ -79,7 +78,9 @@ export class ClassManagementDetailComponent implements OnInit {
 
         this.assistantService
             .update(this.student)
-            .then(() => this.alert.success("Cập Nhật Thành Công"))
+            .then(() => {
+                this.router.navigate(['/main/assistant/class-management'])
+            })
             .catch(err => {
                 if (err.errors.student_id) {
                     this.msgs.push({

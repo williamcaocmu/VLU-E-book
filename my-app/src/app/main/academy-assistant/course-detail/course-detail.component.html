@@ -1,13 +1,11 @@
 <p-breadcrumb [model]="items" [home]="'fa fa-home'"></p-breadcrumb>
 <div class="chute chute-center" style="height: 726px; margin-top: 50px">
     <div class="mw1000 center-block">
-
         <div class="allcp-form theme-primary">
             <div class="panel">
                 <div class="panel-heading">
                     <div class="panel-title text-center">
                         <h3 style="text-transform: uppercase">Thông tin môn học</h3>
-
                     </div>
                 </div>
                 <div class="panel-body">
@@ -16,98 +14,94 @@
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label">
-                                    <input [(ngModel)]="course.MaMH" name="courseID" id="float-input-courseID" type="text" size="30" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+                                    <input [(ngModel)]="course.MaMH" name="courseID" id="float-input-courseID"
+                                           type="text" size="30" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                                     <label for="float-input-courseID">Mã Môn Học</label>
                                 </span>
                             </div>
                         </div>
                         <!-- / course ID -->
-
                         <!-- name -->
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.Name" id="float-input-name" type="text" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="name">
+                                    <input [(ngModel)]="course.Name" id="float-input-name" type="text" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                           name="name">
                                     <label for="float-input-name"> Tên Môn Học</label>
                                 </span>
                             </div>
                         </div>
                         <!-- / name -->
-
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.DVHT" id="float-input-hvhttc" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="DVHT">
+                                    <input [(ngModel)]="course.DVHT" id="float-input-hvhttc" type="number" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                           name="DVHT">
                                     <label for="float-input-hvhttc"> DHVHTC</label>
                                 </span>
                             </div>
                         </div>
-
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.HK" id="float-input-hk" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="HK">
+                                    <input [(ngModel)]="course.HK" id="float-input-hk" type="number" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                           name="HK">
                                     <label for="float-input-hk"> Học Kì</label>
                                 </span>
                             </div>
                         </div>
-
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.TongTiet" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="TongTiet">
+                                    <input [(ngModel)]="course.TongTiet" id="float-input-name" type="number" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                           name="TongTiet">
                                     <label for="float-input-name"> Tổng Tiết</label>
                                 </span>
                             </div>
                         </div>
-
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.BT" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="BT">
+                                    <input [(ngModel)]="course.BT" id="float-input-name" type="number" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                           name="BT">
                                     <label for="float-input-name"> Bài Tập</label>
                                 </span>
                             </div>
                         </div>
-
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.LT" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="LT">
+                                    <input [(ngModel)]="course.LT" id="float-input-name" type="number" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                           name="LT">
                                     <label for="float-input-name"> Lý Thuyết</label>
                                 </span>
                             </div>
                         </div>
-
                         <div class="ui-g ui-fluid one-row-field">
                             <div class="ui-md-12">
                                 <span class="ui-float-label ">
-                                    <input [(ngModel)]="course.TH" id="float-input-name" type="number" pInputText class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                                        name="TH">
+                                    <input [(ngModel)]="course.TH" id="float-input-name" type="number" pInputText
+                                           class="ui-inputtext ui-corner-all ui-state-default ui-widget"
+                                           name="TH">
                                     <label for="float-input-name"> Thực Hành</label>
                                 </span>
                             </div>
                         </div>
-
                         <p-messages [(value)]="msgs"></p-messages>
-
                         <div class="panel-footer text-right">
                             <a (click)="updateCourse()" class="btn btn-bordered btn-primary mb5"> Cập Nhật</a>
                         </div>
-
                         <a [routerLink]="['/main/assistant/import-course']" class="btn btn-bordered btn-danger mb5">
                             <i class="fa fa-reply"></i> Trở Về
                         </a>
-
                     </form>
-
-
                 </div>
             </div>
         </div>
