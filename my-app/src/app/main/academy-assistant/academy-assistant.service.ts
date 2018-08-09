@@ -127,6 +127,19 @@ export class AcademyAssistantService {
         });
     }
 
+    getCourseInPlan(id) {
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getCoursePlan/${id}`)
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
     deleteCourse(id) {
         return new Promise((resolve, reject) => {
             this.apiService

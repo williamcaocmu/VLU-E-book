@@ -86,6 +86,7 @@ export class ViewEducationPlanComponent implements OnInit {
                     .deletePlan(id)
                     .then(res => {
                         this.getAllEducationPlans();
+                        this.alert.success('Xoá thành công!!');
                     })
                     .catch(err => {
                         console.log(err);

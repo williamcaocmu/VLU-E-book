@@ -83,7 +83,7 @@ export class CourseDetailComponent implements OnInit {
         this.assistantService
             .updateCourse(this.course)
             .then(() => {
-                this.router.navigate(['/main/assistant/course-management'])
+                this.router.navigate(['/main/assistant/import-course'])
                 this.alertService.success("Cập Nhật Thành Công");
             })
             .catch(err => {

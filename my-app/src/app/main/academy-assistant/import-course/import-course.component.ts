@@ -112,7 +112,7 @@ export class ImportCourseComponent implements OnInit {
             .getAllCourses()
             .then(res => {
                 this.allCourses = res as any;
-
+                console.log(this.allCourses);
                 let totalTongTiet = 0;
                 this.allCourses.map(x => (totalTongTiet += x.TongTiet));
                 let HK = this.allCourses.map(x => x.HK);

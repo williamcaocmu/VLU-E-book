@@ -31,7 +31,8 @@ export class CourseDetailKhdtComponent implements OnInit {
         BT: "",
         TH: "",
         DVHT: "",
-        HK: ""
+        HK: "",
+        DA: ""
     };
 
     constructor(private assistantService: AcademyAssistantService,
@@ -45,7 +46,7 @@ export class CourseDetailKhdtComponent implements OnInit {
             this.Id = +params["id"];
             if (this.Id > 0) {
                 this.assistantService
-                    .getCourse(this.Id)
+                    .getCourseInPlan(this.Id)
                     .then(res => {
                         this.course = res as any;
                         console.log(res);
@@ -84,7 +85,7 @@ export class CourseDetailKhdtComponent implements OnInit {
         this.assistantService
             .updateCoursePlan(this.course)
             .then(() => {
-                this.router.navigate(['/main/assistant/course-management']);
+                this.router.navigate(['/main/assistant/view-education-plan']);
                 this.alertService.success("Cập Nhật Thành Công");
             })
             .catch(err => {

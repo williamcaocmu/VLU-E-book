@@ -89,7 +89,7 @@ export class EducationPlanComponent implements OnInit {
         this.assistantService
             .createEducationPlan(obj)
             .then(res => {
-                this.alertService.success(res);
+                this.alertService.success('Tạo thành công');
 
             })
             .catch(err => {

@@ -249,8 +249,11 @@
         field="Id" header=""
     >
         <ng-template let-course="rowData" pTemplate="body">
-            <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/course-detail', course.Id]" type="button"
-                    class="ui-button-warning"></button>
+            <button pButton icon="fa-pencil"
+                    [routerLink]="['/main/assistant/course-detail', course.Id]"
+                    type="button"
+                    class="ui-button-warning">
+            </button>
             <!--<button pButton (click)="deleteCourse(course)" icon="fa-trash" type="button" class="ui-button-danger"></button>-->
         </ng-template>
     </p-column>
