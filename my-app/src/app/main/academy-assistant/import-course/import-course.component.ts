@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { AcademyAssistantService } from "../academy-assistant.service";
-import { Message } from "primeng/components/common/api";
-import { AlertService } from "../../../services/alert.service";
-import { LoadingService } from "../../../services/loading.service";
+import {Component, OnInit} from "@angular/core";
+import {AcademyAssistantService} from "../academy-assistant.service";
+import {Message} from "primeng/components/common/api";
+import {AlertService} from "../../../services/alert.service";
+import {LoadingService} from "../../../services/loading.service";
 
 @Component({
     selector: "app-import-course",
@@ -29,11 +29,10 @@ export class ImportCourseComponent implements OnInit {
     url: any;
     allowDownload: boolean = false;
 
-    constructor(
-        private assistantService: AcademyAssistantService,
-        private alertService: AlertService,
-        private loading: LoadingService
-    ) {}
+    constructor(private assistantService: AcademyAssistantService,
+                private alertService: AlertService,
+                private loading: LoadingService) {
+    }
 
     ngOnInit() {
         this.loadData();
@@ -72,7 +71,7 @@ export class ImportCourseComponent implements OnInit {
                 } else {
                     this.isImport = true;
                     this.nameFileImport = res["File"];
-                    
+
                 }
                 this.loading.stop();
             })
@@ -132,6 +131,10 @@ export class ImportCourseComponent implements OnInit {
                     label: "",
                     value: ""
                 });
+                console.log(this.HkOptions);
+                this.HkOptions.sort(function (a, b) {
+                    return (+a.value) - (+b.value);
+                })
                 this.loading.stop();
             })
             .catch(err => {
@@ -193,7 +196,7 @@ export class ImportCourseComponent implements OnInit {
     }
 
     uploadFileWord(event) {
-        let object = { File: event.files[0], grade_id: this.selectedGrade.Id };
+        let object = {File: event.files[0], grade_id: this.selectedGrade.Id};
         console.log(object);
         this.assistantService
             .uploadFileWord(object)

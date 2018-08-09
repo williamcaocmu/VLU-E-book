@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "../../../../../node_modules/@angular/router";
 import {AcademyAssistantService} from "../academy-assistant.service";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
     selector: "app-assign-education-plan",
@@ -20,23 +21,28 @@ export class AssignEducationPlanComponent implements OnInit {
     LecturerId: "";
 
     constructor(private activatedRoute: ActivatedRoute,
-                private assistantService: AcademyAssistantService) {
+                private assistantService: AcademyAssistantService,
+                private alert: AlertService) {
     }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
             this.planid = +params["id"];
             if (this.planid > 0) {
-                this.assistantService.getCourseFromEducationPlan(this.planid).then(res => {
-                    console.log('get course success', res);
-                    this.courses = res as any;
-                }).catch(err => {
-                    console.log('get course fail', err);
-                })
+                this.getCourseInPlan(this.planid);
             }
         });
         this.getAllLecturers();
         this.getAllClassesInPlan();
+    }
+
+    getCourseInPlan(id) {
+        this.assistantService.getCourseFromEducationPlan(id).then(res => {
+            console.log('get course success', res);
+            this.courses = res as any;
+        }).catch(err => {
+            console.log('get course fail', err);
+        })
     }
 
     getAllLecturers() {
@@ -82,6 +88,11 @@ export class AssignEducationPlanComponent implements OnInit {
             .createAssignClassInPlan(data)
             .then(res => {
                 this.getAllClassesInPlan();
+                this.alert.success('Tạo thành công');
+                this.Classes = null;
+                this.CourseId = null;
+                this.LecturerId = null;
+                this.getCourseInPlan(this.planid);
             })
             .catch(err => {
                 console.log(err);
@@ -101,15 +112,21 @@ export class AssignEducationPlanComponent implements OnInit {
     }
 
     deleteCourse(id) {
-        console.log(id);
-        this.assistantService
-            .deleteClassEducationInPlan(id)
-            .then(res => {
-                console.log('delete success', res)
-                this.getAllClassesInPlan();
-            })
-            .catch(err => {
-                console.log('delete fail', err);
-            })
+        this.alert.confirm('Bạn có chắc muốn xoá ?')
+            .then(() => {
+                this.assistantService
+                    .deleteClassEducationInPlan(id)
+                    .then(res => {
+                        console.log('delete success', res)
+                        this.getAllClassesInPlan();
+                        this.alert.success('Xoá thành công');
+                    })
+                    .catch(err => {
+                        console.log('delete fail', err);
+                    })
+            }).catch(() => {
+            console.log('ko xoa')
+        })
+
     }
 }

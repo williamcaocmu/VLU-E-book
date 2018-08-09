@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {AcademyAssistantService} from "../academy-assistant.service";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
     selector: "app-view-education-plan",
@@ -18,7 +19,8 @@ export class ViewEducationPlanComponent implements OnInit {
     allowDownload = false;
 
     constructor(private assistantService: AcademyAssistantService,
-                private router: Router) {
+                private router: Router,
+                private alert: AlertService) {
     }
 
     ngOnInit() {
@@ -77,7 +79,20 @@ export class ViewEducationPlanComponent implements OnInit {
         ]);
     }
 
-    deleteEducationPlan(id){
-        console.log(id);
+    deleteEducationPlan(id) {
+        this.alert.confirm('Bạn có chắc muốn xoá?')
+            .then(() => {
+                this.assistantService
+                    .deletePlan(id)
+                    .then(res => {
+                        this.getAllEducationPlans();
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            })
+            .catch(() => {
+            })
+
     }
 }

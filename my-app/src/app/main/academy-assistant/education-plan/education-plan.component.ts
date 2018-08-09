@@ -85,12 +85,12 @@ export class EducationPlanComponent implements OnInit {
             List: []
         };
         obj.List = courses;
-        
+
         this.assistantService
             .createEducationPlan(obj)
             .then(res => {
                 this.alertService.success(res);
-                
+
             })
             .catch(err => {
                 this.alertService.error(err.errors.unique[0]);
@@ -107,6 +107,7 @@ export class EducationPlanComponent implements OnInit {
                 console.log(err);
             });
         this.allCourses = [];
+        this.selectedSemester = null;
     }
 
     onChangeSemester(value) {
@@ -114,7 +115,7 @@ export class EducationPlanComponent implements OnInit {
             hk: value.Name,
             grade_id: this.selectedGrade.Id
         };
-        
+
         this.assistantService
             .getEducationPlan(obj)
             .then(res => {
@@ -132,9 +133,9 @@ export class EducationPlanComponent implements OnInit {
 
   onMoveToTargeta(e){
       console.log(e);
-      
-  }
-   
 
-   
+  }
+
+
+
 }

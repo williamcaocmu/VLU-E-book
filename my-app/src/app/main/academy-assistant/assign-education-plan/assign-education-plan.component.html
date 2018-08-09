@@ -15,19 +15,24 @@
                     [filter]="true"
         >
             <ng-template let-item pTemplate="selectedItem">
-                <!--<button pButton type="button" icon="fa fa-check"></button>-->
                 <span style="vertical-align:middle">{{item.label}}</span>
             </ng-template>
             <ng-template let-item pTemplate="item">
-                <div  class="ui-helper-clearfix" style="position: relative;height: 30px;">
-                    <i *ngIf="item.value.Status" class="fa fa-check btn-success"></i>
-                    <div style="font-size:14px;float:right;margin-top:4px">{{item.label}}</div>
+                <div class="ui-helper-clearfix" style="position: relative;height: 30px;">
+                    <div style="font-size:15px;margin-top:5px">
+                        {{item.label}}
+                        <i style="float: right;" *ngIf="!item.value.Status"
+                           class="fa fa-check btn-success"></i>
+                    </div>
                 </div>
             </ng-template>
         </p-dropdown>
     </div>
     <div class="ui-g-4">
-        <p-chips name="chip" [(ngModel)]="Classes"></p-chips>
+        <p-chips [style]="{'height':'50px'}"
+                 name="chip"
+                 [(ngModel)]="Classes">
+        </p-chips>
     </div>
     <div class="ui-g-4">
         <p-dropdown [options]="lecturers"
@@ -51,7 +56,7 @@
 </div>
 <div class="ui-g" *ngIf="plan">
     <div class="ui-g-12">
-        <p-dataTable [value]="plan" #dt
+        <p-dataTable [value]="plan.reverse()" #dt
                      resizableColumns="true"
                      [rows]="50"
                      [paginator]="true"
