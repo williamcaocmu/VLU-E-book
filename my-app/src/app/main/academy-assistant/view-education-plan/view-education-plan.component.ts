@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {AcademyAssistantService} from "../academy-assistant.service";
 import {AlertService} from "../../../services/alert.service";
+import {MenuItem} from "primeng/api";
 
 @Component({
     selector: "app-view-education-plan",
@@ -86,7 +87,6 @@ export class ViewEducationPlanComponent implements OnInit {
                     .deletePlan(id)
                     .then(res => {
                         this.getAllEducationPlans();
-                        this.alert.success('Xoá thành công!!');
                     })
                     .catch(err => {
                         console.log(err);
@@ -96,4 +96,14 @@ export class ViewEducationPlanComponent implements OnInit {
             })
 
     }
+    activeIndex: number=0;
+    items: MenuItem[] = [
+        {
+            label: "Tạo chương trình đào tạo",
+            command: event => {
+                this.activeIndex = 0;
+            }
+        }
+        
+    ];
 }
