@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AcademyAssistantService } from "../academy-assistant.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AlertService } from "../../../services/alert.service";
+import { MenuItem } from "primeng/api";
 
 @Component({
     selector: "app-lecturer-detail",
@@ -20,6 +21,14 @@ export class LecturerDetailComponent implements OnInit {
         Phone1: "",
         Phone2: ""
     };
+    items: MenuItem[] = [
+        {
+            label: "Thông tin giảng viên"
+        },
+        {
+            label: "Quản lý thông tin giảng viên"
+        }
+    ];
 
     constructor(
         private assistantService: AcademyAssistantService,
@@ -61,7 +70,7 @@ export class LecturerDetailComponent implements OnInit {
         this.assistantService
             .updateLecturer(this.lecturer)
             .then(res => {
-                this.alertService.success("Updated Successfully !");
+                this.alertService.success("Thêm thành công!");
             })
             .catch(err => {
                 console.log(err);
