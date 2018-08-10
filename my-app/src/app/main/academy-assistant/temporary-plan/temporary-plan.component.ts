@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
+import { MenuItem } from "primeng/api";
 @Component({
     selector: "app-temporary-plan",
     templateUrl: "./temporary-plan.component.html",
@@ -8,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
 export class TemporaryPlanComponent implements OnInit {
     tmpCourses: any[] = [];
     constructor() {}
-
+    activeIndex: number = 0;
     ngOnInit() {
         this.getLocalStorage();
     }
@@ -16,4 +16,14 @@ export class TemporaryPlanComponent implements OnInit {
     getLocalStorage() {
         this.tmpCourses = JSON.parse(localStorage.getItem("tmp_courses"));
     }
+    items: MenuItem[] = [
+        {
+            label: "Kế Hoạch Đào Tạo",
+            command: event => {
+                this.activeIndex = 0;
+            }
+        }
+        
+    ];
+
 }
