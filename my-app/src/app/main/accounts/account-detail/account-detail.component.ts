@@ -71,7 +71,7 @@ export class AccountDetailComponent implements OnInit {
         this.accountService
             .updateAccount(this.account)
             .then(res => {
-                this.alertService.success("Updated Successfully !");
+                this.alertService.success("Thêm thành công !");
             })
             .catch(err => {
                 console.log(err);

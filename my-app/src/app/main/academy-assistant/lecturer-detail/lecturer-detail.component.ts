@@ -61,7 +61,7 @@ export class LecturerDetailComponent implements OnInit {
         this.assistantService
             .updateLecturer(this.lecturer)
             .then(res => {
-                this.alertService.success("Updated Successfully !");
+                this.alertService.success("Thêm thành công !");
             })
             .catch(err => {
                 console.log(err);
