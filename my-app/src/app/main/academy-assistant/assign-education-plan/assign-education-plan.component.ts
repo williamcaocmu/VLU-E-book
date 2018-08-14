@@ -101,7 +101,7 @@ export class AssignEducationPlanComponent implements OnInit {
 
     getAllClassesInPlan() {
         this.assistantService
-            .getAllClassesInPlan()
+            .getAllClassesInPlan(this.planid)
             .then(res => {
                 console.log("all classes in plan", res);
                 this.plan = res;
@@ -119,6 +119,7 @@ export class AssignEducationPlanComponent implements OnInit {
                     .then(res => {
                         console.log('delete success', res)
                         this.getAllClassesInPlan();
+                        this.getCourseInPlan(this.planid);
                         this.alert.success('Xoá thành công');
                     })
                     .catch(err => {

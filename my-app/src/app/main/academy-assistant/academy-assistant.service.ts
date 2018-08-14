@@ -431,10 +431,10 @@ export class AcademyAssistantService {
         });
     }
 
-    getAllClassesInPlan() {
+    getAllClassesInPlan(id) {
         return new Promise((resolve, reject) => {
             this.apiService
-                .get("assistant/getAllClassInPlan")
+                .get(`assistant/getClassInPlan/${id}`)
                 .then(res => {
                     resolve(res);
                 })
