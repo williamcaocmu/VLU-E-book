@@ -52,6 +52,7 @@ import { ViewHistoryComponent } from "./main/academy-assistant/view-history/view
 import { InplaceModule } from "primeng/inplace";
 import { ImportCourseComponent } from "./main/academy-assistant/import-course/import-course.component";
 import { MenubarModule } from "primeng/menubar";
+import { TabViewModule } from "primeng/tabview";
 import { CourseDetailComponent } from "./main/academy-assistant/course-detail/course-detail.component";
 import { SplitButtonModule } from "primeng/splitbutton";
 import { EducationPlanComponent } from "./main/academy-assistant/education-plan/education-plan.component";
@@ -66,6 +67,10 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import { ManageLecturerComponent } from './main/academy-assistant/manage-lecturer/manage-lecturer.component';
 import { LecturerDetailComponent } from './main/academy-assistant/lecturer-detail/lecturer-detail.component';
 import { CourseDetailKhdtComponent } from './main/academy-assistant/course-detail-khdt/course-detail-khdt.component';
+import { CreateClassFromPlanComponent } from './main/academy-assistant/create-class-from-plan/create-class-from-plan.component';
+import { ManageScoreComponent } from './main/lecturer/manage-score/manage-score.component';
+import { ManageStudentComponent } from './main/lecturer/manage-student/manage-student.component';
+import {LecturerService} from "./main/lecturer/lecturer.service";
 
 @NgModule({
     declarations: [
@@ -91,7 +96,10 @@ import { CourseDetailKhdtComponent } from './main/academy-assistant/course-detai
         AssignEducationPlanComponent,
         ManageLecturerComponent,
         LecturerDetailComponent,
-        CourseDetailKhdtComponent
+        CourseDetailKhdtComponent,
+        CreateClassFromPlanComponent,
+        ManageScoreComponent,
+        ManageStudentComponent
     ],
     imports: [
         BrowserModule,
@@ -127,7 +135,8 @@ import { CourseDetailKhdtComponent } from './main/academy-assistant/course-detai
         StepsModule,
         KeyFilterModule,
         ChipsModule,
-        MultiSelectModule
+        MultiSelectModule,
+        TabViewModule
     ],
     providers: [
         AlertService,
@@ -139,7 +148,8 @@ import { CourseDetailKhdtComponent } from './main/academy-assistant/course-detai
         MainService,
         GuardRoleService,
         GuardLoginService,
-        AcademyAssistantService
+        AcademyAssistantService,
+        LecturerService
     ],
     bootstrap: [AppComponent]
 })

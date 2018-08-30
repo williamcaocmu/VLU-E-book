@@ -54,8 +54,6 @@
             <!-- p-body -->
             <p-column field="Grade" header="Khoá" [style]="{'width':'60px'}">
             </p-column>
-            <p-column field="HK" header="HK" [style]="{'width':'60px'}">
-            </p-column>
             <p-column field="MaMH" header="Mã MH" [style]="{'width':'80px'}">
             </p-column>
             <p-column field="Name" header="Tên môn học" [style]="{'width':'100%'}">
@@ -118,7 +116,8 @@
                href="/K20T2/VLU/public/api/exportEducationPlanByGrade/{{planId}}/{{selectedGrade?.id}}"
                target="_blank"
                download
-               *ngIf="allowDownload">
+               *ngIf="allowDownload"
+            >
                 <i class="fa fa-download"></i> Bấm vào đây để tải
             </a>
         </div>

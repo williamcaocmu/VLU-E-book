@@ -75,6 +75,7 @@ export class AssignEducationPlanComponent implements OnInit {
     }
 
     createEducationPlan() {
+        // console.log(this.CourseId)
         const CourseId = this.CourseId['Id'];
         const LecturerId = this.LecturerId['Id'];
         let data = {
@@ -84,6 +85,7 @@ export class AssignEducationPlanComponent implements OnInit {
                 Classes: this.Classes
             }]
         }
+        console.log(data);
         this.assistantService
             .createAssignClassInPlan(data)
             .then(res => {

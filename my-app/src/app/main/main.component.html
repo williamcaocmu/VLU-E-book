@@ -30,6 +30,14 @@
                     <a [routerLink]="['/main/account']"> Quản lí tài khoản</a>
                 </li>
             </ul>
+            <ul *ngIf="setConfigAuthor(navConfig.tabLecturer)" class="nav nav-list nav-list-topbar pull-left">
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/main/lecturer/manage-score']"> Quản lí điểm</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['/main/lecturer/manage-student']"> Quản lí sinh viên</a>
+                </li>
+            </ul>
         </div>
         <div class="topbar-right dropdown">
 
@@ -37,7 +45,7 @@
         </div>
     </header>
 
-    <!-- 
+    <!--
     <header class="navbar navbar-fixed-top bg-light">
         <div class="navbar-logo-wrapper" style="width: auto;">
             <img src="../../assets/img/logoVLU.png" style="background-size: cover; height: 100%; background-position: center; background-repeat:no-repeat">

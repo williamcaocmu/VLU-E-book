@@ -479,4 +479,35 @@ export class AcademyAssistantService {
                 .catch(err => reject(err))
         })
     }
+
+    getAssignStudentInClassInPlan(id1,id2 ){
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getStudentInClassInPlan/${id1}/${id2}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+        })
+    }
+
+    getClassByGrade(id){
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .get(`assistant/getClassesByGrade/${id}`)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+        })
+    }
+
+    assignStudentInClassPlan(data){
+        return new Promise((resolve, reject) => {
+            this.apiService
+                .post("assistant/assignStudentInClassInPlan", data)
+                .then(res => resolve(res))
+                .catch(err => reject(err))
+        })
+    }
+
+
+
+
 }

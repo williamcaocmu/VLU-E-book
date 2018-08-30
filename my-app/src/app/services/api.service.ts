@@ -8,9 +8,11 @@ import { Observable } from "rxjs/Observable";
 export class ApiService {
     access_token: string = "none";
     // host: string ="http://cntttest.vanlanguni.edu.vn:8080/K20T2/VLU/public/api/";
-    host: string = "http://125.234.238.137:8080/K20T2/VLU/public/api/";
+    // host: string = "http://125.234.238.137:8080/K20T2/VLU/public/api/";
     // host: string = "http://10.11.27.125:8080/K20T2/VLU/public/api/";
     // host: string = "http://localhost:8000/api/";
+    // host: string ='http://172.16.5.168:8000/api/';
+    host: string = 'http://cntttest.vanlanguni.edu.vn:18080/K20T2/VLU/public/api/'
 
     constructor(
         private http: Http,
@@ -33,9 +35,11 @@ export class ApiService {
                 .post(this.host + url, data, { headers: headers })
                 .toPromise()
                 .then(res => {
+                    console.log('success',res);
                     resolve(res.json());
                 })
                 .catch(err => {
+                    console.log('false',err);
                     reject(err.json());
                 });
         });
@@ -67,7 +71,6 @@ export class ApiService {
             headers.append("Accept", "application/json");
             headers.append("Authorization", "Bearer " + this.access_token);
             console.log("File", event);
-            // console.log("Form data", frmData);
             this.http
                 .post(this.host + url, frmData, { headers: headers })
                 .toPromise()

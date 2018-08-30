@@ -1,0 +1,80 @@
+<div class="ui-g">
+    <div class="ui-g-12 ui-md-6">
+        <p-dropdown
+            [style]="{'width':'100%'}"
+            [options]="allGrades"
+            [(ngModel)]="selectedGrade"
+            placeholder="Chọn khoá"
+            optionLabel="Name"
+            (onChange)=onChangeGrade($event.value)
+        >
+        </p-dropdown>
+    </div>
+<div class="ui-g-12 ui-md-6">
+    <p-dropdown
+        [style]="{'width':'100%'}"
+        [options]="allClasses"
+        [(ngModel)]="selectedClass"
+        placeholder="Chọn lớp"
+        optionLabel="Name"
+        (onChange)=onChangeClass($event.value)
+    >
+    </p-dropdown>
+</div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-12" style="margin: 35px">
+        <p-pickList
+            [showSourceControls]="false"
+            [showTargetControls]="false"
+            [source]="allNotInClassStudents"
+            [target]="allInClassStudents"
+            sourceHeader="Danh sách học sinh lớp"
+            targetHeader="Môn học được chọn {{selectedApplySemester?.name ? 'cho '+selectedApplySemester.name:''}}"
+            [responsive]="true"
+            filterBy="Name"
+            dragdrop="true"
+            dragdropScope="course"
+            sourceFilterPlaceholder="Tìm môn học..."
+            targetFilterPlaceholder="Tìm môn học..."
+            [sourceStyle]="{'height':'400px'}"
+            [targetStyle]="{'height':'400px'}"
+            onMoveToTarget="onMoveToTargeta($event.items)"
+        >
+            <ng-template let-course pTemplate="item">
+                <div class="ui-helper-clearfix">
+                    <div style="font-size:14px;float: left;margin:10px 5px 0 5px;">
+                    {{course.Name}}
+                    </div>
+                </div>
+            </ng-template>
+        </p-pickList>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-md-3 ui-md-offset-3 ui-g-6">
+         <button
+            pButton
+            type="button"
+            class="ui-button-warning"
+            label="Quay lại"
+            style="width:100%"
+            (click)="back()"
+        >
+        </button>
+    </div>
+     <div class="ui-md-3 ui-g-6">
+         <button
+            pButton
+            type="button"
+            class="ui-button-warning"
+            (click)="update()"
+            label="Cập nhật"
+            style="width:100%"
+            >
+        </button>
+    </div>
+
+</div>

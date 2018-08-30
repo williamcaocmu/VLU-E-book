@@ -76,13 +76,16 @@
             </p-column>
             <p-column field="Lecturer" header="Giảng Viên">
             </p-column>
-            <p-column [style]="{'width':'100px'}" field="Id" header="">
+            <p-column [style]="{'width':'500px'}" field="Id" header="">
                 <ng-template let-course="rowData" pTemplate="body">
-                    <!--<button pButton-->
-                            <!--icon="fa-pencil"-->
-                            <!--[routerLink]="['/main/assistant/course-detail-khdt', course.Id]"-->
-                            <!--type="button" class="ui-button-warning">-->
-                    <!--</button>-->
+                    <button pButton
+                            icon="fa-folder-open"
+                            type="button"
+                            class="ui-button-warning"
+                            [routerLink]="['/main/assistant/manage-lecturer', course.Id ,course.GradeId]"
+                    >
+                    </button>
+ 
                     <button pButton
                             icon="fa-trash"
                             type="button"
@@ -90,8 +93,11 @@
                             (click)="deleteCourse(course.Id)"
                     >
                     </button>
+                    {{course | json}}
                 </ng-template>
             </p-column>
         </p-dataTable>
     </div>
 </div>
+
+
