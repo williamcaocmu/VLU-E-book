@@ -1,12 +1,13 @@
-
 <div class="ui-g">
     <div class="ui-g-12">
         <p-dataTable [value]="classesLecturer"
-                     [paginator]="true" [pageLinks]="5"
+                     [paginator]="true"
+                     [pageLinks]="5"
                      [rowsPerPageOptions]="[20,100,200]"
                      [globalFilter]="gb"
                      emptyMessage="Không tìm thấy kết quả"
-                     #dt [rows]="50"
+                     #dt
+                     [rows]="50"
                      [metaKeySelection]="false"
                      [reorderableColumns]="true"
                      responsive="true"
@@ -19,17 +20,6 @@
                 </div>
             </p-header>
             <!--  / p-header -->
-            <!-- p-footer -->
-            <p-footer class="footer">
-                <div class="ui-helper-clearfix">
-                    <button type="button" pButton icon="fa-file-o" iconPos="left" label="Xuất Tất Cả (CSV)"
-                            (click)="dt.exportCSV()" style="float:left"></button>
-                    <button type="button" pButton icon="fa-file" iconPos="left" label="Xuất Dữ Liệu Đã Chọn (CSV)"
-                            (click)="dt.exportCSV({selectionOnly:true})"
-                            style="float:right"></button>
-                </div>
-            </p-footer>
-            <!-- /p-footer  -->
             <!-- p-body -->
             <p-column field="Grade"
                       header="Khoá"
@@ -75,15 +65,19 @@
           [(visible)]="view"
           [modal]="true"
           [responsive]="true"
-          [width]="1200"
+          [width]="1300"
 >
     <div class="ui-g">
+        <div class="ui-g-12">
+            <button (click)="exportFile()" pButton type="button" label="Export"></button>
+        </div>
         <div class="ui-g-12">
             <p-tabView>
                 <p-tabPanel *ngFor="let item of tmpAllSheets; let i = index"
                             [selected]="i == 0"
                             header="{{item.Name}}">
-                    <p-dataTable [value]="item.Data" resizableColumns="true"
+                    <p-dataTable [value]="item.Data"
+                                 resizableColumns="true"
                                  [rows]="50"
                                  [paginator]="true"
                                  [pageLinks]="5"
@@ -96,18 +90,12 @@
                         <p-header>
                             <h3>Danh Sách Điểm Của Sinh Viên</h3>
                         </p-header>
-                        <!-- p-body -->
-                        <p-column field="STT" header="#" [style]="{'width':'70px'}">
+                        <p-column *ngFor="let item of headers"
+                                  field="{{item}}"
+                                  header="{{item}}"
+                                  [style]="{'width':'50px'}"
+                        >
                         </p-column>
-                        <p-column field="Last Name" header="Tên Lót" [style]="{'width':'120px'}">
-                        </p-column>
-                        <p-column field="Middle Name" header="Tên Lót" [style]="{'width':'120px'}">
-                        </p-column>
-                        <p-column field="First Name" header="Họ" >
-                        </p-column>
-                        <p-column field="Class" header="Lớp" >
-                        </p-column>
-                        <!-- / p-body -->
                     </p-dataTable>
                 </p-tabPanel>
             </p-tabView>
@@ -131,9 +119,9 @@
           [width]="1000"
           [minWidth]="500"
 >
-    <div class="ui-g">
+    <div class="ui-g" style="min-height:180px">
         <div class="ui-g-12 ui-md-6 ui-md-offset-3">
-            <p-dropdown [style]="{'width':'100%'}"
+            <p-dropdown [style]="{'width':'100%','overflow':'visible'}"
                         [options]="classes"
                         optionLabel="name"
                         placeholder="Chọn lớp"

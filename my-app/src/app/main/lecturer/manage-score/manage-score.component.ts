@@ -11,24 +11,20 @@ export class ManageScoreComponent implements OnInit {
 
     classesLecturer = [];
     classes = [];
-    Id
     selectedClass: any;
     tmpAllSheets = [];
     allSheets = [];
+    headers = [];
 
     authId: any;
     view: boolean = false;
     import: boolean = false;
+    idExport: any;
 
 
     @ViewChild('form') form: ElementRef
     display: boolean = false;
     selectedGrade: any;
-    cities = [
-        {Id: 1, Name: 'a'},
-        {Id: 2, Name: 'b'},
-        {Id: 3, Name: 'c'}
-    ]
 
     constructor(private lecturerService: LecturerService, private mainService: MainService) {
     }
@@ -91,7 +87,7 @@ export class ManageScoreComponent implements OnInit {
 
     openPopupView(data) {
         this.view = true;
-        console.log(data);
+        this.idExport = data;
         this.lecturerService
             .getGradeByClass(data)
             .then(res => {
@@ -100,7 +96,20 @@ export class ManageScoreComponent implements OnInit {
                     this.allSheets[i]
                 );
                 this.tmpAllSheets = result;
-                console.log(this.tmpAllSheets)
+
+                console.log(this.tmpAllSheets && this.tmpAllSheets[0].Data.length == 0)
+                if (this.tmpAllSheets && this.tmpAllSheets[0].Data.length == 0) {
+                    this.headers.length = 0;
+                }
+
+                if (Object.keys(this.tmpAllSheets).length > 0) {
+                    this.headers = Object.keys(this.tmpAllSheets &&
+                        this.tmpAllSheets[0] &&
+                        this.tmpAllSheets[0].Data &&
+                        this.tmpAllSheets[0].Data[0])
+                } else {
+                    this.headers.length = 0;
+                }
             }).catch(err => {
             console.log(err)
         })
@@ -108,5 +117,14 @@ export class ManageScoreComponent implements OnInit {
 
     openImport() {
         this.import = true;
+    }
+
+    exportFile() {
+        console.log(this.idExport);
+        this.lecturerService.exportGradeByClass(this.idExport).then((res) => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
     }
 }
