@@ -6,7 +6,7 @@ import { MainComponent } from "./main/main.component";
 import { RouterModule } from "@angular/router";
 import { routes } from "./app.routing";
 import { LecturerComponent } from "./main/lecturer/lecturer.component";
-import { StudentComponent } from "./main/student/student.component";
+
 import { InputSwitchModule } from "primeng/inputswitch";
 import { FormsModule } from "@angular/forms";
 import { AccordionModule } from "primeng/accordion"; //accordion and accordion tab
@@ -71,6 +71,7 @@ import { CreateClassFromPlanComponent } from './main/academy-assistant/create-cl
 import { ManageScoreComponent } from './main/lecturer/manage-score/manage-score.component';
 import { ManageStudentComponent } from './main/lecturer/manage-student/manage-student.component';
 import {LecturerService} from "./main/lecturer/lecturer.service";
+import {StudentComponent} from "./student/student.component";
 
 @NgModule({
     declarations: [
@@ -80,7 +81,6 @@ import {LecturerService} from "./main/lecturer/lecturer.service";
         AccountComponent,
         AccountDetailComponent,
         LecturerComponent,
-        StudentComponent,
         AcademyAssistantComponent,
         DeanComponent,
         StudentServiceOfficerComponent,
@@ -99,7 +99,8 @@ import {LecturerService} from "./main/lecturer/lecturer.service";
         CourseDetailKhdtComponent,
         CreateClassFromPlanComponent,
         ManageScoreComponent,
-        ManageStudentComponent
+        ManageStudentComponent,
+        StudentComponent
     ],
     imports: [
         BrowserModule,

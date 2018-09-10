@@ -76,7 +76,7 @@
                 <p-tabPanel *ngFor="let item of tmpAllSheets; let i = index"
                             [selected]="i == 0"
                             header="{{item.Name}}">
-                    <p-dataTable [value]="item.Data"
+                    <p-dataTable [value]="item?.Data"
                                  resizableColumns="true"
                                  [rows]="50"
                                  [paginator]="true"
@@ -90,12 +90,13 @@
                         <p-header>
                             <h3>Danh Sách Điểm Của Sinh Viên</h3>
                         </p-header>
-                        <p-column *ngFor="let item of headers"
+                        <p-column *ngFor="let item of item.Header"
                                   field="{{item}}"
                                   header="{{item}}"
                                   [style]="{'width':'50px'}"
                         >
                         </p-column>
+
                     </p-dataTable>
                 </p-tabPanel>
             </p-tabView>

@@ -3,7 +3,6 @@ import {MainComponent} from "./main/main.component";
 
 import {LoginComponent} from "./login/login.component";
 import {LecturerComponent} from "./main/lecturer/lecturer.component";
-import {StudentComponent} from "./main/student/student.component";
 import {AccountComponent} from "./main/accounts/account/account.component";
 import {AccountDetailComponent} from "./main/accounts/account-detail/account-detail.component";
 import {AcademyAssistantComponent} from "./main/academy-assistant/academy-assistant.component";
@@ -27,10 +26,12 @@ import {CourseDetailKhdtComponent} from "./main/academy-assistant/course-detail-
 import {CreateClassFromPlanComponent} from "./main/academy-assistant/create-class-from-plan/create-class-from-plan.component";
 import { ManageScoreComponent } from "./main/lecturer/manage-score/manage-score.component";
 import {ManageStudentComponent} from "./main/lecturer/manage-student/manage-student.component";
+import {StudentComponent} from "./student/student.component";
 
 export const routes = [
     {path: "", redirectTo: "login", pathMatch: "full"},
     {path: "login", component: LoginComponent, pathMatch: "full"},
+    {path: "student", component: StudentComponent, pathMatch: "full"},
     {
         path: "main",
         component: MainComponent,
@@ -63,12 +64,12 @@ export const routes = [
                     }
                 ]
             },
-            {
-                path: "student",
-                component: StudentComponent,
-                canActivate: [GuardRoleService],
-                data: {allowedRole: "student/parent"}
-            },
+            // {
+            //     path: "student",
+            //     component: StudentComponent,
+            //     canActivate: [GuardRoleService],
+            //     data: {allowedRole: "student/parent"}
+            // },
             {
                 path: "assistant",
                 component: AcademyAssistantComponent,

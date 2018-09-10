@@ -48,7 +48,7 @@
                                         <p-message *ngIf="passwordLocal.errors.required" severity="error" text="Mật khẩu bắt buộc nhập"></p-message>
                                     </div>
                                 </div>
-                              
+
                                 <div *ngIf='hasError' class="ui-g ui-fluid one-row-field">
                                     <div class="ui-md-12">
                                         <span class="ui-float-label">
@@ -59,6 +59,10 @@
                                 <div class="radio-custom radio-primary mb5 lh25 section">
                                     <a style="cursor: pointer;">Quên Mật Khẩu</a>
                                     <a  class="btn btn-bordered btn-primary pull-right" (click)="login()">Đăng Nhập</a>
+                                </div>
+                                <hr>
+                                <div class="radio-custom radio-primary mb5 lh25 section">
+                                    <a [routerLink]="['/student']" style="cursor: pointer;">Xem thông tin sinh viên</a>
                                 </div>
                                 <!-- -------------- /section -------------- -->
 

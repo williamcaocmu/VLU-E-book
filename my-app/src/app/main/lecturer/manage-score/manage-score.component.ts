@@ -97,7 +97,7 @@ export class ManageScoreComponent implements OnInit {
                 );
                 this.tmpAllSheets = result;
 
-                console.log(this.tmpAllSheets && this.tmpAllSheets[0].Data.length == 0)
+                console.log(this.tmpAllSheets)
                 if (this.tmpAllSheets && this.tmpAllSheets[0].Data.length == 0) {
                     this.headers.length = 0;
                 }
