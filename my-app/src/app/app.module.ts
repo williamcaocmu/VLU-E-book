@@ -62,6 +62,7 @@ import { TemporaryPlanComponent } from './main/academy-assistant/temporary-plan/
 import { ViewEducationPlanComponent } from './main/academy-assistant/view-education-plan/view-education-plan.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { AssignEducationPlanComponent } from './main/academy-assistant/assign-education-plan/assign-education-plan.component';
+import {DataViewModule} from 'primeng/dataview';
 import {ChipsModule} from 'primeng/chips';
 import {MultiSelectModule} from 'primeng/multiselect';
 import { ManageLecturerComponent } from './main/academy-assistant/manage-lecturer/manage-lecturer.component';
@@ -72,6 +73,7 @@ import { ManageScoreComponent } from './main/lecturer/manage-score/manage-score.
 import { ManageStudentComponent } from './main/lecturer/manage-student/manage-student.component';
 import {LecturerService} from "./main/lecturer/lecturer.service";
 import {StudentComponent} from "./student/student.component";
+import {StudentService} from "./student/student.service";
 
 @NgModule({
     declarations: [
@@ -150,7 +152,8 @@ import {StudentComponent} from "./student/student.component";
         GuardRoleService,
         GuardLoginService,
         AcademyAssistantService,
-        LecturerService
+        LecturerService,
+        StudentService
     ],
     bootstrap: [AppComponent]
 })

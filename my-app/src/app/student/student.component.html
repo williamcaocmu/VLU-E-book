@@ -1,3 +1,92 @@
-<p>
-  student works!
-</p>
+<div class="ui-g">
+    <div class="ui-g-4 ui-g-offset-4">
+        <h3 class="first">Nhập Mã Số Sinh Viên (*)</h3>
+        <input id="input" type="text" style="width:100%" pInputText [(ngModel)]="mssv">
+    </div>
+    <div class="ui-g-4 ui-g-offset-4">
+        <button
+            style="width: 100%"
+            pButton type="button"
+            label="Xác Nhận"
+            class="ui-button-raised"
+            (click)="submit()"
+        >
+        </button>
+    </div>
+</div>
+<div class="ui-g" *ngIf="listClasses.length > 0">
+    <div class="ui-g-12">
+        <p-dataTable [value]="listClasses"
+                     [paginator]="true"
+                     [pageLinks]="5"
+                     [rowsPerPageOptions]="[20,100,200]"
+                     [globalFilter]="gb"
+                     emptyMessage="Không tìm thấy kết quả"
+                     #dt [rows]="50"
+                     [metaKeySelection]="false"
+                     [reorderableColumns]="true"
+                     responsive="true"
+                     [resizableColumns]="true"
+        >
+            <!-- p-header -->
+            <p-header>
+                <h2>Danh Sách Môn Học</h2>
+            </p-header>
+            <p-column field="Grade" header="Khoá"></p-column>
+            <p-column field="Course" header="Lớp"></p-column>
+            <p-column field="Lecturer" header="Giảng Viên"></p-column>
+            <p-column field="Name" header="Tên Lớp  "></p-column>
+            <p-column [style]="{'width':'60px'}" field="Id" header="">
+                <ng-template let-class="rowData" pTemplate="body">
+                    <button
+                        pButton
+                        type="button"
+                        icon="fa-search"
+                        (click)="selectClass(class)">
+                    </button>
+                </ng-template>
+            </p-column>
+            <!-- / p-body -->
+        </p-dataTable>
+        <p-dialog
+            header="Thông tin sinh viên"
+            [(visible)]="displayDialog"
+            [responsive]="true"
+            showEffect="fade"
+            [modal]="true"
+            width="1300"
+        >
+            <div class="ui-g-12">
+                <p-tabView>
+                    <p-tabPanel
+                        *ngFor="let item of allMarks; let i = index"
+                        [selected]="i == 0"
+                        header="{{item.Name}}">
+                        <p-dataTable [value]="item.Data"
+                                     resizableColumns="true"
+                                     [rows]="50"
+                                     [paginator]="true"
+                                     [pageLinks]="5"
+                                     [rowsPerPageOptions]="[20,100,200]"
+                                     [responsive]="true"
+                                     [resizableColumns]="true"
+                                     [reorderableColumns]="true"
+                                     [metaKeySelection]="false"
+                        >
+                            <p-header>
+                                <h3>Danh Sách Điểm Của Sinh Viên</h3>
+                            </p-header>
+                            <p-column
+                                *ngFor="let item of item.Header"
+                                field="{{item}}"
+                                header="{{item}}"
+                                [style]="{'width':'50px'}"
+                            >
+                            </p-column>
+                        </p-dataTable>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </p-dialog>
+    </div>
+</div>
