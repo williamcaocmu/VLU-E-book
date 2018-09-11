@@ -12,7 +12,7 @@ export class StudentComponent implements OnInit {
     mssv;
     listClasses = [];
     displayDialog = false;
-    allMarks: [];
+    allMarks = [];
     errors ;
 
     constructor(private studentService: StudentService, private alert: AlertService) {
@@ -26,7 +26,7 @@ export class StudentComponent implements OnInit {
             .getClassBySTID(this.mssv)
             .then(res => {
                     console.log(res);
-                    this.listClasses = res
+                    this.listClasses = res as any
                 }
             )
             .catch(err => {
@@ -41,7 +41,7 @@ export class StudentComponent implements OnInit {
             .getGradeBySTID(data.Id, this.mssv)
             .then(res => {
                 console.log(res)
-                this.allMarks = res;
+                this.allMarks = res as any;
             }).catch(err => {
             console.log(err);
         })

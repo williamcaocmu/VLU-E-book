@@ -39,7 +39,6 @@ import { GuardLoginService } from "./services/guard-login.service";
 import { MenuModule } from "primeng/menu";
 import { ClassManagementComponent } from "./main/academy-assistant/class-management/class-management.component";
 import { CourseManagementComponent } from "./main/academy-assistant/course-management/course-management.component";
-import { DataViewModule } from "primeng/dataview";
 import { PanelModule } from "primeng/panel";
 import { FileUploadModule } from "primeng/fileupload";
 import { DialogModule } from "primeng/dialog";
