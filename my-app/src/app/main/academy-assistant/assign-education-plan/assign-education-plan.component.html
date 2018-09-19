@@ -85,7 +85,7 @@
                             [routerLink]="['/main/assistant/manage-lecturer', course.Id ,course.GradeId]"
                     >
                     </button>
- 
+
                     <button pButton
                             icon="fa-trash"
                             type="button"
@@ -93,7 +93,7 @@
                             (click)="deleteCourse(course.Id)"
                     >
                     </button>
-                    {{course | json}}
+
                 </ng-template>
             </p-column>
         </p-dataTable>

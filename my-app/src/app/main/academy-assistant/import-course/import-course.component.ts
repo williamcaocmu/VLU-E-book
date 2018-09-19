@@ -78,7 +78,7 @@ export class ImportCourseComponent implements OnInit {
             .catch(err => {
                 console.log(err);
                 this.alertService.error(
-                    err.message + " Vui lòng chọn lại file"
+                    "Lỗi!!! Vui lòng chọn lại file"
                 );
                 this.loading.stop();
             });
@@ -98,7 +98,7 @@ export class ImportCourseComponent implements OnInit {
                 this.loadData();
             })
             .catch(err => {
-                console.log(err);
+                this.alertService.error(err);
             });
     }
 
@@ -138,7 +138,7 @@ export class ImportCourseComponent implements OnInit {
                 this.loading.stop();
             })
             .catch(err => {
-                console.log(err);
+                this.alertService.error(err);
                 this.loading.stop();
             });
     }
@@ -204,7 +204,7 @@ export class ImportCourseComponent implements OnInit {
                 this.alertService.success(res["message"]);
             })
             .catch(err => {
-                console.log(err["message"]);
+                this.alertService.error(err["message"]);
             });
     }
 
@@ -216,6 +216,6 @@ export class ImportCourseComponent implements OnInit {
                 this.url = res["url"];
                 this.allowDownload = true;
             })
-            .catch(err => console.log(err));
+            .catch(err => this.alertService.error(err));
     }
 }

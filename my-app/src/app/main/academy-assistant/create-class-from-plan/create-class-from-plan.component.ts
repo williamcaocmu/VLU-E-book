@@ -58,7 +58,7 @@ export class CreateClassFromPlanComponent implements OnInit {
                 );
             })
             .catch(err => {
-                console.log(err);
+                this.alertService.error( "Lỗi !");
             });
     }
 
@@ -70,7 +70,7 @@ export class CreateClassFromPlanComponent implements OnInit {
                 this.allClasses = res as any;
             })
             .catch(err => {
-                console.log(err);
+                this.alertService.error( "Lỗi !");
             });
     }
 
@@ -96,7 +96,7 @@ export class CreateClassFromPlanComponent implements OnInit {
                 this.alertService.success('Cập Nhật Thành Công')
             })
             .catch(err => {
-                console.log("fail", err);
+                this.alertService.error( "Lỗi !");
             });
     }
 
@@ -112,7 +112,7 @@ export class CreateClassFromPlanComponent implements OnInit {
                 this.allGrades = res as any;
             })
             .catch(err => {
-                console.log(err);
+                this.alertService.error("Lỗi !");
             })
     }
 
@@ -123,7 +123,7 @@ export class CreateClassFromPlanComponent implements OnInit {
             .then(res => {
                 this.allClasses = res as any;
             }).catch(err => {
-            console.log(err)
+            this.alertService.error("Lỗi !")
         })
     }
 }

@@ -59,7 +59,7 @@ export class AccountDetailComponent implements OnInit {
                         this.selectedStatus = res["Status"] == 1 ? true : false;
                     })
                     .catch(err => {
-                        console.log(err);
+                        this.alertService.error("Lỗi");
                     });
             }
         });
@@ -71,7 +71,7 @@ export class AccountDetailComponent implements OnInit {
         this.accountService
             .updateAccount(this.account)
             .then(res => {
-                this.alertService.success("Thêm thành công !");
+                this.alertService.success("Cập Nhật Thành Công!");
             })
             .catch(err => {
                 console.log(err);

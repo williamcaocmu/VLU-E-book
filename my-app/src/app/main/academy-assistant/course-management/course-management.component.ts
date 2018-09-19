@@ -122,7 +122,7 @@ export class CourseManagementComponent implements OnInit {
         this.assistantService
             .addGrade(this.grade)
             .then(() => {
-                this.alertService.success("Successfully");
+                this.alertService.success("Tạo Khoá Thành Công !");
                 this.grade.Name = "";
                 this.getAllGrade();
             })
@@ -143,7 +143,7 @@ export class CourseManagementComponent implements OnInit {
         this.assistantService
             .addClass(this.class)
             .then(() => {
-                this.alertService.success("Successfully");
+                this.alertService.success("Tạo Lớp Thành Công !");
                 this.class.Name = "";
                 this.getAllGrade();
             })
@@ -213,7 +213,7 @@ export class CourseManagementComponent implements OnInit {
         this.assistantService
             .updateClass(this.classEdit)
             .then(res => {
-                this.alertService.success(res);
+                this.alertService.success("Cập Nhật Thành Công");
             })
             .catch(err => {
                 console.log(err.errors.Name);
