@@ -42,7 +42,7 @@
                 </ng-template>
             </p-column>
             <p-column field="Name" header="Lớp"></p-column>
-            <p-column [style]="{'width':'300px'}" field="Id" header="Sửa">
+            <p-column  field="Id" header="Thao ">
                 <ng-template let-student="rowData" pTemplate="body">
                     <button pButton
                             icon="fa-search"
@@ -57,6 +57,13 @@
                             icon="fa-search"
                             label="Import File Điểm"
                             (click)="openImport()"
+                    >
+                    </button>
+                    <button pButton
+                            type="button"
+                            icon="fa-search"
+                            label="Xem Sinh Viên"
+                            (click)="viewStudentsInClass(student.Id)"
                     >
                     </button>
                 </ng-template>
@@ -164,3 +171,43 @@
 </p-dialog>
 <!-- / Dialog Import -->
 
+<p-dialog header="Danh Sách Sinh Viên"
+          [(visible)]="viewStudent"
+          [modal]="true"
+          [responsive]="true"
+          [width]="1000"
+          [minWidth]="500"
+>
+    <div class="ui-g" style="min-height:180px">
+        <div class="ui-g-12 ">
+            <p-dataTable [value]="studentsInClass"
+                         [paginator]="true"
+                         [pageLinks]="5"
+                         [rowsPerPageOptions]="[20,100,200]"
+                         [globalFilter]="gb"
+                         emptyMessage="Không tìm thấy kết quả"
+                         #dt
+                         [rows]="50"
+                         [metaKeySelection]="false"
+                         [reorderableColumns]="true"
+                         responsive="true"
+                         [resizableColumns]="true"
+            >
+                <p-column field="Class" header="Lớp"></p-column>
+                <p-column field="StudentId" header="Mã Sinh Viên"></p-column>
+                <p-column field="Name" header="Tên"></p-column>
+                <p-column field="Dob" header="Ngày Sinh"></p-column>
+                <p-column field="GioiTinh" header="Giới Tính"></p-column>
+            </p-dataTable>
+
+        </div>
+    </div>
+    <p-footer>
+        <button type="button"
+                pButton icon="pi pi-close"
+                (click)="viewStudent=false"
+                label="Thoát"
+                class="ui-button-secondary">
+        </button>
+    </p-footer>
+</p-dialog>

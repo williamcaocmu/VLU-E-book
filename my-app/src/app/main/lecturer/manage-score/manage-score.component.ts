@@ -1,6 +1,7 @@
 import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {LecturerService} from "../lecturer.service";
 import {MainService} from "../../main.service";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
     selector: 'app-manage-score',
@@ -16,9 +17,12 @@ export class ManageScoreComponent implements OnInit {
     allSheets = [];
     headers = [];
 
+    studentsInClass = [];
+
     authId: any;
     view: boolean = false;
     import: boolean = false;
+    viewStudent:boolean = false;
     idExport: any;
 
 
@@ -26,7 +30,7 @@ export class ManageScoreComponent implements OnInit {
     display: boolean = false;
     selectedGrade: any;
 
-    constructor(private lecturerService: LecturerService, private mainService: MainService) {
+    constructor(private lecturerService: LecturerService, private mainService: MainService, private alert: AlertService) {
     }
 
     getAllClass() {
@@ -127,4 +131,18 @@ export class ManageScoreComponent implements OnInit {
             console.log(err);
         })
     }
+
+    viewStudentsInClass(id) {
+        this.lecturerService.viewStudentsInClass(id)
+            .then(res => {
+                this.studentsInClass = res as any;
+                this.studentsInClass.map(student => student.GioiTinh = student.Gender == 1 ? 'Nam' : 'Nữ')
+                console.log(res);
+                this.viewStudent = true;
+            })
+            .catch(err => {
+                this.alert.error(err)
+            })
+    }
+
 }
