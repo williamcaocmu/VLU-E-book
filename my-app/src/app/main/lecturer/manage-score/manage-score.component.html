@@ -29,7 +29,7 @@
             <p-column field="Grade"
                       header="Khoá"
                       filterPlaceholder="Nhap"
-                      [filter]="true"
+
                       filterMatchMode="equals"
                       [style]="{'overflow':'visible'}"
             >
@@ -179,6 +179,9 @@
           [minWidth]="500"
 >
     <div class="ui-g" style="min-height:180px">
+        <div class="ui-g-12">
+            <button (click)="exportFile()" pButton type="button" label="Export"></button>
+        </div>
         <div class="ui-g-12 ">
             <p-dataTable [value]="studentsInClass"
                          [paginator]="true"

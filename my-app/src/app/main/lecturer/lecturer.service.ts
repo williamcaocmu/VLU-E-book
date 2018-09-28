@@ -44,7 +44,7 @@ export class LecturerService {
     exportGradeByClass(id){
         return new Promise((resolve, reject) => {
             this.apiService
-                .get(`exportgradebyclass/${id}`)
+                .get(`exportGrade/${id}`)
                 .then(res => resolve(res))
                 .catch(err => reject(err));
         });
