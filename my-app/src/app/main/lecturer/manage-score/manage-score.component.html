@@ -81,7 +81,13 @@
 >
     <div class="ui-g">
         <div class="ui-g-12">
-            <button (click)="exportFile()" pButton type="button" label="Export"></button>
+            <!--<button (click)="exportFile()" pButton type="button" label="Export" download ></button>-->
+            <a style="color:green ; float:right; margin: 0 10px"
+               href="K20T2/VLU/public/api/exportGrade/{{idExport}}"
+               target="_self"
+               download>
+                <i class="fa fa-download"></i> Tải mẫu Điểm Môn Học
+            </a>
         </div>
         <div class="ui-g-12">
             <p-tabView>
@@ -180,7 +186,13 @@
 >
     <div class="ui-g" style="min-height:180px">
         <div class="ui-g-12">
-            <button (click)="exportFile()" pButton type="button" label="Export"></button>
+            <!--<button (click)="exportFile()" pButton type="button" label="Export"></button>-->
+            <a style="color:green ; float:right; margin: 0 10px"
+               href="K20T2/VLU/public/api/exportGrade/{{idExport}}"
+               target="_self"
+               download>
+                <i class="fa fa-download"></i> Tải mẫu Điểm Môn Học
+            </a>
         </div>
         <div class="ui-g-12 ">
             <p-dataTable [value]="studentsInClass"
