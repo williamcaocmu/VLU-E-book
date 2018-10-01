@@ -133,6 +133,7 @@ export class ManageScoreComponent implements OnInit {
     }
 
     viewStudentsInClass(id) {
+        this.idExport = id;
         this.lecturerService.viewStudentsInClass(id)
             .then(res => {
                 this.studentsInClass = res as any;
