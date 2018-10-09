@@ -5,19 +5,15 @@
     </h3>
 </div>
 <p-dataTable [value]="allStudents" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
-             [globalFilter]="gb"
-             emptyMessage="Không tìm thấy kết quả" selectionMode="multiple" #dt [rows]="50" [metaKeySelection]="false"
-             [reorderableColumns]="true"
-             responsive="true" [resizableColumns]="true">
+    [globalFilter]="gb" emptyMessage="Không tìm thấy kết quả" selectionMode="multiple" #dt [rows]="50"
+    [metaKeySelection]="false" [reorderableColumns]="true" responsive="true" [resizableColumns]="true">
     <!-- p-header -->
     <p-header>
         <div class="ui-helper-clearfix ">
             <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
-            <button style="float:right" (click)="showDialogFile()" type="button" pButton
-                    label="Nhập File Excel"></button>
+            <button style="float:right" (click)="showDialogFile()" type="button" pButton label="Nhập File Excel"></button>
             <a style="color:green ; float:right; margin: 0 10px" href="../../../../assets/files/DanhSachSinhVien.xlsx"
-               target="_self"
-               download>
+                target="_self" download>
                 <i class="fa fa-download"></i> Tải mẫu danh sách sinh viên
             </a>
         </div>
@@ -26,30 +22,25 @@
     <!-- p-footer -->
     <p-footer class="footer">
         <div class="ui-helper-clearfix">
-            <button type="button" pButton icon="fa-file-o" iconPos="left" label="Xuất Tất Cả (CSV)"
-                    (click)="dt.exportCSV()" style="float:left"></button>
-            <button type="button" pButton icon="fa-file" iconPos="left" label="Xuất Dữ Liệu Đã Chọn (CSV)"
-                    (click)="dt.exportCSV({selectionOnly:true})"
-                    style="float:right"></button>
+            <button type="button" pButton icon="fa-file-o" iconPos="left" label="Xuất Tất Cả (CSV)" (click)="dt.exportCSV()"
+                style="float:left"></button>
+            <button type="button" pButton icon="fa-file" iconPos="left" label="Xuất Dữ Liệu Đã Chọn (CSV)" (click)="dt.exportCSV({selectionOnly:true})"
+                style="float:right"></button>
         </div>
     </p-footer>
     <!-- /p-footer  -->
     <!-- p-body -->
     <p-column field="STT" header="STT" [style]="{'width':'100px'}"></p-column>
-    <p-column field="Grade" header="Khoá" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals"
-              [style]="{'overflow':'visible'}">
+    <!-- <p-column field="Grade" header="Khoá" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
         <ng-template pTemplate="filter" let-col>
-            <p-dropdown [options]="gradeOptions" [style]="{'width':'100%'}"
-                        (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
-                        styleClass="ui-column-filter"></p-dropdown>
+            <p-dropdown [options]="gradeOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+                styleClass="ui-column-filter"></p-dropdown>
         </ng-template>
-    </p-column>
-    <p-column field="Class" header="Lớp" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals"
-              [style]="{'overflow':'visible'}">
+    </p-column> -->
+    <p-column field="Class" header="Lớp" filterPlaceholder="Nhap" [filter]="true" filterMatchMode="equals" [style]="{'overflow':'visible'}">
         <ng-template pTemplate="filter" let-col>
-            <p-dropdown [options]="classOptions" [style]="{'width':'100%'}"
-                        (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
-                        styleClass="ui-column-filter"></p-dropdown>
+            <p-dropdown [options]="classOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+                styleClass="ui-column-filter"></p-dropdown>
         </ng-template>
     </p-column>
     <p-column [sortable]="true" field="StudentId" header="Mã"></p-column>
@@ -57,15 +48,15 @@
     <p-column [sortable]="true" field="displayGender" header="Phái"></p-column>
     <p-column [style]="{'width':'90px'}" field="Id" header="Sửa">
         <ng-template let-student="rowData" pTemplate="body">
-            <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/class-management', student.Id]"
-                    type="button" class="ui-button-warning"></button>
+            <button pButton icon="fa-pencil" [routerLink]="['/main/assistant/class-management', student.Id]" type="button"
+                class="ui-button-warning"></button>
             <button pButton type="button" icon="fa-search" (click)="selectStudent($event, student)"></button>
         </ng-template>
     </p-column>
     <!-- / p-body -->
 </p-dataTable>
 <p-dialog header="Thông tin sinh viên" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
-          width="400">
+    width="400">
     <div class="ui-g" *ngIf="selectedStudent">
         <div class="ui-g-4"> Mã:</div>
         <div class="ui-g-8">{{selectedStudent.StudentId}}</div>
@@ -73,8 +64,8 @@
         <div class="ui-g-8">{{selectedStudent.Name}}</div>
         <div class="ui-g-4"> Phái:</div>
         <div class="ui-g-8">{{selectedStudent.Gender ? 'Nam' : 'Nữ'}}</div>
-        <div class="ui-g-4"> Khoá:</div>
-        <div class="ui-g-8">{{selectedStudent.Grade}}</div>
+        <!-- <div class="ui-g-4"> Khoá:</div>
+        <div class="ui-g-8">{{selectedStudent.Grade}}</div> -->
         <div class="ui-g-4"> Lớp:</div>
         <div class="ui-g-8">{{selectedStudent.Class}}</div>
     </div>
@@ -82,23 +73,19 @@
 <p-dialog header="Gửi Danh Sách Sinh Viên " [(visible)]="displayFile" showEffect="fade" [modal]="true" width="900">
     <!-- file upload -->
     <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File" cancelLabel="Huỷ" *ngIf="!dataResponseImportFile"
-                  mode="advanced"
-                  #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true"
-                  maxFileSize="10000000" (uploadHandler)="myUploader($event)"
-                  [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"></p-fileUpload>
+        mode="advanced" #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true"
+        maxFileSize="10000000" (uploadHandler)="myUploader($event)" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'"></p-fileUpload>
     <!-- / file upload -->
     <!-- datatable of return data upload file -->
     <p-dataTable *ngIf="dataResponseImportFile" [value]="dataResponseImportFile" resizableColumns="true" [rows]="50"
-                 [paginator]="true"
-                 [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [resizableColumns]="true"
-                 [reorderableColumns]="true"
-                 [metaKeySelection]="false">
+        [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [resizableColumns]="true"
+        [reorderableColumns]="true" [metaKeySelection]="false">
         <p-header>
             <h3>Danh Sách Sinh Viên Từ File</h3>
         </p-header>
         <!-- p-body -->
-        <p-column field="Grade" header="Khối" [style]="{'overflow':'visible'}">
-        </p-column>
+        <!-- <p-column field="Grade" header="Khối" [style]="{'overflow':'visible'}">
+        </p-column> -->
         <p-column field="Class" header="Lớp" [style]="{'overflow':'visible'}">
         </p-column>
         <p-column [sortable]="true" field="Student_id" header="Mã"></p-column>

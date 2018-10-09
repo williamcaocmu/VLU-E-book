@@ -36,7 +36,7 @@ export class StudentComponent implements OnInit {
 
     selectClass(data) {
         this.displayDialog = true;
-        console.log(data);
+        console.log(data.Id);
         this.studentService
             .getGradeBySTID(data.Id, this.mssv)
             .then(res => {

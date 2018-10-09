@@ -1,71 +1,38 @@
 <div class="ui-g">
     <div class="ui-g-12">
-        <p-dataTable [value]="classesLecturer"
-                     [paginator]="true"
-                     [pageLinks]="5"
-                     [rowsPerPageOptions]="[20,100,200]"
-                     [globalFilter]="gb"
-                     emptyMessage="Không tìm thấy kết quả"
-                     #dt
-                     [rows]="50"
-                     [metaKeySelection]="false"
-                     [reorderableColumns]="true"
-                     responsive="true"
-                     [resizableColumns]="true"
-        >
+        <p-dataTable [value]="classesLecturer" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+            [globalFilter]="gb" emptyMessage="Không tìm thấy kết quả" #dt [rows]="50" [metaKeySelection]="false"
+            [reorderableColumns]="true" responsive="true" [resizableColumns]="true">
             <!-- p-header -->
             <p-header>
                 <div class="ui-helper-clearfix ">
                     <input style="float:left" #gb type="text" pInputText size="50" placeholder="Tìm Kiếm  ...">
                     <a style="color:green ; float:right; margin: 0 10px" href="../../../../assets/files/ImportgradeTemplate.xlsx"
-                       target="_self"
-                       download>
+                        target="_self" download>
                         <i class="fa fa-download"></i> Tải mẫu Điểm Môn Học
                     </a>
                 </div>
             </p-header>
             <!--  / p-header -->
             <!-- p-body -->
-            <p-column field="Grade"
-                      header="Khoá"
-                      filterPlaceholder="Nhap"
-
-                      filterMatchMode="equals"
-                      [style]="{'overflow':'visible'}"
-            >
+            <p-column field="Grade" header="Khoá" filterPlaceholder="Nhap" filterMatchMode="equals" [style]="{'overflow':'visible'}">
                 <ng-template pTemplate="filter" let-col>
-                    <p-dropdown [options]="gradeOptions"
-                                [style]="{'width':'100%'}"
-                                (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
-                                styleClass="ui-column-filter">
+                    <p-dropdown [options]="gradeOptions" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+                        styleClass="ui-column-filter">
                     </p-dropdown>
                 </ng-template>
             </p-column>
             <p-column field="Name" header="Lớp"></p-column>
-            <p-column  field="Id" header="Thao ">
+            <p-column field="Id">
                 <ng-template let-student="rowData" pTemplate="body">
-                    <button pButton
-                            icon="fa-search"
-                            type="button"
-                            class="ui-button-warning"
-                            label="Xem Điểm"
-                            (click)="openPopupView(student.Id)"
-                    >
+                    <button pButton icon="fa-search" type="button" class="ui-button-warning" label="Xem Điểm" (click)="openPopupView(student.Id)">
                     </button>
-                    <button pButton
-                            type="button"
-                            icon="fa-search"
-                            label="Import File Điểm"
-                            (click)="openImport()"
-                    >
+                    <button pButton type="button" class="ui-button-warning" icon="fa-search" label="Xem Sinh Viên"
+                        (click)="viewStudentsInClass(student.Id)">
                     </button>
-                    <button pButton
-                            type="button"
-                            icon="fa-search"
-                            label="Xem Sinh Viên"
-                            (click)="viewStudentsInClass(student.Id)"
-                    >
+                    <button pButton type="button" icon="fa-search" label="Import File Điểm" (click)="openImport()">
                     </button>
+
                 </ng-template>
             </p-column>
             <!-- / p-body -->
@@ -73,46 +40,25 @@
     </div>
 </div>
 <!--Dialog Xem điểm học -->
-<p-dialog header="Điểm Học Tập"
-          [(visible)]="view"
-          [modal]="true"
-          [responsive]="true"
-          [width]="1300"
->
+<p-dialog header="Điểm Học Tập" [(visible)]="view" [modal]="true" [responsive]="true" [width]="1300">
     <div class="ui-g">
         <div class="ui-g-12">
             <!--<button (click)="exportFile()" pButton type="button" label="Export" download ></button>-->
-            <a style="color:green ; float:right; margin: 0 10px"
-               href="/K20T2/VLU/public/api/exportGrade/{{idExport}}"
-               target="_self"
-               download>
+            <a style="color:green ; float:right; margin: 0 10px" href="/K20T2/VLU/public/api/exportGrade/{{idExport}}"
+                target="_self" download>
                 <i class="fa fa-download"></i> Tải mẫu Điểm Môn Học
             </a>
         </div>
         <div class="ui-g-12">
             <p-tabView>
-                <p-tabPanel *ngFor="let item of tmpAllSheets; let i = index"
-                            [selected]="i == 0"
-                            header="{{item.Name}}">
-                    <p-dataTable [value]="item?.Data"
-                                 resizableColumns="true"
-                                 [rows]="50"
-                                 [paginator]="true"
-                                 [pageLinks]="5"
-                                 [rowsPerPageOptions]="[20,100,200]"
-                                 [responsive]="true"
-                                 [resizableColumns]="true"
-                                 [reorderableColumns]="true"
-                                 [metaKeySelection]="false"
-                    >
+                <p-tabPanel *ngFor="let item of tmpAllSheets; let i = index" [selected]="i == 0" header="{{item.Name}}">
+                    <p-dataTable [value]="item?.Data" resizableColumns="true" [rows]="50" [paginator]="true"
+                        [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]" [responsive]="true" [resizableColumns]="true"
+                        [reorderableColumns]="true" [metaKeySelection]="false">
                         <p-header>
                             <h3>Danh Sách Điểm Của Sinh Viên</h3>
                         </p-header>
-                        <p-column *ngFor="let item of item.Header"
-                                  field="{{item}}"
-                                  header="{{item}}"
-                                  [style]="{'width':'50px'}"
-                        >
+                        <p-column *ngFor="let item of item.Header" field="{{item}}" header="{{item}}" [style]="{'width':'50px'}">
                         </p-column>
 
                     </p-dataTable>
@@ -121,93 +67,47 @@
         </div>
     </div>
     <p-footer>
-        <button type="button"
-                pButton icon="pi pi-close"
-                (click)="view = false"
-                label="Thoát"
-                class="ui-button-secondary">
+        <button type="button" pButton icon="pi pi-close" (click)="view = false" label="Thoát" class="ui-button-secondary">
         </button>
     </p-footer>
 </p-dialog>
 <!-- / Dialog Xem điểm học -->
 <!--Dialog Import -->
-<p-dialog header="Import File Điểm"
-          [(visible)]="import"
-          [modal]="true"
-          [responsive]="true"
-          [width]="1000"
-          [minWidth]="500"
->
+<p-dialog header="Import File Điểm" [(visible)]="import" [modal]="true" [responsive]="true" [width]="1000" [minWidth]="500">
     <div class="ui-g" style="min-height:180px">
         <div class="ui-g-12 ui-md-6 ui-md-offset-3">
-            <p-dropdown [style]="{'width':'100%','overflow':'visible'}"
-                        [options]="classes"
-                        optionLabel="name"
-                        placeholder="Chọn lớp"
-                        [(ngModel)]="selectedClass"
-            >
+            <p-dropdown [style]="{'width':'100%','overflow':'visible'}" [options]="classes" optionLabel="name"
+                placeholder="Chọn lớp" [(ngModel)]="selectedClass">
             </p-dropdown>
         </div>
         <div class="ui-g-12">
-            <p-fileUpload chooseLabel="Chọn File Excel"
-                          uploadLabel="Gửi File Bảng Điểm"
-                          cancelLabel="Huỷ"
-                          mode="advanced"
-                          #form name="myfile[]"
-                          customUpload="true"
-                          showUploadButton="true"
-                          showCancelButton="true"
-                          maxFileSize="10000000"
-                          (uploadHandler)="myUploader($event)"
-                          [style]="{'margin-bottom':'100px'}"
-                          [accept]="'.xlsx'"
-                          *ngIf="selectedClass"
-            >
+            <p-fileUpload chooseLabel="Chọn File Excel" uploadLabel="Gửi File Bảng Điểm" cancelLabel="Huỷ" mode="advanced"
+                #form name="myfile[]" customUpload="true" showUploadButton="true" showCancelButton="true" maxFileSize="10000000"
+                (uploadHandler)="myUploader($event)" [style]="{'margin-bottom':'100px'}" [accept]="'.xlsx'" *ngIf="selectedClass">
             </p-fileUpload>
         </div>
     </div>
     <p-footer>
-        <button type="button"
-                pButton icon="pi pi-close"
-                (click)="import=false"
-                label="Thoát"
-                class="ui-button-secondary">
+        <button type="button" pButton icon="pi pi-close" (click)="import=false" label="Thoát" class="ui-button-secondary">
         </button>
     </p-footer>
 </p-dialog>
 <!-- / Dialog Import -->
 
-<p-dialog header="Danh Sách Sinh Viên"
-          [(visible)]="viewStudent"
-          [modal]="true"
-          [responsive]="true"
-          [width]="1000"
-          [minWidth]="500"
->
+<p-dialog header="Danh Sách Sinh Viên" [(visible)]="viewStudent" [modal]="true" [responsive]="true" [width]="1000"
+    [minWidth]="500">
     <div class="ui-g" style="min-height:180px">
         <div class="ui-g-12">
             <!--<button (click)="exportFile()" pButton type="button" label="Export"></button>-->
-            <a style="color:green ; float:right; margin: 0 10px"
-               href="/K20T2/VLU/public/api/exportGrade/{{idExport}}"
-               target="_self"
-               download>
+            <a style="color:green ; float:right; margin: 0 10px" href="/K20T2/VLU/public/api/exportGrade/{{idExport}}"
+                target="_self" download>
                 <i class="fa fa-download"></i> Tải mẫu Điểm Môn Học
             </a>
         </div>
         <div class="ui-g-12 ">
-            <p-dataTable [value]="studentsInClass"
-                         [paginator]="true"
-                         [pageLinks]="5"
-                         [rowsPerPageOptions]="[20,100,200]"
-                         [globalFilter]="gb"
-                         emptyMessage="Không tìm thấy kết quả"
-                         #dt
-                         [rows]="50"
-                         [metaKeySelection]="false"
-                         [reorderableColumns]="true"
-                         responsive="true"
-                         [resizableColumns]="true"
-            >
+            <p-dataTable [value]="studentsInClass" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[20,100,200]"
+                [globalFilter]="gb" emptyMessage="Không tìm thấy kết quả" #dt [rows]="50" [metaKeySelection]="false"
+                [reorderableColumns]="true" responsive="true" [resizableColumns]="true">
                 <p-column field="Class" header="Lớp"></p-column>
                 <p-column field="StudentId" header="Mã Sinh Viên"></p-column>
                 <p-column field="Name" header="Tên"></p-column>
@@ -218,11 +118,7 @@
         </div>
     </div>
     <p-footer>
-        <button type="button"
-                pButton icon="pi pi-close"
-                (click)="viewStudent=false"
-                label="Thoát"
-                class="ui-button-secondary">
+        <button type="button" pButton icon="pi pi-close" (click)="viewStudent=false" label="Thoát" class="ui-button-secondary">
         </button>
     </p-footer>
 </p-dialog>
