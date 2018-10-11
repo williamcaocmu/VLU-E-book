@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { AccountService } from "../account.service";
-import { AlertService } from "../../../services/alert.service";
-import { MenuItem } from "primeng/api";
-import { Message } from "primeng/components/common/api";
+import {Component, OnInit} from "@angular/core";
+import {Router, ActivatedRoute} from "@angular/router";
+import {AccountService} from "../account.service";
+import {AlertService} from "../../../services/alert.service";
+import {MenuItem} from "primeng/api";
+import {Message} from "primeng/components/common/api";
 
 @Component({
     selector: "app-account-detail",
@@ -14,8 +14,8 @@ export class AccountDetailComponent implements OnInit {
     err: any;
     msgs: Message[] = [];
     items: MenuItem[] = [
-        { label: "Tài Khoản", routerLink: ["/main/account"] },
-        { label: "Thông Tin Tài Khoản" }
+        {label: "Tài Khoản", routerLink: ["/main/account"]},
+        {label: "Thông Tin Tài Khoản"}
     ];
 
     id: number;
@@ -32,20 +32,19 @@ export class AccountDetailComponent implements OnInit {
 
     selectedStatus: boolean;
     allRoles = [
-        { shortNameRole: "admin", fullNameRole: "Admin" },
-        { shortNameRole: "assistant", fullNameRole: "Academy Assistant" },
-        { shortNameRole: "officer", fullNameRole: "Student Service Officer" },
-        { shortNameRole: "student/parent", fullNameRole: "Student" },
-        { shortNameRole: "board", fullNameRole: "Falcuty Board" },
-        { shortNameRole: "lecturer", fullNameRole: "Lecturer" }
+        {shortNameRole: "admin", fullNameRole: "Admin"},
+        {shortNameRole: "assistant", fullNameRole: "Academy Assistant"},
+        {shortNameRole: "officer", fullNameRole: "Student Service Officer"},
+        {shortNameRole: "student/parent", fullNameRole: "Student"},
+        {shortNameRole: "board", fullNameRole: "Falcuty Board"},
+        {shortNameRole: "lecturer", fullNameRole: "Lecturer"}
     ];
 
-    constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private accountService: AccountService,
-        private alertService: AlertService
-    ) {}
+    constructor(private router: Router,
+                private activatedRoute: ActivatedRoute,
+                private accountService: AccountService,
+                private alertService: AlertService) {
+    }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
@@ -74,7 +73,7 @@ export class AccountDetailComponent implements OnInit {
                 this.alertService.success("Cập Nhật Thành Công!");
             })
             .catch(err => {
-                console.log(err);
+
                 if (err.errors.Email) {
                     this.msgs.push({
                         severity: "error",

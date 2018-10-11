@@ -38,7 +38,7 @@ export class LecturerDetailComponent implements OnInit {
                         this.lecturer = res as any;
                     })
                     .catch(err => {
-                        console.log(err);
+                        this.alertService.error('Lỗi')
                     });
             }
         });
@@ -49,11 +49,10 @@ export class LecturerDetailComponent implements OnInit {
         this.assistantService
             .addLecturer(this.lecturer)
             .then(res => {
-                console.log(res);
                 this.router.navigate(["/main/assistant/manage-lecturer"]);
             })
             .catch(err => {
-                console.log(err);
+                this.alertService.error('Lỗi')
             });
     }
 

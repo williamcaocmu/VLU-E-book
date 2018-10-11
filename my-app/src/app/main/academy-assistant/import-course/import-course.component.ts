@@ -98,7 +98,7 @@ export class ImportCourseComponent implements OnInit {
                 this.loadData();
             })
             .catch(err => {
-                this.alertService.error(err);
+                this.alertService.error('Lỗi');
             });
     }
 
@@ -164,7 +164,7 @@ export class ImportCourseComponent implements OnInit {
                 this.loading.stop();
             })
             .catch(err => {
-                this.alertService.error(err);
+                this.alertService.error('Lỗi');
                 this.loading.stop();
             });
     }
@@ -216,6 +216,6 @@ export class ImportCourseComponent implements OnInit {
                 this.url = res["url"];
                 this.allowDownload = true;
             })
-            .catch(err => this.alertService.error(err));
+            .catch(err => this.alertService.error('Lỗi'));
     }
 }
