@@ -48,7 +48,7 @@ export class ManageScoreComponent implements OnInit {
                 });
             })
             .catch(err => {
-                this.alert.error('Lỗi');
+                this.alert.error("Lỗi");
             });
     }
 
@@ -60,7 +60,7 @@ export class ManageScoreComponent implements OnInit {
                 this.getAllClass();
             })
             .catch(err => {
-                this.alert.error('Lỗi');
+                this.alert.error("Lỗi");
             });
     }
 
@@ -86,7 +86,7 @@ export class ManageScoreComponent implements OnInit {
                 this.alert.success("Thành Công !");
             })
             .catch(err => {
-                this.alert.error('Lỗi');
+                this.alert.error("Lỗi");
             });
     }
 
@@ -122,7 +122,7 @@ export class ManageScoreComponent implements OnInit {
                 }
             })
             .catch(err => {
-                this.alert.error('Lỗi')
+                this.alert.error("Lỗi");
             });
     }
 
@@ -138,7 +138,7 @@ export class ManageScoreComponent implements OnInit {
                 this.alert.success("Thành Công!");
             })
             .catch(err => {
-                this.alert.error('Lỗi');
+                this.alert.error("Lỗi");
             });
     }
 
@@ -156,7 +156,7 @@ export class ManageScoreComponent implements OnInit {
                 this.viewStudent = true;
             })
             .catch(err => {
-                this.alert.error('Lỗi');
+                this.alert.error("Lỗi");
             });
     }
 }
