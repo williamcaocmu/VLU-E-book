@@ -122,7 +122,7 @@ export class ManageScoreComponent implements OnInit {
                 }
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error('Lỗi')
             });
     }
 
