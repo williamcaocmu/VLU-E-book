@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AcademyAssistantService } from "../academy-assistant.service";
+import {AlertService} from "../../../services/alert.service";
 
 @Component({
     selector: "app-manage-lecturer",
@@ -9,7 +10,7 @@ import { AcademyAssistantService } from "../academy-assistant.service";
 export class ManageLecturerComponent implements OnInit {
     lecturers: any[];
 
-    constructor(private assistantService: AcademyAssistantService) {}
+    constructor(private assistantService: AcademyAssistantService, private alert: AlertService) {}
 
     ngOnInit() {
         this.assistantService
@@ -19,7 +20,7 @@ export class ManageLecturerComponent implements OnInit {
                 this.lecturers = res as any;
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error();
             });
     }
 }

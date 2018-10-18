@@ -5,7 +5,7 @@ import swal from "sweetalert2";
 export class AlertService {
     constructor() {}
 
-    success(message: any) {
+    success(message:) {
         swal({
             position: "bottom-right",
             type: "success",
@@ -15,11 +15,11 @@ export class AlertService {
         });
     }
 
-    error(message: any) {
+    error(err) {
         swal({
             position: "bottom-right",
             type: "error",
-            title: message,
+            title: 'Lỗi !',
             showConfirmButton: false,
             timer: 5000
         });
