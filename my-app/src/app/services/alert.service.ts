@@ -5,7 +5,7 @@ import swal from "sweetalert2";
 export class AlertService {
     constructor() {}
 
-    success(message:) {
+    success(message: any) {
         swal({
             position: "bottom-right",
             type: "success",

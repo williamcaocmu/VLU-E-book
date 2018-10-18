@@ -20,7 +20,7 @@ export class ManageLecturerComponent implements OnInit {
                 this.lecturers = res as any;
             })
             .catch(err => {
-                this.alert.error();
+                this.alert.error(err);
             });
     }
 }
