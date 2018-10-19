@@ -3,12 +3,13 @@ import { Http, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiService } from '../services/api.service';
+import {AlertService} from '../services/alert.service';
 
 
 @Injectable()
 export class LoginService implements OnInit {
 
-	constructor(private cookieService: CookieService, private apiService: ApiService) {
+	constructor(private cookieService: CookieService, private apiService: ApiService, private alert: AlertService) {
 
 	}
 
@@ -22,7 +23,8 @@ export class LoginService implements OnInit {
 				this.cookieService.set('cookie', this.apiService.access_token);
 				resolve(res);
 			}).catch(err => {
-				console.log(err);
+				this.alert.error(err);
+				;
 				reject(err);
 			})
 		})

@@ -9,6 +9,7 @@ import { ApiService } from "../../../services/api.service";
 import { Message } from "primeng/components/common/api";
 import { LoadingService } from "../../../services/loading.service";
 
+
 @Component({
     selector: "app-class-management",
     templateUrl: "./class-management.component.html",
@@ -37,11 +38,12 @@ export class ClassManagementComponent implements OnInit {
     items: MenuItem[] = [{ label: "Quản lí sinh viên" }];
 
     constructor(
-        private alertService: AlertService,
+        private alert: AlertService,
         private assistantService: AcademyAssistantService,
         private http: Http,
         private api: ApiService,
         private loading: LoadingService
+
     ) {
         this.filesToUpload = [];
     }
@@ -106,13 +108,13 @@ export class ClassManagementComponent implements OnInit {
         this.assistantService
             .importFile(this.nameFileImport)
             .then(res => {
-                this.alertService.success("Thêm thành công");
+                this.alert.success("Thêm thành công");
                 this.cancelImport();
                 this.loadData();
                 this.loading.stop()
             })
             .catch(err => {
-                this.alertService.error("Thêm lỗi");
+                this.alert.error(err);
                 this.loading.stop();
             });
     }
@@ -143,9 +145,7 @@ export class ClassManagementComponent implements OnInit {
                 }
             })
             .catch(err => {
-                this.alertService.error(
-                    err.message + " Vui lòng chọn lại file"
-                );
+                this.alert.error(err);
             });
         this.msgs = [];
     }

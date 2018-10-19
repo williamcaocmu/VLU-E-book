@@ -37,7 +37,7 @@ export class CourseDetailKhdtComponent implements OnInit {
 
     constructor(private assistantService: AcademyAssistantService,
                 private activatedRouted: ActivatedRoute,
-                private alertService: AlertService,
+                private alert: AlertService,
                 private router: Router) {
     }
 
@@ -73,8 +73,7 @@ export class CourseDetailKhdtComponent implements OnInit {
                         //         detail: JSON.stringify(err.errors.Dob)
                         //     });
                         // }
-                        console.log(err);
-                        this.alertService.error("Lỗi");
+                        this.alert.error(err);
                     });
             }
         });
@@ -86,10 +85,10 @@ export class CourseDetailKhdtComponent implements OnInit {
             .updateCoursePlan(this.course)
             .then(() => {
                 this.router.navigate(['/main/assistant/view-education-plan']);
-                this.alertService.success("Cập Nhật Thành Công");
+                this.alert.success("Cập Nhật Thành Công");
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 

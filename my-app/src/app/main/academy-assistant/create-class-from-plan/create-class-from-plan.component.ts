@@ -21,7 +21,7 @@ export class CreateClassFromPlanComponent implements OnInit {
     allNotInClassStudents = [];
 
     constructor(private assistantService: AcademyAssistantService,
-                private alertService: AlertService,
+                private alert: AlertService,
                 private activatedRoute: ActivatedRoute,
                 private router: Router) {
     }
@@ -58,7 +58,7 @@ export class CreateClassFromPlanComponent implements OnInit {
                 );
             })
             .catch(err => {
-                this.alertService.error( "Lỗi !");
+                this.alert.error(err);
             });
     }
 
@@ -70,7 +70,7 @@ export class CreateClassFromPlanComponent implements OnInit {
                 this.allClasses = res as any;
             })
             .catch(err => {
-                this.alertService.error( "Lỗi !");
+                this.alert.error(err);
             });
     }
 
@@ -93,10 +93,10 @@ export class CreateClassFromPlanComponent implements OnInit {
             .assignStudentInClassPlan(obj)
             .then(res => {
                 console.log("success", res);
-                this.alertService.success('Cập Nhật Thành Công')
+                this.alert.success('Cập Nhật Thành Công')
             })
             .catch(err => {
-                this.alertService.error( "Lỗi !");
+                this.alert.error(err);
             });
     }
 
@@ -112,7 +112,7 @@ export class CreateClassFromPlanComponent implements OnInit {
                 this.allGrades = res as any;
             })
             .catch(err => {
-                this.alertService.error("Lỗi !");
+                this.alert.error(err);
             })
     }
 
@@ -123,7 +123,7 @@ export class CreateClassFromPlanComponent implements OnInit {
             .then(res => {
                 this.allClasses = res as any;
             }).catch(err => {
-            this.alertService.error("Lỗi !")
+                this.alert.error(err);
         })
     }
 }

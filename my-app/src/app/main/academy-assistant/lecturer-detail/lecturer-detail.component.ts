@@ -24,7 +24,7 @@ export class LecturerDetailComponent implements OnInit {
     constructor(
         private assistantService: AcademyAssistantService,
         private activatedRoute: ActivatedRoute,
-        private alertService: AlertService,
+        private alert: AlertService,
         private router: Router
     ) {}
 
@@ -38,7 +38,7 @@ export class LecturerDetailComponent implements OnInit {
                         this.lecturer = res as any;
                     })
                     .catch(err => {
-                        this.alertService.error('Lỗi')
+                        this.alert.error(err);
                     });
             }
         });
@@ -52,7 +52,7 @@ export class LecturerDetailComponent implements OnInit {
                 this.router.navigate(["/main/assistant/manage-lecturer"]);
             })
             .catch(err => {
-                this.alertService.error('Lỗi')
+                this.alert.error(err);
             });
     }
 
@@ -60,7 +60,7 @@ export class LecturerDetailComponent implements OnInit {
         this.assistantService
             .updateLecturer(this.lecturer)
             .then(res => {
-                this.alertService.success("Thêm thành công !");
+                this.alert.success("Thêm thành công !");
             })
             .catch(err => {
                 console.log(err);
