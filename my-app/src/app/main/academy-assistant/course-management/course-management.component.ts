@@ -58,7 +58,7 @@ export class CourseManagementComponent implements OnInit {
 
     constructor(
         private assistantService: AcademyAssistantService,
-        private alertService: AlertService,
+        private alert: AlertService,
         private loading: LoadingService
     ) {}
 
@@ -105,7 +105,7 @@ export class CourseManagementComponent implements OnInit {
                 console.log(this.allGrade);
             })
             .catch(err => {
-                this.alertService.error(err);
+                this.alert.error(err);
             });
     }
 
@@ -122,7 +122,7 @@ export class CourseManagementComponent implements OnInit {
         this.assistantService
             .addGrade(this.grade)
             .then(() => {
-                this.alertService.success("Tạo Khoá Thành Công !");
+                this.alert.success("Tạo Khoá Thành Công !");
                 this.grade.Name = "";
                 this.getAllGrade();
             })
@@ -143,7 +143,7 @@ export class CourseManagementComponent implements OnInit {
         this.assistantService
             .addClass(this.class)
             .then(() => {
-                this.alertService.success("Tạo Lớp Thành Công !");
+                this.alert.success("Tạo Lớp Thành Công !");
                 this.class.Name = "";
                 this.getAllGrade();
             })
@@ -155,7 +155,7 @@ export class CourseManagementComponent implements OnInit {
                         detail: JSON.stringify(err.errors.Name)
                     });
                 }
-                console.log(err.errors);
+                this.alert.error(err);
             });
     }
 
@@ -189,9 +189,7 @@ export class CourseManagementComponent implements OnInit {
                 }
             })
             .catch(err => {
-                this.alertService.error(
-                    err.message + " Vui lòng chọn lại file"
-                );
+                this.alert.error(err);
             });
         this.msgs = [];
     }
@@ -213,11 +211,11 @@ export class CourseManagementComponent implements OnInit {
         this.assistantService
             .updateClass(this.classEdit)
             .then(res => {
-                this.alertService.success("Cập Nhật Thành Công");
+                this.alert.success("Cập Nhật Thành Công");
             })
             .catch(err => {
                 console.log(err.errors.Name);
-                this.alertService.error(JSON.stringify(err.errors.Name));
+                this.alert.error(JSON.stringify(err.errors.Name));
             });
     }
     changeGradeEdit(e) {

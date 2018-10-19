@@ -53,7 +53,7 @@ export class EducationPlanComponent implements OnInit {
 
     constructor(
         private assistantService: AcademyAssistantService,
-        private alertService: AlertService
+        private alert: AlertService
     ) {}
 
     ngOnInit() {
@@ -68,7 +68,7 @@ export class EducationPlanComponent implements OnInit {
                 console.log("all grades", this.allGrades);
             })
             .catch(err => {
-                this.alertService.error(err);
+                this.alert.error(err);
             });
     }
 
@@ -89,11 +89,11 @@ export class EducationPlanComponent implements OnInit {
         this.assistantService
             .createEducationPlan(obj)
             .then(res => {
-                this.alertService.success('Tạo thành công');
+                this.alert.success('Tạo thành công');
 
             })
             .catch(err => {
-                this.alertService.error(err.errors.unique[0]);
+                this.alert.error(err);
             });
     }
 
@@ -104,7 +104,7 @@ export class EducationPlanComponent implements OnInit {
                 this.allSemesters = res;
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
         this.allCourses = [];
         this.selectedSemester = null;
@@ -123,7 +123,7 @@ export class EducationPlanComponent implements OnInit {
                 this.allCourses = res as any;
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 

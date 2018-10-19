@@ -41,7 +41,7 @@ export class AssignEducationPlanComponent implements OnInit {
             console.log('get course success', res);
             this.courses = res as any;
         }).catch(err => {
-            console.log('get course fail', err);
+            this.alert.error(err);
         })
     }
 
@@ -53,7 +53,7 @@ export class AssignEducationPlanComponent implements OnInit {
                 this.lecturers = res as any;
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 
@@ -70,7 +70,7 @@ export class AssignEducationPlanComponent implements OnInit {
                 console.log("education", this.educationPlans);
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 
@@ -97,7 +97,7 @@ export class AssignEducationPlanComponent implements OnInit {
                 this.getCourseInPlan(this.planid);
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 
@@ -109,7 +109,7 @@ export class AssignEducationPlanComponent implements OnInit {
                 this.plan = res;
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 
@@ -125,7 +125,7 @@ export class AssignEducationPlanComponent implements OnInit {
                         this.alert.success('Xoá thành công');
                     })
                     .catch(err => {
-                        console.log('delete fail', err);
+                        this.alert.error(err);
                     })
             }).catch(() => {
             console.log('ko xoa')

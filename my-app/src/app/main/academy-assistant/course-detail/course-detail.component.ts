@@ -35,7 +35,7 @@ export class CourseDetailComponent implements OnInit {
 
     constructor(private assistantService: AcademyAssistantService,
                 private activatedRouted: ActivatedRoute,
-                private alertService: AlertService,
+                private alert: AlertService,
                 private router: Router) {
     }
 
@@ -72,7 +72,7 @@ export class CourseDetailComponent implements OnInit {
                         //     });
                         // }
                         console.log(err);
-                        this.alertService.error("Lỗi");
+                        this.alert.error(err);
                     });
             }
         });
@@ -84,10 +84,10 @@ export class CourseDetailComponent implements OnInit {
             .updateCourse(this.course)
             .then(() => {
                 this.router.navigate(['/main/assistant/import-course'])
-                this.alertService.success("Cập Nhật Thành Công");
+                this.alert.success("Cập Nhật Thành Công");
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 }

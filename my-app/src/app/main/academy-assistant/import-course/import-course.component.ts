@@ -30,7 +30,7 @@ export class ImportCourseComponent implements OnInit {
     allowDownload: boolean = false;
 
     constructor(private assistantService: AcademyAssistantService,
-                private alertService: AlertService,
+                private alert: AlertService,
                 private loading: LoadingService) {
     }
 
@@ -77,9 +77,7 @@ export class ImportCourseComponent implements OnInit {
             })
             .catch(err => {
                 console.log(err);
-                this.alertService.error(
-                    "Lỗi!!! Vui lòng chọn lại file"
-                );
+                this.alert.error(err);
                 this.loading.stop();
             });
         this.msgs = [];
@@ -93,12 +91,12 @@ export class ImportCourseComponent implements OnInit {
         this.assistantService
             .importCourse(object)
             .then(res => {
-                this.alertService.success("Thêm thành công");
+                this.alert.success("Thêm thành công");
                 this.cancelImport();
                 this.loadData();
             })
             .catch(err => {
-                this.alertService.error('Lỗi');
+                this.alert.error(err);
             });
     }
 
@@ -138,7 +136,7 @@ export class ImportCourseComponent implements OnInit {
                 this.loading.stop();
             })
             .catch(err => {
-                this.alertService.error(err);
+                this.alert.error(err);
                 this.loading.stop();
             });
     }
@@ -151,20 +149,20 @@ export class ImportCourseComponent implements OnInit {
 
     deleteCourse(course) {
         this.loading.start();
-        this.alertService
+        this.alert
             .confirm("Bạn có chắc muốn xoá !!!")
             .then(res => {
                 this.assistantService
                     .deleteCourse(course.Id)
                     .then(res => {
-                        this.alertService.success(res["message"]);
+                        this.alert.success(res["message"]);
                         this.loadData();
                     })
-                    .catch(err => this.alertService.error(err));
+                    .catch(err => this.alert.error(err));
                 this.loading.stop();
             })
             .catch(err => {
-                this.alertService.error('Lỗi');
+                this.alert.error(err);
                 this.loading.stop();
             });
     }
@@ -187,7 +185,7 @@ export class ImportCourseComponent implements OnInit {
                 });
                 console.log(this.gradeOptions);
             })
-            .catch(err => this.alertService.error(err["message"]));
+            .catch(err => this.alert.error(err));
     }
 
     onChange(value) {
@@ -201,10 +199,10 @@ export class ImportCourseComponent implements OnInit {
         this.assistantService
             .uploadFileWord(object)
             .then(res => {
-                this.alertService.success(res["message"]);
+                this.alert.success(res["message"]);
             })
             .catch(err => {
-                this.alertService.error(err["message"]);
+                this.alert.error(err);
             });
     }
 
@@ -216,6 +214,6 @@ export class ImportCourseComponent implements OnInit {
                 this.url = res["url"];
                 this.allowDownload = true;
             })
-            .catch(err => this.alertService.error('Lỗi'));
+            .catch(err => this.alert.error(err));
     }
 }

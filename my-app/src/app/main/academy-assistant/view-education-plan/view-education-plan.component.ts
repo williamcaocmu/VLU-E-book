@@ -40,7 +40,7 @@ export class ViewEducationPlanComponent implements OnInit {
                 console.log(this.educationPlans);
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 
@@ -55,7 +55,7 @@ export class ViewEducationPlanComponent implements OnInit {
                 console.log(this.allGrades);
             })
             .catch(err => {
-                console.log(err);
+                this.alert.error(err);
             });
     }
 
@@ -89,7 +89,7 @@ export class ViewEducationPlanComponent implements OnInit {
                         this.alert.success('Xoá thành công!!');
                     })
                     .catch(err => {
-                        console.log(err);
+                        this.alert.error(err);
                     })
             })
             .catch(() => {
