@@ -71,12 +71,11 @@ export class ImportCourseComponent implements OnInit {
                 } else {
                     this.isImport = true;
                     this.nameFileImport = res["File"];
-
                 }
                 this.loading.stop();
+                this.alert.success('Thành Công!')
             })
             .catch(err => {
-                console.log(err);
                 this.alert.error(err);
                 this.loading.stop();
             });
@@ -118,7 +117,7 @@ export class ImportCourseComponent implements OnInit {
                 this.allHK = HK.filter(
                     (value, index, array) => array.indexOf(value) == index
                 );
-                console.log(this.allHK);
+
                 this.HkOptions = this.allHK.map(x => {
                     return {
                         label: x.toString(),
@@ -129,7 +128,7 @@ export class ImportCourseComponent implements OnInit {
                     label: "",
                     value: ""
                 });
-                console.log(this.HkOptions);
+
                 this.HkOptions.sort(function (a, b) {
                     return (+a.value) - (+b.value);
                 })
@@ -199,7 +198,7 @@ export class ImportCourseComponent implements OnInit {
         this.assistantService
             .uploadFileWord(object)
             .then(res => {
-                this.alert.success(res["message"]);
+                this.alert.success('Thành Công');
             })
             .catch(err => {
                 this.alert.error(err);
